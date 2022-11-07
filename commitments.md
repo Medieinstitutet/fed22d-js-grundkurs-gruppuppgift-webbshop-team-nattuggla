@@ -42,4 +42,4 @@ Code Reviews/Merges kommer vi köra en gång i veckan eller vid stora förändri
 ## Underskrivet av
 @Jenny-Svensson
 @Younes-Echelhi
-@anvandare3
+@Max-Edlund
