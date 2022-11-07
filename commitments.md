@@ -27,7 +27,7 @@
 
 -----------------------------------------------------------
 
-Varje vecka kommer vi ha 2 gemensamma samtal i teams där vi gå igenom veckans moduler tillsammans och diskutera om man har haft svårtigheter eller om det har varit oklarigheter någonstans. Vi ska försöka att vara klara med veckans modul på tisdagar så vi kan gå igenom det tillsammans och sedan kunna fortsätta jobba vidare på vårt projekt utan konstigheter. Söndagar kommer att vara en check-in där vi planerar in kommande veckas milstolpar och vad vi har gjort än så länge, idéer, om det är något vi fastnat på eller inte förstår. Resterande dagar och tid kommer främst ske skriftligt då alla är lätt-tillgängliga via chatten. Vi ska väl försöka följa förslagen för upplägg så man kan ha det som en "checklista" varje vecka, men kan ändras beroende på hur mycket vi få gjort.
+Varje vecka kommer vi ha 2 gemensamma samtal i teams där vi gå igenom veckans moduler tillsammans och diskutera om man har haft svårigheter eller om det har varit oklarigheter någonstans. Vi ska försöka att vara klara med veckans modul på tisdagar så vi kan gå igenom det tillsammans och sedan kunna fortsätta jobba vidare på vårt projekt utan konstigheter. Söndagar kommer att vara en check-in där vi planerar in kommande veckas milstolpar och vad vi har gjort än så länge, idéer, om det är något vi fastnat på eller inte förstår. Resterande dagar och tid kommer främst ske skriftligt då alla är lätt-tillgängliga via chatten. Vi ska väl försöka följa förslagen för upplägg så man kan ha det som en "checklista" varje vecka, men kan ändras beroende på hur mycket vi få gjort.
 
 Vi har kommit överens att vi ska vara så öppna som möjligt om man får förhinder eller bli sjuka, vi har förståelse för allas livssituationer och vi hjälps åt om man fastnar eller ligger efter som gör att man inte ha hunnit med sin milstolpe. Vi ska inte bara vara öppna vid förhinder eller sjukdom utan man ska kunna be om hjälp om det är något man inte förstår eller inte begriper utan konstigheter.
 
@@ -41,5 +41,5 @@ Code Reviews/Merges kommer vi köra en gång i veckan eller vid stora förändri
 
 ## Underskrivet av
 @Jenny-Svensson
-@anvandare2
+@Younes-Echelhi
 @anvandare3
