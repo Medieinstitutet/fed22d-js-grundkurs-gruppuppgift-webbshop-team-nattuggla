@@ -35,7 +35,7 @@ Ambitionsnivån i gruppen är att vi ska kunna känna oss nöjda med projektet n
 
 Vad för konfiguration vi kör - linting eller prettier har vi inte riktigt bestämt än, men det kommer vi nog bestämma innan Vecka 1 är slut.
 
-Vi kommer att försöka commita så ofta vi kan så fort man gör en ändring eller lägger till något. Vi ska försöka skriva commit-meddelanden så utförligt som möjligt så de andra vet och förstår vad det är man har commitat och gjort. Så hellre commita för mycket än för lite, och commitsen kommer att skrivas på svenska.
+Vi kommer att försöka commita så ofta vi kan så fort man gör en ändring eller lägger till något. Vi ska försöka skriva commit-meddelanden så utförligt som möjligt så de andra vet och förstår vad det är man har commitat och gjort. Så hellre commita för mycket än för lite, och commitsen kommer att skrivas på svenska. Vi kommer att köra på Trello för att organisera och underlätta våra to-dos osv.
 
 Code Reviews/Merges kommer vi köra en gång i veckan eller vid stora förändringar/tillägg, antagligen på fredagar när vi sitter tillsammans i teams där vi kan gå igenom det tillsammans och diskutera om det är något som blir fel eller om man behöver hjälp med att merge:a något. Men vi ska försöka att göra så att alla få code reviewa/mergea minst en gång så man ha gjort det under projektets gång. Så antagligen så kommer det bli att när man är klar med en kod, så ska minst en person testköra koden och se så att den fungerar felfritt innan vi mergea in det i main branch.
 
