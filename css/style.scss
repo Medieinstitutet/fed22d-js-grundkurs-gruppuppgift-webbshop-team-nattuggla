@@ -1,6 +1,6 @@
 body{
     min-height: 100vh;
-    color: #eeeee;
+    color: white;
     background-image: url(/bilder/choklad.png);
     background-repeat: no-repeat;
     background-size: cover;
@@ -8,4 +8,37 @@ body{
 
 .fullpage-one{
     min-height: 100vh;
+}
+
+.nav-categories {
+    border: 1px dashed #ccc;
+    border-width: 2px 0;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+nav {
+    background-color: black;
+    padding: 10px;
+}
+
+li {
+    display: inline;
+}
+
+li a {
+    color: white;
+    padding: 14px 20px;
+    text-decoration: none;
+}
+  
+a:hover {
+    color: rgb(94, 50, 21);
+}
+
+button {
+    float: right;
 }
