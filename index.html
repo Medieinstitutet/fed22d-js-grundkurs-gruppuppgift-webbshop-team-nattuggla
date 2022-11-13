@@ -5,20 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Gottfrids choklad</title>
 </head>
 <body>
   
     <header>
         <h1>Gottfrids choklad</h1>
-
-        <i>icon kundkorg</i>
+        <ul><a href=""> 
+            <span>Kundkorg</span>    
+           <i class='bx bxs-cart'></i>
+            <span>0</span>             
+        </a> </ul>
 
         <button class="meny">
             <span></span>
             <span></span>
             <span></span>
         </button>
+   
 
     </header>
 
@@ -32,42 +37,79 @@
 
 <section class="fullpage-two">
     <nav>
-        <ul class="nav-categories">
-            <li><a href="#">Mjölk</a></li>
-            <li><a href="#">Mörk</a></li>
-            <li><a href="#">Nötter</a></li>
-            <li><a href="#">Frukter</a></li>
-            <button>Filtrera</button>
-        </ul>
+        <li>Kategorier</li>
+        <li>Kategorier</li>
+        <li>Kategorier</li>
     </nav>
 
+    <button>Filtrera</button>
 
-
-    <h2>produkterna</h2>
-    <img src="" alt="">
+    <div class="chocolate">
+        <img src="" alt="choklad1"> 
+        <h3>produkterna</h3>
+        <h3>15kr</h3>
+        <a href="#" class="buy choklad1">Beställ</a>
+    </div>
+    <div class="chocolate">
+        <img src="" alt="choklad2"> 
+        <h3>produkterna</h3>
+        <h3>15kr</h3>
+        <a href="#" class="buy choklad2">Beställ</a>
+    </div>
+    
 </section>
 
-<section class="kundkorg">
-  <section class="översikt">Översikt</section>
+<section class="accordion">
+    <section class="accordion_item">
+        <h2 class="accordion_title">Översikt</h2>
+        <p class="accordion_content">Kundkorgsöversikt</p>
+        <button>Next</button>
+    </section>
+    <section class="accordion_item">
+        <h2 class="accordion_title">Info</h2>
+        <p class="accordion_content">Beställningsformulär</p>
+        <button>Next</button>
+    </section>
+    <section class="accordion_item">
+        <h2 class="accordion_title">Betalsätt</h2>
+        <p class="accordion_content">Välja kort eller faktura</p>
+        <button>Next</button>
+    </section>
+    <section class="accordion_item">
+        <h2 class="accordion_title">Fraktsätt</h2>
+        <p class="accordion_content">Välj sätt att få leverans på</p>
+        <button>Next</button>
+    </section>
+ 
+  <section class="Info"></section>
 
-  <section class="Info">Beställningsformulär</section>
+  <section class="Betalsätt"></section>
 
-  <section class="Betalsätt">Välja kort eller faktura</section>
-
-  <section class="Fraktsätt">Fylla i postadress</section>
+  <section class="Fraktsätt"></section>
 </section>
 
-<footer>copyright
-  <i>icon e-post</i> 
-  <i>icon telefonnummer</i> 
-  
-  <ul> 
-    <li>Betalvillkor</li> 
-    <li>Leveransvillkor</li> 
-    <li>Jobba hos oss</li>   
-  </ul>
+<footer>
+  <section class="content">
+            <div class="profile">
+                <span>Gottfrids choklad</span>
+                <button id="dark-mode" class="moon"><i class='bx bxs-moon' ></i></button>
+                <button id="light-mode" class="sun hide"><i class='bx bxs-sun'></i></button>
+    
+                    <ul class="service">
+                        <li>Hem</li>
+                        <li>Om oss</li>
+                        <li>Betalvillkor</li> 
+                        <li>Leveransvillkor</li> 
+                        <li>Jobba hos oss</li>  
+                    </ul>
 
+                <div class="contact">
+                    <a href="#"><i class='bx bx-phone'></i>Ring oss</a>
+                    <a href="#"><i class='bx bxs-envelope'></i>Email</a>
+                </div>
+            </div>
+  </section>
 </footer>
-
+<script src="/js/script.js"></script>
 </body>
 </html>
