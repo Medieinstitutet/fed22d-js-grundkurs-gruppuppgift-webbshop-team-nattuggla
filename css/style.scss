@@ -1,16 +1,21 @@
+
+
 body{
     min-height: 100vh;
-    color: white;
+    color: #f1f1f1;
     background-image: url(/bilder/choklad.png);
     background-repeat: no-repeat;
     background-size: cover;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
-.fullpage-one{
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
+:root{
+    --primary-color:#fff;
+    --secondary-color: #000;
 }
+
 .nav-categories {
     border: 1px dashed #ccc;
     border-width: 2px 0;
@@ -19,32 +24,75 @@ body{
     padding: 0;
     text-align: center;
     font-size: 1.5em;
-}
 
-nav {
-    background-color: black;
-    padding: 10px;
 }
+  .dark__mode{
+        --primary-color:#000;
+        --secondary-color: #fff;
+    }
 
-li {
-    display: inline;
-}
+    .show{
+        display: block;}
 
-li a {
-    color: white;
-    padding: 14px 20px;
-    text-decoration: none;
-}
+    .hide{
+        display: none;
+    }
+
+footer{
+    position: fixed;
+    width:100%;
+    bottom: 0;
+    left: 0;
+    box-shadow: 0px 16px 70px -8px rgba(0, 0, 0, 0.25);
+    border-radius: 20px 20px 0 0;
+    transition: background 0.3s linear;
+    background-color: var(--primary-color);
+
+    .profile button{
+        border: none;
+        outline: none;
+        background-color: transparent;
+        cursor: pointer;
+        font-size: 20px;
+    }
+    .profile .sun{
+        color: #fff;
+        font-size: 20px;
+    }
+    
+    span{
+        font-weight: bolder;
+        font-size: 24px;
+        color: gray;
+    }
+    .content_inner{
+        text-align: center;
+    }
+    li{
+        list-style: none;
+        color: gray;
+        letter-spacing: 1px;
+        margin: 20px;
+        flex-wrap: wrap;
+    }
+    ul li:first-child{
+        font-weight: 700;
+    }
+   
+    .contact{
+        font-size: 24px;
+    }
+    .contact a{
+        color: gray;
+    }
+    .contact a:hover{
+        color: rgb(20, 115, 248);
+    }
   
-a:hover {
-    color: rgb(94, 50, 21);
-}
-
-button {
-    float: right;
 }
 
 fieldset {
     width: 40%;
 
 }
+
