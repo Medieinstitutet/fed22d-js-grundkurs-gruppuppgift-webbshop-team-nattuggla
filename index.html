@@ -1,153 +1,150 @@
 <!DOCTYPE html>
 <html lang="se">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/style.css">
-    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link
+      href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css"
+      rel="stylesheet"
+    />
     <title>Gottfrids choklad</title>
-</head>
-<body>
-  
+  </head>
+  <body>
     <header>
-        <h1>Gottfrids choklad</h1>
-        <ul>
-          <li>
-            <a href=""> 
-              <span>Kundkorg</span>    
-             <i class='bx bxs-cart'></i>
-              <span>0</span>             
-          </a>
-          </li>
-        </ul>
+      <h1 class="header-logo">Gottfrids'</h1>
 
+      <div class="menu-container">
+        <a href="">
+          <span>Kundkorg</span>
+          <i class="bx bxs-cart"></i>
+          <span>0</span>
+        </a>
         <button class="meny" aria-label="menu">
-            <span></span>
-            <span></span>
-            <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
         </button>
-   
-
+      </div>
     </header>
 
-<section class="fullpage-one">  
+    <section class="fullpage-one">
+      <!--    <figure><img src="" alt=""></figure> -->
 
-    <figure><img src="" alt=""></figure>
-    <button class="scroll-down">Scrolla Ner</button>
+      <p>Köp fantastisk choklad till grymma priser!</p>
+      <a href="#second-page">
+        <button class="scroll-down">Scrolla Ner</button>
+      </a>
+    </section>
 
-
-</section>
-
-<section class="fullpage-two">
-    <nav>
-      <button>Filtrera</button>
-        <ul class="nav-categories">
-            <li><a href="#">Mjölk</a></li>
-            <li><a href="#">Mörk</a></li>
-            <li><a href="#">Nötter</a></li>
-            <li><a href="#">Frukter</a></li>
+    <section class="fullpage-two" id="second-page">
+      <nav>
+        <ul>
+          <li><a href="#">Mjölk</a></li>
+          <li><a href="#">Mörk</a></li>
+          <li><a href="#">Nötter</a></li>
+          <li><a href="#">Frukter</a></li>
         </ul>
-    </nav>
+        <button class="filter-btn">Filtrera</button>
+      </nav>
 
-
-    <div class="chocolate">
-        <img src="" alt="choklad1"> 
+      <div class="chocolate">
+        <img src="" alt="choklad1" />
         <h3>produkterna</h3>
         <h3>15kr</h3>
         <a href="#" class="buy choklad1">Beställ</a>
-    </div>
-    <div class="chocolate">
-        <img src="" alt="choklad2"> 
+      </div>
+      <div class="chocolate">
+        <img src="" alt="choklad2" />
         <h3>produkterna</h3>
         <h3>15kr</h3>
         <a href="#" class="buy choklad2">Beställ</a>
-    </div>
-    
-</section>
+      </div>
+    </section>
 
-  <button onClick="toggleMenu()">Kundkorg</button>
+    <button onClick="toggleMenu()">Kundkorg</button>
 
-  <div class="cart" id="cart">
-    <p class="close" onClick="toggleMenu()">X</p>
+    <div class="cart" id="cart">
+      <p class="close" onClick="toggleMenu()">X</p>
       <h1>Hello world !</h1>
-     <section class="oversikt korg">Översikt</section>
+      <section class="oversikt korg">Översikt</section>
       <section class="info korg">Info</section>
       <section class="betala korg">Betalsätt</section>
       <section class="frakt korg">Fraktsätt</section>
-  </div>
+    </div>
 
-
-<section class="accordion">
-    <section class="accordion_item">
+    <section class="accordion">
+      <section class="accordion_item">
         <h2 class="accordion_title">Översikt</h2>
         <p class="accordion_content">Kundkorgsöversikt</p>
         <button>Next</button>
-    </section>
-    <section class="accordion_item">
+      </section>
+      <section class="accordion_item">
         <h2 class="accordion_title">Info</h2>
-  <section class="info-container">
-    <fieldset>
-      <legend>FORMULÄR FÖR ATT BESTÄLLA CHOKLAD</legend>
+        <section class="info-container">
+          <fieldset>
+            <legend>FORMULÄR FÖR ATT BESTÄLLA CHOKLAD</legend>
 
-      <label for="fnamn">Förnamn:</label><br>
-      <input type="text" name="fnamn" id="fnamn" /> <br>
-      <label for="fnamn">Efternamn:</label><br>
-      <input type="text" name="enamn" id="enamn" /> <br>
-      <label for="fnamn">Adress:</label><br>
-      <input type="text" name="adress" id="adress" /> <br>
-      <label for="fnamn">Postnummer:</label><br>
-      <input type="text" name="pnummer" id="pnummer" /> <br>
-      <label for="fnamn">Postort:</label><br>
-      <input type="text" name="port" id="port" /> <br>
-      <label for="fnamn">Ev. Portkod:</label><br>
-      <input type="text" name="pkord" id="pkord" /> <br>
-      <label for="fnamn">Telefon (mobil):</label><br>
-      <input type="text" name="telefon" id="telefon" /> <br>
-      <label for="fnamn">E-postadress:</label><br>
-      <input type="text" name="email" id="email" /> <br>
-    </fieldset>
+            <label for="fnamn">Förnamn:</label><br />
+            <input type="text" name="fnamn" id="fnamn" /> <br />
+            <label for="fnamn">Efternamn:</label><br />
+            <input type="text" name="enamn" id="enamn" /> <br />
+            <label for="fnamn">Adress:</label><br />
+            <input type="text" name="adress" id="adress" /> <br />
+            <label for="fnamn">Postnummer:</label><br />
+            <input type="text" name="pnummer" id="pnummer" /> <br />
+            <label for="fnamn">Postort:</label><br />
+            <input type="text" name="port" id="port" /> <br />
+            <label for="fnamn">Ev. Portkod:</label><br />
+            <input type="text" name="pkord" id="pkord" /> <br />
+            <label for="fnamn">Telefon (mobil):</label><br />
+            <input type="text" name="telefon" id="telefon" /> <br />
+            <label for="fnamn">E-postadress:</label><br />
+            <input type="text" name="email" id="email" /> <br />
+          </fieldset>
+        </section>
 
-
-  </section>
-  
-      <button>Next</button>
-    </section>
-    <section class="accordion_item">
+        <button>Next</button>
+      </section>
+      <section class="accordion_item">
         <h2 class="accordion_title">Betalsätt</h2>
         <p class="accordion_content">Välja kort eller faktura</p>
         <button>Next</button>
-    </section>
-    <section class="accordion_item">
+      </section>
+      <section class="accordion_item">
         <h2 class="accordion_title">Fraktsätt</h2>
         <p class="accordion_content">Välj sätt att få leverans på</p>
         <button>Next</button>
+      </section>
     </section>
 
-</section>
+    <footer>
+      <section class="content">
+        <div class="profile">
+          <span>Gottfrids choklad</span>
+          <button id="dark-mode" class="moon">
+            <i class="bx bxs-moon"></i>
+          </button>
+          <button id="light-mode" class="sun hide">
+            <i class="bx bxs-sun"></i>
+          </button>
 
-<footer>
-  <section class="content">
-            <div class="profile">
-                <span>Gottfrids choklad</span>
-                <button id="dark-mode" class="moon"><i class='bx bxs-moon' ></i></button>
-                <button id="light-mode" class="sun hide"><i class='bx bxs-sun'></i></button>
-    
-                    <ul class="service">
-                        <li>Hem</li>
-                        <li>Om oss</li>
-                        <li>Betalvillkor</li> 
-                        <li>Leveransvillkor</li> 
-                        <li>Jobba hos oss</li>  
-                    </ul>
+          <ul class="service">
+            <li>Hem</li>
+            <li>Om oss</li>
+            <li>Betalvillkor</li>
+            <li>Leveransvillkor</li>
+            <li>Jobba hos oss</li>
+          </ul>
 
-                <div class="contact">
-                    <a href="#"><i class='bx bx-phone'></i>Ring oss</a>
-                    <a href="#"><i class='bx bxs-envelope'></i>Email</a>
-                </div>
-            </div>
-  </section>
-</footer>
-<script src="/js/script.js"></script>
-</body>
+          <div class="contact">
+            <a href="#"><i class="bx bx-phone"></i>Ring oss</a>
+            <a href="#"><i class="bx bxs-envelope"></i>Email</a>
+          </div>
+        </div>
+      </section>
+    </footer>
+    <script src="/js/script.js"></script>
+  </body>
 </html>
