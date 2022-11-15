@@ -8,18 +8,21 @@
     <title>test-cart</title>
 </head>
 <body>
-    <div class="kundkorg">
+    <button onClick="toggleMenu()">KundKorg</button>
 
-        <h3 class="namn">kundkorg</h3>
+        <div class="cart" id="cart">
+            <p class="close" onClick="toggleMenu()">X</p>
+            <h1>Hello world !</h1>
             
-        <div class="Oversikt">Översikt</div>
-    
-        <div class="Info">Beställningsformulär</div>
-    
-        <div class="Betalsatt">Välja kort eller faktura</div>
-    
-        <div class="Fraktsatt">Fylla i postadress</div>
+            <section class="oversikt korg">Översikt</section>
+            <section class="info korg">Info</section>
+            <section class="betala korg">Betalsätt</section>
+            <section class="frakt korg">Fraktsätt</section>
 
-    </div>
+        </div>
+
+    <script src = "test.js">
+
+    </script>
 </body>
 </html>
