@@ -3,7 +3,7 @@
 body{
     min-height: 100vh;
     color: white;
-    background-image: url(/bilder/choklad.png);
+    background-image: url('/bilder/choklad.png');
     background-repeat: no-repeat;
     background-size: cover;
     margin: 0;
@@ -82,7 +82,11 @@ button {
     letter-spacing: 2px;
     text-decoration: none;
     border: 3px solid;
-    box-shadow: 1px 1px 0px 0px, 2px 2px 0px 0px, 3px 3px 0px 0px, 4px 4px 0px 0px, 5px 5px 0px 0px;
+    box-shadow: 1px 1px 0px 0px,
+                2px 2px 0px 0px,
+                3px 3px 0px 0px,
+                4px 4px 0px 0px,
+                5px 5px 0px 0px;
     touch-action: manipulation;
     transition: all 0.02s ease-in-out;
 

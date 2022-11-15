@@ -12,13 +12,17 @@
   
     <header>
         <h1>Gottfrids choklad</h1>
-        <ul><a href=""> 
-            <span>Kundkorg</span>    
-           <i class='bx bxs-cart'></i>
-            <span>0</span>             
-        </a> </ul>
+        <ul>
+          <li>
+            <a href=""> 
+              <span>Kundkorg</span>    
+             <i class='bx bxs-cart'></i>
+              <span>0</span>             
+          </a>
+          </li>
+        </ul>
 
-        <button class="meny">
+        <button class="meny" aria-label="menu">
             <span></span>
             <span></span>
             <span></span>
@@ -37,12 +41,12 @@
 
 <section class="fullpage-two">
     <nav>
+      <button>Filtrera</button>
         <ul class="nav-categories">
             <li><a href="#">Mjölk</a></li>
             <li><a href="#">Mörk</a></li>
             <li><a href="#">Nötter</a></li>
             <li><a href="#">Frukter</a></li>
-            <button>Filtrera</button>
         </ul>
     </nav>
 
@@ -62,13 +66,16 @@
     
 </section>
 
+  <button onClick="toggleMenu()">Kundkorg</button>
 
-<section class="kundkorg">
-
-    <div class="top-section">
-        <h3 class="namn">kundkorg</h3>
-        <h5 class="ta-bort">Ta-bort allt</h5>
-    </div>
+  <div class="cart" id="cart">
+    <p class="close" onClick="toggleMenu()">X</p>
+      <h1>Hello world !</h1>
+     <section class="oversikt korg">Översikt</section>
+      <section class="info korg">Info</section>
+      <section class="betala korg">Betalsätt</section>
+      <section class="frakt korg">Fraktsätt</section>
+  </div>
 
 
 <section class="accordion">
@@ -79,7 +86,7 @@
     </section>
     <section class="accordion_item">
         <h2 class="accordion_title">Info</h2>
-  <section class="Info">
+  <section class="info-container">
     <fieldset>
       <legend>FORMULÄR FÖR ATT BESTÄLLA CHOKLAD</legend>
 
@@ -104,7 +111,7 @@
 
   </section>
   
-        <button>Next</button>
+      <button>Next</button>
     </section>
     <section class="accordion_item">
         <h2 class="accordion_title">Betalsätt</h2>
