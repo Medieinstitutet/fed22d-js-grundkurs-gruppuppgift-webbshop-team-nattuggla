@@ -87,6 +87,7 @@ figure {
     width: 100%;
     display: flex;
     justify-content: space-around;
+    align-items: center;
     border: 1px dashed #ccc;
     border-width: 2px 0;
     background-color: black;
@@ -96,11 +97,12 @@ figure {
       justify-content: space-between;
       list-style: none;
       margin: 0;
-      padding: 0;
+      padding: 1.5rem 0.25rem;
       font-size: 1.25em;
     }
 
     .filter-btn {
+      height: max-content;
       margin: 0;
     }
 
