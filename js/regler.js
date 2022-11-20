@@ -37,6 +37,7 @@ tömmas/rensas och kunden ska meddelas att denne är för långsam.     <-- när
 
 // massa matte på leveranser
 
+
               /******** VARIABLER ********/
 
 
@@ -47,9 +48,18 @@ const displayDate = timeOfOrder.toDateString();     //  för utskrift av datum o
 let deliveryTime;                                   //  massa matte på timeOfOrder sen
 const orderDay = timeOfOrder.getDay();              //  spara dagen för beställning som number mellan 0 och 6 (0 = söndag)
 const orderHour = timeOfOrder.getHours();           //  spara klockslag för beställning, number mellan 0 och 23
+const orderWeek = timeOfOrder.getWeek();  // <- hur?
 const initalPrice = customerOrder.totalPrice;        //  hämta totalpriset från kundkorgp, innan rabatter/påslag
 
+
+
               /********  FUNKTIONER ********/
+
+
+function ISO8601_week_no(dt) 
+  {
+    // ska prova en funktion från internet
+  }
 
 /**
  * kollar om dagen är rabattberättigad
@@ -75,8 +85,10 @@ function applyMondayDiscount(price) {      // en bool variabel i beställningsob
   customerOrder.totalPrice = discountedPrice;
 }
 
-function checkWeek() {
-  // kontrollera om jämn vecka, nån modulo-check på vecko-nr?
+function checkWeek(wweek) {
+  if (week % 2 == 0) {
+    // då är det rabatt
+  }
 }
 
 function applyWeekendIncrease() {
@@ -105,7 +117,7 @@ if (isDiscountDay) {            // om den gör det, kolla vilken dag, och vilken
     break;
 
     case 2:   // OM tisdag
-      checkWeek();
+      checkWeek(orderWeek);
     break;
 
     case 5:   // OM fredag:
