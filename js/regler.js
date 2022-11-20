@@ -1,3 +1,5 @@
+              /******** PSEUDOKOD ********/
+
 /* Om kunden inte har lagt beställningen inom 15 minuter så ska beställningsformuläret 
 tömmas/rensas och kunden ska meddelas att denne är för långsam.     <-- när  triggas detta? */
 
@@ -21,8 +23,19 @@ tömmas/rensas och kunden ska meddelas att denne är för långsam.     <-- när
 //        returnera totalpris * 0.1 till slutgiltigt pris   ☑️
 
 //    OM det är tisdag:
-//        
+//        OM jämn vecka && beställningen över 25kr:
+//            subtrahera 25 kr fr totalpris
 
+// OM det är 13e december:
+//    lägg till en gratis pepparkakschoklad eller nåt 🍪😃
+
+// OM det är 24 december
+//    gör pristexter röda
+//    byt bakgrundsbild
+
+// rabattkod, nåt med RegEx? kmr vecka 3 har jag för mig
+
+// massa matte på leveranser
 
               /******** VARIABLER ********/
 
@@ -31,6 +44,7 @@ tömmas/rensas och kunden ska meddelas att denne är för långsam.     <-- när
 
 const timeOfOrder = new Date();                     //  bör va typ event på beställningsknapp som kör typ placeOrder(), skapa ett Date-objekt
 const displayDate = timeOfOrder.toDateString();     //  för utskrift av datum och tid för beställning
+let deliveryTime;                                   //  massa matte på timeOfOrder sen
 const orderDay = timeOfOrder.getDay();              //  spara dagen för beställning som number mellan 0 och 6 (0 = söndag)
 const orderHour = timeOfOrder.getHours();           //  spara klockslag för beställning, number mellan 0 och 23
 const initalPrice = customerOrder.totalPrice;        //  hämta totalpriset från kundkorgp, innan rabatter/påslag
@@ -62,7 +76,7 @@ function applyMondayDiscount(price) {      // en bool variabel i beställningsob
 }
 
 function checkWeek() {
-
+  // kontrollera om jämn vecka, nån modulo-check på vecko-nr?
 }
 
 function applyWeekendIncrease() {
