@@ -5,7 +5,7 @@ tömmas/rensas och kunden ska meddelas att denne är för långsam.     <-- när
 
 // om beställningsobjektets totalpris blir större än 800, inaktivera val för faktura  <-- när  triggas detta?
 
-// <beställningsknapp> klickas -->
+// checkForDiscount(price) placeOrder(checkForDiscount()) när man klickar på varukorgssammanställning -> 
 // funktion för att hindra att beställningen ändras, hur gör vi? när? 
 // spara dag för beställning i variabel   ☑️
 // spara tidpunkt för beställning i variabel  ☑️
@@ -41,15 +41,13 @@ tömmas/rensas och kunden ska meddelas att denne är för långsam.     <-- när
               /******** VARIABLER ********/
 
 
-// const originalPrice = beställningsobjektet.totalPrice
-
 const timeOfOrder = new Date();                     //  bör va typ event på beställningsknapp som kör typ placeOrder(), skapa ett Date-objekt
 const displayDate = timeOfOrder.toDateString();     //  för utskrift av datum och tid för beställning
 let deliveryTime;                                   //  massa matte på timeOfOrder sen
 const orderDay = timeOfOrder.getDay();              //  spara dagen för beställning som number mellan 0 och 6 (0 = söndag)
 const orderHour = timeOfOrder.getHours();           //  spara klockslag för beställning, number mellan 0 och 23
 const orderWeek = timeOfOrder.getWeek();  // <- hur?
-const initalPrice = customerOrder.totalPrice;        //  hämta totalpriset från kundkorgp, innan rabatter/påslag
+const initalPrice = customerOrder.totalPrice;        //  hämta totalpriset från kundkorg, innan rabatter/påslag
 
 
 
@@ -67,7 +65,7 @@ function ISO8601_week_no(dt)
  * @returns en bool!
  */
 function isDiscountDay(weekDay) {       
-  if (weekDay == 1 || weekDay == 5 || weekDay == 6) {
+  if (weekDay == 1 || weekDay == 2 || weekDay == 6 || weekDay == 0) {
     return true;
   }
   else { 
@@ -85,9 +83,12 @@ function applyMondayDiscount(price) {      // en bool variabel i beställningsob
   customerOrder.totalPrice = discountedPrice;
 }
 
-function checkWeek(wweek) {
+function checkWeek(week) {
   if (week % 2 == 0) {
     // då är det rabatt
+  }
+  else {
+    return;
   }
 }
 
@@ -99,7 +100,7 @@ function applyWeekendIncrease() {
               /******** PROGRAMFLÖDE ********/ 
 
 
-// startas av typ placeOrder() när man klickar på lägg beställning ?
+// startas av typ checkForDiscount() när man klickar på lägg beställning ?
 
 isDiscountDay(orderDay);        // kontrollera om dagens dag ger rätt till rabatt eller inte
 
