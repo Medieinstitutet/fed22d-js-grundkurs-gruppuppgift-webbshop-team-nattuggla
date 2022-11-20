@@ -5,11 +5,14 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Gottfrids choklad</title>
   </head>
-  <body>
-    <header>
-      <h1 class="header-logo">Gottfrids'</h1>
+  <body> <header>
+    <button id="dark-mode" class="moon"><i class='bx bxs-moon'></i></button>
+    <button id="light-mode" class="sun hide"><i class='bx bxs-sun'></i></button> 
+   
+      <h1 class="header-logo">Gottfrids praliner</h1>
 
       <div class="menu-container">
         <a href="">
@@ -17,17 +20,22 @@
           <i class="bx bxs-cart"></i>
           <span>0</span>
         </a>
-        <button class="meny" aria-label="menu">
-          <span></span>
-          <span></span>
-          <span></span>
+        <button id="menuBtn" class="menu" aria-label="menu"> Meny
+          <span class="menu1"></span>
+          <span class="menu2"></span>
+          <span class="menu1"></span>      
         </button>
+        <nav id="nav" class="menyknapp">
+          <ul>
+            <li><a href="#">Home</a></li>
+            <li><a href="#">Produkter</a></li>
+            <li><a href="#">Kassa</a></li>
+          </ul>          
+        </nav>
       </div>
     </header>
 
     <section class="fullpage-one">
-      <!--<figure><img src="" alt=""></figure> -->
-
       <p>Köp fantastisk choklad till grymma priser!</p>
       <a href="#second-page">
         <button class="scroll-down">Scrolla Ner</button>
@@ -35,7 +43,7 @@
     </section>
 
     <section class="fullpage-two" id="second-page">
-      <nav>
+      <nav class="kategorier">
         <ul>
           <li><a href="#">Mjölk</a></li>
           <li><a href="#">Mörk</a></li>
@@ -44,18 +52,101 @@
         </ul>
         <button class="filter-btn">Filtrera</button>
       </nav>
-
-      <div class="chocolate">
-        <img src="" alt="choklad1" />
-        <h3>produkterna</h3>
-        <h3>15kr</h3>
-        <a href="#" class="buy choklad1">Beställ</a>
+      <div class="chocolate-container">
+        <div class="chocolate">
+          <article>
+            <h3>Apelsin-hasselnöt</h3>
+            <img src="./bilder/pralin bilder/apelsin-hasselnöt/Apelsin-Hasselnöt-Utsida.png" alt="apelsin-hasselnot-pralin" height="200" width="200"> <br>        
+            <span class="pris">15</span>kr
+            <span class="amount">0</span> st<br>
+            <span class="sum">0</span> kr<br>
+            <button data-operator="minus">-</button>
+            <button data-operator="plus">+</button>
+          </article>
+        </div>
+        <article>
+          <h3>Blodapelsin-vanilj</h3>
+          <img src="./bilder/pralin bilder/blodapelsin-vanilj/Bloodgrape-Vanilj-Utsida.png" alt="" height="200" width="200"> <br>  
+          <span class="pris">20</span>kr
+          <span class="amount">0</span> st<br>
+          <span class="sum">0</span> kr<br>
+          <button data-operator="minus">-</button>
+          <button data-operator="plus">+</button>
+        </article>
+        <article>
+          <h3>Calamansi</h3>
+          <img src="./bilder/pralin bilder/calamansi/Calamansi-Cheesecake-Utsida-copy-1.png" alt="" height="200" width="200"> <br>
+          <span class="pris">18</span> kr
+          <span class="amount">0</span> st<br>
+          <span class="sum">0</span> kr<br>
+          <button data-operator="minus">-</button>
+          <button data-operator="plus">+</button>
+        </article>
+        <article>
+          <h3>Espresso</h3>
+          <img src="./bilder/pralin bilder/espresso-kola/Kola-Utsida-copy.png" alt="" height="200" width="200"> <br>
+          <span class="pris">8</span>kr
+          <span class="amount">0</span> st<br>
+          <span class="sum">0</span> kr<br>
+          <button data-operator="minus">-</button>
+          <button data-operator="plus">+</button>
+        </article>
+        <article>
+          <h3>Hallon-Lakrits</h3>
+          <img src="./bilder/pralin bilder/hallon-lakrits/Saltlakrits-Utsida-copy.png" alt="" height="200" width="200"> <br>
+          <span class="pris">12</span>kr
+          <span class="amount">0</span> st<br>
+          <span class="sum">0</span> kr<br>
+          <button data-operator="minus">-</button>
+          <button data-operator="plus">+</button>
+        </article>
       </div>
-      <div class="chocolate">
-        <img src="" alt="choklad2" />
-        <h3>produkterna</h3>
-        <h3>15kr</h3>
-        <a href="#" class="buy choklad2">Beställ</a>
+      <div class="chocolate-container">
+        <article>
+          <h3>Hasselnöt</h3>
+          <img src="./bilder/pralin bilder/hasselnöt/Hasselnöt-Utsida-copy.png" alt="" height="200" width="200"> <br>
+          <span class="pris">10</span>kr
+          <span class="amount">0</span> st<br>
+          <span class="sum">0</span> kr<br>
+          <button data-operator="minus">-</button>
+          <button data-operator="plus">+</button>
+        </article>
+        <article>
+          <h3>Jordnöt</h3>
+          <img src="./bilder/pralin bilder/jordnöt/Jordnöt-Utsida-copy.png" alt="" height="200" width="200"> <br>
+          <span class="pris">8</span>kr
+          <span class="amount">0</span> st<br>
+          <span class="sum">0</span> kr<br>
+          <button data-operator="minus">-</button>
+          <button data-operator="plus">+</button>
+        </article>
+        <article>
+          <h3>Maracaibo</h3>
+          <img src="./bilder/pralin bilder/maracaibo/Maracaibo-65�-Utsida-copy.png" alt="" height="200" width="200"> <br>
+          <span class="pris">25</span>kr
+          <span class="amount">0</span> st<br>
+          <span class="sum">0</span> kr<br>
+          <button data-operator="minus">-</button>
+          <button data-operator="plus">+</button>
+        </article>
+        <article>
+          <h3>Passion-Mango</h3>
+          <img src="./bilder/pralin bilder/passion-mango/Passion-Utsida-copy.png" alt="" height="200" width="200"> <br>
+          <span class="pris">8</span>kr
+          <span class="amount">0</span> st<br>
+          <span class="sum">0</span> kr<br>
+          <button data-operator="minus">-</button>
+          <button data-operator="plus">+</button>
+        </article>
+        <article>
+          <h3>Saltkola</h3>
+          <img src="./bilder/pralin bilder/saltkola/Saltkola-Utsida-copy-1.png" alt="" height="200" width="200"> <br>
+          <span class="pris"></span>kr
+          <span class="amount">0</span> st<br>
+          <span class="sum">0</span> kr<br>
+          <button data-operator="minus">-</button>
+          <button data-operator="plus">+</button>
+        </article>
       </div>
     </section>
 
@@ -115,17 +206,25 @@
       </section>
     </section>
 
-<footer>copyright
-  <i>icon e-post</i> 
-  <i>icon telefonnummer</i> 
+    <footer>
+      <section class="content">
+        <div class="profile">
+          <span>Gottfrids choklad</span>
+            <ul class="service">
+              <li><a href="#">Hem</a></li>
+              <li><a href="#">Om oss</a></li>
+              <li><a href="#">Betalvillkor</a></li> 
+              <li><a href="#">Leveransvillkor</a></li> 
+              <li><a href="#">Jobba hos oss</a></li>  
+            </ul>
+          <div class="contact">
+            <a href="#"><i class='bx bx-phone'></i>Ring oss</a>
+            <a href="#"><i class='bx bxs-envelope'></i>Email</a>
+          </div>
+        </div>
+      </section>
+    </footer>
   
-  <ul> 
-    <li>Betalvillkor</li> 
-    <li>Leveransvillkor</li> 
-    <li>Jobba hos oss</li>   
-  </ul>
-
-</footer>
-
+    <script src="js/script.js"></script>
 </body>
 </html>
