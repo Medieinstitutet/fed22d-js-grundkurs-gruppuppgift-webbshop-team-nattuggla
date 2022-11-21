@@ -56,17 +56,18 @@
 
 **************************/
 
-// rabattkod, nåt med RegEx? kmr vecka 3 har jag för mig
+/* övrigt
 
+🔲    rabattkod, nåt med RegEx? kmr vecka 3 har jag för mig
+🔲    massa matte på leveranser
 
-
-// massa matte på leveranser
+**************************/
 
 
               /******** VARIABLER ********/
 
 const timeOfOrder = new Date();                     //  skapa ett Date-objekt
-const dateString = timeOfOrder.toDateString();      //  för kontroll av dag, här eller deklarera i funktionen? isHoliday()?
+const dateString = timeOfOrder.toDateString();      //  för kontroll av dag, här eller deklarera i funktionen isHoliday()?
 const orderDay = timeOfOrder.getDay();              //  spara dagen för beställning som number mellan 0 och 6 (0 = söndag)
 const orderHour = timeOfOrder.getHours();           //  spara klockslag för beställning, number mellan 0 och 23
 // const orderWeek = timeOfOrder.getWeek();  // <- hur?
@@ -112,30 +113,19 @@ function setDayDiscount() {    // tänkte fel från början, bör göras om, app
   
   switch (orderDay) {           
     case 1:   // OM måndag:
-    if (orderHour < 10 && orderHour >= 3) {
-    applyMondayDiscount(initalPrice);
-    }
-    else if(orderHour > 0 && orderHour <= 3) { // tänk om
-    applyWeekendIncrease(initalPrice);
-    }
-
+      if (orderHour < 10 && orderHour >= 3) {
+      applyMondayDiscount(initalPrice);
+      }
+      else if(orderHour > 0 && orderHour <= 3) { // tänk om
+      applyWeekendIncrease(initalPrice);
+      }
     break;
 
     case 2:   // OM tisdag
-    checkWeek(orderWeek);   // TODO
+      checkWeek(orderWeek);   // TODO, funktionen finns ej än
     break;
-
-    case 5:   // OM fredag:
-    if (orderHour > 14) {
-    applyWeekendIncrease(initalPrice);
-  }
-
-  break;
-
-  case 6:   // OM lördag eller söndag:
-  case 0:   
-  applyWeekendIncrease(initalPrice);
-  break;
+    default:
+    break;
   }
 }
 
@@ -143,8 +133,8 @@ function setDayDiscount() {    // tänkte fel från början, bör göras om, app
  * ändrar beställnngsobjektets totalpris
  * @param {number} price priset från initialPrice
  */
-function applyMondayDiscount(price) {      // en bool variabel i beställningsobjektet som heter hasMondayDiscount och false?                             
-  hasMondayDiscount = true;           // så kan det skrivas ut ett meddelande beroende på true eller false typ..
+function applyMondayDiscount(price) {      // en bool-variabel  (finns ej än) i beställningsobjektet som heter hasMondayDiscount och false?                             
+  hasMondayDiscount = true;                // så kan det skrivas ut ett meddelande beroende på true eller false typ..
   let discountedPrice = price *= 0.1;
   customerOrder.totalPrice = discountedPrice;
 }
@@ -164,8 +154,8 @@ function applyWeekendIncrease() {
 
               /******** PROGRAMFLÖDE ********/ 
 
-isHoliday();
-isDiscountDay(orderDay);        // kontrollera om dagens dag ger rätt till rabatt eller inte
+isHoliday();                    // kolla om det är en speciell helgdag, gör grejer isf
+isDiscountDay(orderDay);        // kontrollera om dagens dag ger rätt till rabatt eller inte ->
 
 if (isDiscountDay) {            // om den gör det, kolla vilken dag, och vilken tid
   setDayDiscount();
