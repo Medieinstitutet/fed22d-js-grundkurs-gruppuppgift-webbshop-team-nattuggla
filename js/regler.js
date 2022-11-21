@@ -6,7 +6,7 @@
 ✅    spara aktuell tidpunkt i variabel 
 
 ✅    OM det är 13e december: 
-🔲     lägg till en gratis pepparkakschoklad i kundkorgen eller nåt 🍪😃
+🔲     lägg till en gratis pepparkakschoklad i kundkorgen eller nåt 🍫😃
 
 ✅    OM det är 24 december
 🔲     gör pristexter röda
@@ -40,10 +40,13 @@
 ✅    Kontrollera ifall det är en rabattvärdig dag, OM sant:
 ✅        OM det är måndag OCH timvariabeln är mindre än 10:
 ✅            returnera totalpris * 0.1 till slutgiltigt pris
-
-✅    OM det är tisdag:
-🔲        OM jämn vecka && beställningen över 25kr:
-🔲            subtrahera 25 kr fr totalpris
+✅        annars OM det är tisdag:
+🔲            OM jämn vecka && beställningen över 25kr:
+🔲                subtrahera 25 kr fr totalpris
+✅    ANNARS:
+✅        OM det är en fredag efter 14, lördag eller söndag:
+🔲            höj priset på alla produkter med 10%
+      
 
 🔲    funktion för att räkna ut frakt:
 🔲       OM antal beställda produkter > 15
@@ -77,12 +80,14 @@ let deliveryTime;                                   //  massa matte på timeOfOr
 
 
               /********  FUNKTIONER ********/
+
+       
 /**
  * testar om det är lucia eller julafton (funktionen verkar funka som den ska!)
  */
 function isHoliday() {
   let isXmas = dateString.includes('Dec 24');   // .includes() returnerar true eller false
-  let isLucia = dateString.includes('Nov 22')
+  let isLucia = dateString.includes('Nov 22');
 
   if (isXmas) {
     // TODO: gör pristexter röda och byt bakgrundsbild
@@ -98,10 +103,19 @@ function isHoliday() {
  * @returns en bool!
  */
 function isDiscountDay(weekDay) {       
-  if (weekDay == 1 || weekDay == 2 || weekDay == 6 || weekDay == 0) {
+  if (weekDay == 1 || weekDay == 2) {
     return true;
   }
   else { 
+    return false;
+  }
+}
+
+function isWeekendDay(weekDay) { 
+  if (weekDay == 6 || weekDay == 0) {
+    return true;
+  }
+  else {
     return false;
   }
 }
@@ -116,13 +130,13 @@ function setDayDiscount() {    // tänkte fel från början, bör göras om, app
       if (orderHour < 10 && orderHour >= 3) {
       applyMondayDiscount(initalPrice);
       }
-      else if(orderHour > 0 && orderHour <= 3) { // tänk om
-      applyWeekendIncrease(initalPrice);
+      else if (orderHour >= 0 && orderHour <= 3) {    // ska måndagsrabatten gälla här där helgpåslaget är aktivt?
+      applyWeekendIncrease();
       }
     break;
 
     case 2:   // OM tisdag
-      checkWeek(orderWeek);   // TODO, funktionen finns ej än
+      checkWeek(orderWeek);   // TODO, funktionen eller variabeln finns ej än
     break;
     default:
     break;
@@ -149,16 +163,23 @@ function checkWeek(week) {
 }
 
 function applyWeekendIncrease() {
-  // sneaky prishöjning
-}
+  // sneaky prishöjning på alla produkter med 10%
+}     
+
 
               /******** PROGRAMFLÖDE ********/ 
 
+
 isHoliday();                    // kolla om det är en speciell helgdag, gör grejer isf
+
 isDiscountDay(orderDay);        // kontrollera om dagens dag ger rätt till rabatt eller inte ->
 
-if (isDiscountDay) {            // om den gör det, kolla vilken dag, och vilken tid
-  setDayDiscount();
+if (isDiscountDay) {            // om den gör det,
+  setDayDiscount();             // kolla vilken dag, och vilken tid
 }
-
-
+else {                          // om det är måndag eller tisdag behövs detta inte kollas
+  isWeekendDay(orderDay);       // kontrollera om det är helg,
+  if (isWeekendDay) {           // om sant,
+    applyWeekendIncrease();     // höj priset på alla produkter
+  }  
+}
