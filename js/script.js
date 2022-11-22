@@ -1,19 +1,17 @@
 // meny knappen
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
 
-const menuBtn = document.querySelector('#menuBtn');
-const nav = document.querySelector('#nav');
+hamburger.addEventListener('click', () => {
+  hamburger.classList.toggle('active');
+  navMenu.classList.toggle('active');
+})
 
-menuBtn.addEventListener('click', toggleMenuOpenState);
-nav.addEventListener('click', toggleMenuOpenState);
+document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+  hamburger.classList.remove('active');
+  navMenu.classList.remove('active');
+}))
 
-
-function toggleMenuOpenState(e) {
-    if (e.target.nodeName == 'A'){
-        return;
-    }
-    
-    nav.classList.toggle('open');
-}
 
 // theme toggle.
 
@@ -31,42 +29,8 @@ lightMode.addEventListener('click', () => {
     darkMode.classList.remove('hide')
 })
 
-
 //antal munkar, plus och minus
 
-
-
-const decreaseButtons = document.querySelectorAll('button[data-operator="minus"]');
-const increaseButtons = document.querySelectorAll('button[data-operator="plus"]');
-
-for (let i = 0; i <  decreaseButtons.length; i++ ) {
-    decreaseButtons[i].addEventListener('click', decreaseCount);
-    increaseButtons[i].addEventListener('click', increaseCount);
-}
-
-function decreaseCount (e){
-    const amountElement = e.currentTarget.parentElement.querySelector('.amount');
-    let amount = amountElement.innerHTML;
-
-    if (amount - 1 < 0){
-        return;
-    }
-
-   amountElement.innerHTML = amount - 1;
-
-   chokladSummering(e.currentTarget.parentElement);
-}
-
-function increaseCount (e) {
-    const amountElement = e.currentTarget.parentElement.querySelector('.amount');
-
-    //pga pluspol så reagerar inte datorn att de tär en siffra likt när det är en minuspol. därför behövs number här.
-    let amount = Number(amountElement.innerHTML);  
-    
-    amountElement.innerHTML = amount + 1;
-
-   chokladSummering(e.currentTarget.parentElement);
-}
 
 /* plus minus knappar
 -när man klickar på plus eller minus ska summan uppdateras
@@ -74,16 +38,179 @@ function increaseCount (e) {
 -vi behöver ta reda på priset på praliner
 */
 
-function chokladSummering (chokladElement) {
-    const chokladPris = chokladElement.querySelector('.pris').innerHTML;
-    const orderedAmount = chokladElement.querySelector('.amount').innerHTML;
+const images =[
+  {
+    url: 'bilder/pralin bilder/apelsin-hasselnöt/Apelsin-Hasselnöt-Utsida.png',
+    alt: 'apelsin-hasselnöt-choklad'
+  },
+  {
+    url:'bilder/pralin bilder/apelsin-hasselnöt/Hasselnot-apelsin.png',
+    alt: 'bild-på-apelsin-hasselnot'
+  },
+]
+const products = [
+  {
+    name:"Apelsin Hasselnöt",
+    price:15,
+    rating:4,
+    amount: 0,
+    description: "apelsin-hasselnot-pralin"
+  },
+  {
+    name:"Blodapelsin-vanilj",
+    price:20,
+    rating:4,
+    amount: 0,
+    description: "pralin"
+  },
+  {
+    name: "Calamansi",
+    price: 18,
+    rating:3,
+    amount: 0,
+    description: "pralin",
+  },
+  {
+    name: "Espresso",
+    price: 18,
+    rating:3,
+    amount: 0,
+    description: "pralin",
+  },
+  {
+    name: "Hallon Lakrits",
+    price: 18,
+    rating:3,
+    amount: 0,
+    description: "pralin",
+  },
+  {
+    name: "Hasselnöt",
+    price: 18,
+    rating:3,
+    amount: 0,
+    description: "pralin",
+  },
+  {
+    name: "Jordnöt",
+    price: 18,
+    rating:3,
+    amount: 0,
+    description: "pralin",
+  },
+  {
+    name: "Passion-Mango",
+    price: 18,
+    rating:3,
+    amount: 0,
+    description: "pralin",
+  },
+  {
+    name: "Saltkola",
+    price: 18,
+    rating:3,
+    amount: 0,
+    description: "pralin",
+  }
+]
 
-    const sum = chokladPris * orderedAmount;
-    chokladElement.querySelector('.sum').innerHTML = sum;
-}
+  const chocolateContainer = document.querySelector('#chocolate-container');
+
+  function renderChocolate() {
+    chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att antalet rensas medan man utökar den
+
+    for (let i  = 0; i < products.length; i++) {   //sätt att skriva ut text ist för och ha i html
+      chocolateContainer.innerHTML += `
+        <article class="pralin">
+          <h3 class="cartName">${products[i].name}</h3>
+          <span class="price">${products[i].price}kr</span> <br>
+          Antal:<span class="amount">${products[i].amount}st</span> <br>
+          <button class="remove" data-operator="minus" data-id="${i}">-</button>
+          <button class="add" data-operator="plus" data-id="${i}">+</button>
+          
+
+        </article>
+      `;
+    }
+    document.querySelectorAll('button.add').forEach((btn) => {  //när man klickar på knappen
+      btn.addEventListener('click', updateAmount);
+    });
+    document.querySelectorAll('button.remove').forEach((btn) => { 
+      btn.addEventListener('click', reduceAmount);
+    });
 
 
-const totalPrice = orderedAmount.querySelector('.sum').innerHTML; //kundkorgs summering
+    //antalet st av en produkt ökas.
 
+
+    //lite förvirrande, men detta är för att få till att antalet plusas på. Antal sumeringen ökas på sidan
+    const sumPrice = products.reduce(                  
+      (previousValue, product) => {
+        return (product.amount * product.price) + previousValue;
+      },
+      0
+      );
+      console.log(sumPrice);
+
+      printOrderedChocolate ()
+
+      document.querySelector('#cartSum').innerHTML = sumPrice;
+
+      const sumTotal = products.reduce(                  
+        (previousValue, product) => {
+          return product.amount+ previousValue;
+        },
+        0
+        );
+        console.log(sumTotal);
+  
+        printOrderedChocolate ()
+
+      document.querySelector('#cartTotal').innerHTML= sumTotal;
+  }
+
+  function printOrderedChocolate () {
+    document.querySelector('#cart').innerHTML = '';
+
+    for(let i = 0; i < products.length; i ++) {
+      if (products[i].amount > 0) {
+        document.querySelector('#cart').innerHTML += `<p>${products[i].name}</p>` + `${products[i].price}kr` + ' ' + `${products[i].amount}st`;      
+      }
+    }
+  }
+
+  function updateAmount(e) {
+  const chocolateChoosed = e.currentTarget.dataset.id;
+  products[chocolateChoosed].amount += 1;
+
+  console.log(products);
+  renderChocolate();
+  }
+
+  renderChocolate();
+
+  function reduceAmount(e) {
+    const chocolateChoosed = e.currentTarget.dataset.id;
+    let amount = chocolateChoosed.innerHTML;
+    
+    if (amount -1 < 0) {
+      return;
+    }
+    products[chocolateChoosed].amount -= 1;
+  
+    console.log(products);
+    renderChocolate();
+    }
+
+  
+
+/*kundkorg, addToCart.
+-klicka på add to cart
+  -produkten ska läggas i kundkorgen
+  -antal st ska uppdateras
+  -totalpris ska uppdateras utmed antal
+  -rabatt ska dras när man beställer fler än 10 utav en (i<10)
+  -knapp i kundkorg ska finnas för bekräfta beställning.*/
+const totalPrice = //kundkorgs summering
 
 checkForPrice //kundkorgen ska ge dig rabatterat pris, 10% rabat..

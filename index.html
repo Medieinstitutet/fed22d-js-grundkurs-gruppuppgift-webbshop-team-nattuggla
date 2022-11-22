@@ -8,30 +8,38 @@
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Gottfrids choklad</title>
   </head>
-  <body> <header>
+  <body>
+    <header>
     <button id="dark-mode" class="moon"><i class='bx bxs-moon'></i></button>
     <button id="light-mode" class="sun hide"><i class='bx bxs-sun'></i></button> 
    
       <h1 class="header-logo">Gottfrids praliner</h1>
 
       <div class="menu-container">
-        <a href="">
-          <span>Kundkorg</span>
+        <a href="#shoppingCart">
           <i class="bx bxs-cart"></i>
-          <span>0</span>
+          <span id="cartTotal">0</span> st
+          <span id="cartSum">0</span> kr
         </a>
-        <button id="menuBtn" class="menu" aria-label="menu"> Meny
-          <span class="menu1"></span>
-          <span class="menu2"></span>
-          <span class="menu1"></span>      
+       <nav class="navbar">
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#second-page" class="nav-link">Produkter</a>
+          </li>
+          <li class="nav-item">
+            <a href="#shoppingCart" class="nav-link">Kassa</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">Contact</a>
+          </li>
+        </ul>
+        <button class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </button>
-        <nav id="nav" class="menyknapp">
-          <ul>
-            <li><a href="#">Home</a></li>
-            <li><a href="#">Produkter</a></li>
-            <li><a href="#">Kassa</a></li>
-          </ul>          
-        </nav>
+       </nav>
+
       </div>
     </header>
 
@@ -45,126 +53,25 @@
     <section class="fullpage-two" id="second-page">
       <nav class="kategorier">
         <ul>
-          <li><a href="#">Mjölk</a></li>
-          <li><a href="#">Mörk</a></li>
-          <li><a href="#">Nötter</a></li>
-          <li><a href="#">Frukter</a></li>
+          <li class="alternativ"><a href="#">Mjölk</a></li>
+          <li class="alternativ"><a href="#">Mörk</a></li>
+          <li class="alternativ"><a href="#">Nötter</a></li>
+          <li class="alternativ"><a href="#">Frukter</a></li>
         </ul>
         <button class="filter-btn">Filtrera</button>
       </nav>
-      <div class="chocolate-container">
-        <div class="chocolate">
-          <article>
-            <h3>Apelsin-hasselnöt</h3>
-            <img src="./bilder/pralin bilder/apelsin-hasselnöt/Apelsin-Hasselnöt-Utsida.png" alt="apelsin-hasselnot-pralin" height="200" width="200"> <br>        
-            <span class="pris">15</span>kr
-            <span class="amount">0</span> st<br>
-            <span class="sum">0</span> kr<br>
-            <button data-operator="minus">-</button>
-            <button data-operator="plus">+</button>
-          </article>
-        </div>
-        <article>
-          <h3>Blodapelsin-vanilj</h3>
-          <img src="./bilder/pralin bilder/blodapelsin-vanilj/Bloodgrape-Vanilj-Utsida.png" alt="" height="200" width="200"> <br>  
-          <span class="pris">20</span>kr
-          <span class="amount">0</span> st<br>
-          <span class="sum">0</span> kr<br>
-          <button data-operator="minus">-</button>
-          <button data-operator="plus">+</button>
-        </article>
-        <article>
-          <h3>Calamansi</h3>
-          <img src="./bilder/pralin bilder/calamansi/Calamansi-Cheesecake-Utsida-copy-1.png" alt="" height="200" width="200"> <br>
-          <span class="pris">18</span> kr
-          <span class="amount">0</span> st<br>
-          <span class="sum">0</span> kr<br>
-          <button data-operator="minus">-</button>
-          <button data-operator="plus">+</button>
-        </article>
-        <article>
-          <h3>Espresso</h3>
-          <img src="./bilder/pralin bilder/espresso-kola/Kola-Utsida-copy.png" alt="" height="200" width="200"> <br>
-          <span class="pris">8</span>kr
-          <span class="amount">0</span> st<br>
-          <span class="sum">0</span> kr<br>
-          <button data-operator="minus">-</button>
-          <button data-operator="plus">+</button>
-        </article>
-        <article>
-          <h3>Hallon-Lakrits</h3>
-          <img src="./bilder/pralin bilder/hallon-lakrits/Saltlakrits-Utsida-copy.png" alt="" height="200" width="200"> <br>
-          <span class="pris">12</span>kr
-          <span class="amount">0</span> st<br>
-          <span class="sum">0</span> kr<br>
-          <button data-operator="minus">-</button>
-          <button data-operator="plus">+</button>
-        </article>
-      </div>
-      <div class="chocolate-container">
-        <article>
-          <h3>Hasselnöt</h3>
-          <img src="./bilder/pralin bilder/hasselnöt/Hasselnöt-Utsida-copy.png" alt="" height="200" width="200"> <br>
-          <span class="pris">10</span>kr
-          <span class="amount">0</span> st<br>
-          <span class="sum">0</span> kr<br>
-          <button data-operator="minus">-</button>
-          <button data-operator="plus">+</button>
-        </article>
-        <article>
-          <h3>Jordnöt</h3>
-          <img src="./bilder/pralin bilder/jordnöt/Jordnöt-Utsida-copy.png" alt="" height="200" width="200"> <br>
-          <span class="pris">8</span>kr
-          <span class="amount">0</span> st<br>
-          <span class="sum">0</span> kr<br>
-          <button data-operator="minus">-</button>
-          <button data-operator="plus">+</button>
-        </article>
-        <article>
-          <h3>Maracaibo</h3>
-          <img src="./bilder/pralin bilder/maracaibo/Maracaibo-65�-Utsida-copy.png" alt="" height="200" width="200"> <br>
-          <span class="pris">25</span>kr
-          <span class="amount">0</span> st<br>
-          <span class="sum">0</span> kr<br>
-          <button data-operator="minus">-</button>
-          <button data-operator="plus">+</button>
-        </article>
-        <article>
-          <h3>Passion-Mango</h3>
-          <img src="./bilder/pralin bilder/passion-mango/Passion-Utsida-copy.png" alt="" height="200" width="200"> <br>
-          <span class="pris">8</span>kr
-          <span class="amount">0</span> st<br>
-          <span class="sum">0</span> kr<br>
-          <button data-operator="minus">-</button>
-          <button data-operator="plus">+</button>
-        </article>
-        <article>
-          <h3>Saltkola</h3>
-          <img src="./bilder/pralin bilder/saltkola/Saltkola-Utsida-copy-1.png" alt="" height="200" width="200"> <br>
-          <span class="pris"></span>kr
-          <span class="amount">0</span> st<br>
-          <span class="sum">0</span> kr<br>
-          <button data-operator="minus">-</button>
-          <button data-operator="plus">+</button>
-        </article>
+      <div id="chocolate-container">
       </div>
     </section>
 
-    <button onClick="toggleMenu()">Kundkorg</button>
-
-    <div class="cart" id="cart">
-      <p class="close" onClick="toggleMenu()">X</p>
-      <h1>Hello world !</h1>
-      <section class="oversikt korg">Översikt</section>
-      <section class="info korg">Info</section>
-      <section class="betala korg">Betalsätt</section>
-      <section class="frakt korg">Fraktsätt</section>
-    </div>
+ 
 
     <section class="accordion">
       <section class="accordion_item">
-        <h2 class="accordion_title">Översikt</h2>
+        <h2 class="accordion_title" id="shoppingCart">Översikt</h2>
         <p class="accordion_content">Kundkorgsöversikt</p>
+        <div id="cart" class="cartText"></div>
+          <div id="cartSum"></div>
         <button>Next</button>
       </section>
       <section class="accordion_item">
@@ -207,7 +114,7 @@
     </section>
 
     <footer>
-      <section class="content">
+      <section class="content" id="contact">
         <div class="profile">
           <span>Gottfrids choklad</span>
             <ul class="service">

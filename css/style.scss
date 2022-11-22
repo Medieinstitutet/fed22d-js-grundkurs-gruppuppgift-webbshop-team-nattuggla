@@ -25,7 +25,6 @@ body {
 }
 
 header {
-  border: 3px solid #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -38,6 +37,7 @@ header {
 
 .menu-container {
   a { font-family: Arial, Helvetica, sans-serif;
+    color: #f1f1f1;
     // style
   }
 
@@ -47,22 +47,89 @@ header {
   }
 }
 
-.menyknapp{
-  position: fixed;
-  display: none;
-  width: 100%;
-  background-color:rgb(65, 33, 7); ;
-  color: #f1f1f1;
-  text-align: center;
-  font-size: 20vh;
-  padding-top: 20vh;
-  left: 0;
-  top: 0;
-  right: 0;
+.nav-item{
+  list-style: none;
 }
 
-.menyknapp .open{
+.nav-link{
+  text-decoration: none;
+  color: white;
+  transition: 0.7s ease;
+}
+
+.nav-link:hover{
+  color: rgb(15, 112, 208);
+  text-transform: uppercase;
+  text-decoration: underline rgb(232, 5, 32);
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.nav-menu{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+}
+
+.hamburger{
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background-color: transparent;
+}
+
+.bar{
   display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #000;
+}
+
+.hamburger.active .bar:nth-child(2){
+  opacity: 0;
+}
+.hamburger.active .bar:nth-child(1){
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active .bar:nth-child(3){
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.nav-menu{
+  position:fixed;
+  display: none;
+  top: 60px;
+  gap: 0;
+  flex-direction: column;
+  background-color: transparent;
+  width: 100%;
+  text-align: center;
+  transition: 0.5s;
+  font-size: 20px;
+}
+
+.nav-item{
+  margin: 16px;
+}
+
+.nav-menu.active{
+  left: 0;
+  display: block;
+}
+
+.pralin{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
 }
 
 :root{
@@ -139,7 +206,7 @@ header {
     border-width: 2px 0;
     background-color: black;
 
-    ul {
+    .kategorier ul {
       display: flex;
       justify-content: space-between;
       list-style: none;
@@ -153,7 +220,7 @@ header {
       margin: 0;
     }
 
-    li {
+    .alternativ {
       display: inline;
 
       a {
@@ -175,6 +242,8 @@ header {
   position: relative;
 
 }
+
+
 
 /*button {  //du behöver lägga till classnamn på de "button" som ska stylas efter detta. 
   float: right;
@@ -256,7 +325,6 @@ header {
       color: #000;
       background-color: rgb(185, 182, 182);
       opacity: 70%;
-      
   }
 .accordion_title::after{
       content: "+";
@@ -268,14 +336,21 @@ header {
       content: "-";
   }
   
-/*.accordion_content{
-      overflow: hidden;
-      max-height: 0;
-      position: relative;
-      transition: 1000ms ease max-height;
-      overflow-y: auto;
-  
-  }*/
+.accordion_content{
+  font-weight: bolder;
+  font-size: 20px;
+  display: flex;
+}
+
+.cartName{
+  font-size: 19px;
+  font-weight: bold;
+  color: #000;
+}
+.price{
+  font-size: 17px;
+  color: #000;
+}
 
 .accordion_content .active{
   height: 150px;
