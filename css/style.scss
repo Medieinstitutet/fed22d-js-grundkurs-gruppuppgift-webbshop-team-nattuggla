@@ -14,10 +14,8 @@ body {
 .moon .sun{ /* vi behöver ta bort style från button.*/ 
   border: none;
   outline: none;
-  background-color: transparent;
   cursor: pointer;
-  font-size: 15px;
-  background-color: #f1f1f1;
+  font-size: 20px;
   border-radius: 5px 5px;
   padding: 3px;
   box-shadow: 10px 0px 20px rgb(8, 8, 8);
@@ -29,6 +27,10 @@ header {
   justify-content: space-between;
   align-items: center;
   padding: 0.25rem;
+  h1{
+    font-size: 50px;
+    text-align: center;
+    }
 }
 
 .header-logo {
@@ -61,6 +63,8 @@ header {
   color: rgb(15, 112, 208);
   text-transform: uppercase;
   text-decoration: underline rgb(232, 5, 32);
+  background-color: rgb(107, 51, 6);
+
 }
 
 .navbar{
@@ -107,23 +111,25 @@ header {
 .nav-menu{
   position:fixed;
   display: none;
-  top: 60px;
+  top: 50px;
   gap: 0;
   flex-direction: column;
   background-color: transparent;
   width: 100%;
   text-align: center;
-  transition: 0.5s;
-  font-size: 20px;
+  transition: 0.7s;
+  font-size: 30px;
 }
 
 .nav-item{
   margin: 16px;
+  font-size: 40px;
 }
 
 .nav-menu.active{
   left: 0;
   display: block;
+  background-color: #2f3841;
 }
 
 .pralin{

@@ -38,31 +38,41 @@ lightMode.addEventListener('click', () => {
 -vi behöver ta reda på priset på praliner
 */
 
-const images =[
-  {
-    url: 'bilder/pralin bilder/apelsin-hasselnöt/Apelsin-Hasselnöt-Utsida.png',
-    alt: 'apelsin-hasselnöt-choklad'
-  },
-  {
-    url:'bilder/pralin bilder/apelsin-hasselnöt/Hasselnot-apelsin.png',
-    alt: 'bild-på-apelsin-hasselnot'
-  },
-]
 const products = [
   {
     name:"Apelsin Hasselnöt",
     price:15,
     rating:4,
     amount: 0,
-    description: "apelsin-hasselnot-pralin"
+    description: "apelsin-hasselnot-pralin",
+    images: [
+      {
+        img:'bilder/praliner/apelsin-hasselnöt/AH-hel.png',
+        alt:'hasselnöt pralin',
+      },
+      {
+        img:'bilder/praliner/apelsin-hasselnöt/AH-halv.png',
+        alt:'hasselnöt pralin',
+      },
+    ],
   },
   {
     name:"Blodapelsin-vanilj",
     price:20,
     rating:4,
     amount: 0,
-    description: "pralin"
-  },
+    description: "pralin",
+    images: [
+      {
+        img:'bilder/praliner/blodapelsin-vanilj/BV-hel.png',
+        alt:'blodapelsin, vanilj pralin',
+      },
+      {
+        img:'bilder/praliner/blodapelsin-vanilj/BV-halv.png',
+        alt:'blodapelsin, vanilj pralin',
+      },
+    ],
+  }, 
   {
     name: "Calamansi",
     price: 18,
@@ -112,7 +122,7 @@ const products = [
     amount: 0,
     description: "pralin",
   }
-]
+];
 
   const chocolateContainer = document.querySelector('#chocolate-container');
 
@@ -122,13 +132,15 @@ const products = [
     for (let i  = 0; i < products.length; i++) {   //sätt att skriva ut text ist för och ha i html
       chocolateContainer.innerHTML += `
         <article class="pralin">
-          <h3 class="cartName">${products[i].name}</h3>
+          <h3 class="cartName">${products[i].name}</h3>  
+          <div class="images">
+          <img id="img1" class="img-1" src="" alt="" width="200" height="200" />
+          <img id="img2" class="img-2" src="" alt="" width="200" height="200" />
+          </div>
           <span class="price">${products[i].price}kr</span> <br>
           Antal:<span class="amount">${products[i].amount}st</span> <br>
           <button class="remove" data-operator="minus" data-id="${i}">-</button>
           <button class="add" data-operator="plus" data-id="${i}">+</button>
-          
-
         </article>
       `;
     }
@@ -202,7 +214,57 @@ const products = [
     renderChocolate();
     }
 
+
   
+
+  /*
+  - behövs ett event för tidigare bild och kommande bild.(click)
+  -funktion för att gå till nästa bild
+  -funktion för att gå till tidigare bild
+  -behövs ha koll på vilken som är den aktuella bilden (variabel)
+  -hantera när vi är på sista bilden alt första bilden
+  -funktion för att skapa pluppar för antal bilder
+  */
+
+
+  //utmed jenni men det vill inte sig. 
+    /*const img1 = document.querySelector('#img1');
+
+    const nextBtn = document.querySelector('#nextImage');
+    const prevBtn = document.querySelector('#prevImage');
+
+    nextBtn.addEventListener('click', nextImage);
+    prevBtn.addEventListener('click', prevImage);
+
+    let currentImageIndex = 0;
+
+    function nextImage () {
+      if(currentImageIndex + 1 > images.length -1) {
+        //börja från början
+        currentImageIndex = 0;
+      }else {
+        currentImageIndex += 1;
+      }
+      console.log('nextImage', currentImageIndex);
+
+      img1.setAttribute('src', images[currentImageIndex].url);
+      img1.setAttribute('alt', images[currentImageIndex].alt);
+    }
+
+    function prevImage() {
+      if(currentImageIndex -1 < 0) {
+        //börja från början
+        currentImageIndex = images.lenght -1;
+      } else {
+        currentImageIndex -= 1;
+      }
+
+      img1.setAttribute('src', images[currentImageIndex].url);
+      img1.setAttribute('alt', images[currentImageIndex].alt);
+      
+      console.log('prevImage', currentImageIndex);
+    }*/
+
 
 /*kundkorg, addToCart.
 -klicka på add to cart
