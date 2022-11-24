@@ -6,11 +6,14 @@
 ✅    spara aktuell tidpunkt i variabel 
 
 ✅    OM det är 13e december: 
-🔲     lägg till en gratis pepparkakschoklad i kundkorgen eller nåt 🍫😃
+🔲        lägg till en gratis pepparkakschoklad i kundkorgen eller nåt 🍫😃
 
 ✅    OM det är 24 december
-🔲     gör pristexter röda
-🔲     byt bakgrundsbild 
+🔲        gör pristexter röda
+🔲        byt bakgrundsbild 
+
+✅     OM det är en fredag efter 14, lördag eller söndag:
+🔲        höj priset på alla produkter med 10%
 
   **************************/
 
@@ -18,8 +21,6 @@
   /* event på plus och minus-knappar:
 
 ✅    hämta totalpris från beställning, spara i variabel                   
-
-🔲    ** funktion för att hindra att beställningen ändras, hur gör vi?  **    
 
 🔲    OM timer för beställning redan startad
 🔲        Avbryt timer
@@ -43,9 +44,6 @@
 ✅        annars OM det är tisdag:
 🔲            OM jämn vecka && beställningen över 25kr:
 🔲                subtrahera 25 kr fr totalpris
-✅    ANNARS:
-✅        OM det är en fredag efter 14, lördag eller söndag:
-🔲            höj priset på alla produkter med 10%
       
 
 🔲    funktion för att räkna ut frakt:
@@ -59,24 +57,27 @@
 
 **************************/
 
-/* övrigt
+  /* övrigt/beställningsknapp klickas
 
 🔲    rabattkod, nåt med RegEx? kmr vecka 3 har jag för mig
 🔲    massa matte på leveranser
+🔲    ** funktion för att hindra att beställningen ändras, hur gör vi?  **    
 
 **************************/
 
 
               /******** VARIABLER ********/
 
-const timeOfOrder = new Date();                     //  skapa ett Date-objekt
-const dateString = timeOfOrder.toDateString();      //  för kontroll av dag, här eller deklarera i funktionen isHoliday()?
-const orderDay = timeOfOrder.getDay();              //  spara dagen för beställning som number mellan 0 och 6 (0 = söndag)
-const orderHour = timeOfOrder.getHours();           //  spara klockslag för beställning, number mellan 0 och 23
-// const orderWeek = timeOfOrder.getWeek();  // <- hur?
+const pageLoadTime = new Date();                     //  skapa ett Date-objekt
+const dateString = pageLoadTime.toDateString();      //  för kontroll av dag, här eller deklarera i funktionen isHoliday()?
+const orderDay = pageLoadTime.getDay();              //  spara dagen för beställning som number mellan 0 och 6 (0 = söndag)
+const orderHour = pageLoadTime.getHours();           //  spara klockslag för beställning, number mellan 0 och 23
+const mondayDiscountActive = false;
+const isEvenWeek = false;
+// const orderWeek = pageLoadTime.getWeek();  // <- hur?
 // const initalPrice = customerOrder.totalPrice;        //  hämta totalpriset från kundkorg, innan rabatter/påslag
 
-let deliveryTime;                                   //  massa matte på timeOfOrder sen?
+let deliveryTime;                                   //  massa matte på pageLoadTime sen?
 
 
               /********  FUNKTIONER ********/
@@ -98,37 +99,14 @@ function isHoliday() {
 }
 
 /**
- * kollar om dagen är rabattberättigad
- * @param {number} weekDay - dagen sidan laddats på
- * @returns en bool!
- */
-function isDiscountDay(weekDay) {       
-  if (weekDay == 1 || weekDay == 2) {
-    return true;
-  }
-  else { 
-    return false;
-  }
-}
-
-function isWeekendDay(weekDay) { 
-  if (weekDay == 6 || weekDay == 0) {
-    return true;
-  }
-  else {
-    return false;
-  }
-}
-
-/**
  * kontrollerar vilken dag beställning lagts
  */
-function setDayDiscount() {    // tänkte fel från början, bör göras om, applyWeekendIncrease() ska inte vara på totalsumma, utan priset innan frakt (tolkar jag det som? 🤔)
+function checkDay(day) { 
   
-  switch (orderDay) {           
+  switch (day) {           
     case 1:   // OM måndag:
       if (orderHour < 10 && orderHour >= 3) {
-      applyMondayDiscount(initalPrice);
+      mondayDiscountActive = true;
       }
       else if (orderHour >= 0 && orderHour <= 3) {    // ska måndagsrabatten gälla här där helgpåslaget är aktivt?
       applyWeekendIncrease();
@@ -138,27 +116,25 @@ function setDayDiscount() {    // tänkte fel från början, bör göras om, app
     case 2:   // OM tisdag
       checkWeek(orderWeek);   // TODO, funktionen eller variabeln finns ej än
     break;
+
+    case 5:   // OM fredag
+      if (orderHour > 15) {     // efter 15
+        applyWeekendIncrease();
+      }
+    break;
+
+    case 6:   // OM lördag
+    case 0:   // eller söndag
+      applyWeekendIncrease();
+    break;
     default:
     break;
   }
 }
 
-/**
- * ändrar beställnngsobjektets totalpris
- * @param {number} price priset från initialPrice
- */
-function applyMondayDiscount(price) {      // en bool-variabel  (finns ej än) i beställningsobjektet som heter hasMondayDiscount och false?                             
-  hasMondayDiscount = true;                // så kan det skrivas ut ett meddelande beroende på true eller false typ..
-  let discountedPrice = price *= 0.1;
-  customerOrder.totalPrice = discountedPrice;
-}
-
 function checkWeek(week) {
   if (week % 2 == 0) {
-    // då är det rabatt
-  }
-  else {
-    return;
+    isEvenWeek = true;
   }
 }
 
@@ -171,15 +147,4 @@ function applyWeekendIncrease() {
 
 
 isHoliday();                    // kolla om det är en speciell helgdag, gör grejer isf
-
-isDiscountDay(orderDay);        // kontrollera om dagens dag ger rätt till rabatt eller inte ->
-
-if (isDiscountDay) {            // om den gör det,
-  setDayDiscount();             // kolla vilken dag, och vilken tid
-}
-else {                          // om det är måndag eller tisdag behövs detta inte kollas
-  isWeekendDay(orderDay);       // kontrollera om det är helg,
-  if (isWeekendDay) {           // om sant,
-    applyWeekendIncrease();     // höj priset på alla produkter
-  }  
-}
+checkDay(orderDay);             // kontrollera veckodag, gör grejer i switch-satsen beroende på vilken       
