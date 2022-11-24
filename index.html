@@ -5,29 +5,45 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <title>Gottfrids choklad</title>
   </head>
   <body>
     <header>
-      <h1 class="header-logo">Gottfrids'</h1>
+    <button id="dark-mode" class="moon"><i class='bx bxs-moon'></i></button>
+    <button id="light-mode" class="sun hide"><i class='bx bxs-sun'></i></button> 
+   
+      <h1 class="header-logo">Gottfrids praliner</h1>
 
       <div class="menu-container">
-        <a href="">
-          <span>Kundkorg</span>
+        <a href="#shoppingCart">
           <i class="bx bxs-cart"></i>
-          <span>0</span>
+          <span id="cartTotal">0</span> st
+          <span id="cartSum">0</span> kr
         </a>
-        <button class="meny" aria-label="menu">
-          <span></span>
-          <span></span>
-          <span></span>
+       <nav class="navbar">
+        <ul class="nav-menu">
+          <li class="nav-item">
+            <a href="#second-page" class="nav-link">Produkter</a>
+          </li>
+          <li class="nav-item">
+            <a href="#shoppingCart" class="nav-link">Kassa</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">Contact</a>
+          </li>
+        </ul>
+        <button class="hamburger">
+          <span class="bar"></span>
+          <span class="bar"></span>
+          <span class="bar"></span>
         </button>
+       </nav>
+
       </div>
     </header>
 
     <section class="fullpage-one">
-      <!--<figure><img src="" alt=""></figure> -->
-
       <p>Köp fantastisk choklad till grymma priser!</p>
       <a href="#second-page">
         <button class="scroll-down">Scrolla Ner</button>
@@ -35,53 +51,35 @@
     </section>
 
     <section class="fullpage-two" id="second-page">
-      <nav>
+      <nav class="kategorier">
         <ul>
-          <li><a href="#">Mjölk</a></li>
-          <li><a href="#">Mörk</a></li>
-          <li><a href="#">Nötter</a></li>
-          <li><a href="#">Frukter</a></li>
+          <li class="alternativ"><a href="#">Mjölk</a></li>
+          <li class="alternativ"><a href="#">Mörk</a></li>
+          <li class="alternativ"><a href="#">Nötter</a></li>
+          <li class="alternativ"><a href="#">Frukter</a></li>
         </ul>
         <button class="filter-btn">Filtrera</button>
       </nav>
-
-      <div class="chocolate">
-        <img src="" alt="choklad1" />
-        <h3>produkterna</h3>
-        <h3>15kr</h3>
-        <a href="#" class="buy choklad1">Beställ</a>
-      </div>
-      <div class="chocolate">
-        <img src="" alt="choklad2" />
-        <h3>produkterna</h3>
-        <h3>15kr</h3>
-        <a href="#" class="buy choklad2">Beställ</a>
-      </div>
+      <div id="chocolate-container">      
+        
+       </div>
     </section>
 
-    <button onClick="toggleMenu()">Kundkorg</button>
-
-    <div class="cart" id="cart">
-      <p class="close" onClick="toggleMenu()">X</p>
-      <h1>Hello world !</h1>
-      <section class="oversikt korg">Översikt</section>
-      <section class="info korg">Info</section>
-      <section class="betala korg">Betalsätt</section>
-      <section class="frakt korg">Fraktsätt</section>
-    </div>
 
     <section class="accordion">
       <section class="accordion_item">
-        <h2 class="accordion_title">Översikt</h2>
+        <h2 class="accordion_title" id="shoppingCart">Översikt</h2>
         <p class="accordion_content">Kundkorgsöversikt</p>
+        <div id="cart" class="cartText"></div>
+          <div id="cartSum"></div>
         <button>Next</button>
       </section>
       <section class="accordion_item">
         <h2 class="accordion_title">Info</h2>
-        <section class="info-container">
+        <section class="Info">
           <fieldset>
-            <legend>FORMULÄR FÖR ATT BESTÄLLA CHOKLAD</legend>
-
+            <legend>INFORMATION</legend>
+    
             <label for="fnamn">Förnamn:</label><br />
             <input type="text" name="fnamn" id="fnamn" /> <br />
             <label for="fnamn">Efternamn:</label><br />
@@ -89,19 +87,62 @@
             <label for="fnamn">Adress:</label><br />
             <input type="text" name="adress" id="adress" /> <br />
             <label for="fnamn">Postnummer:</label><br />
-            <input type="text" name="pnummer" id="pnummer" /> <br />
+            <input type="number" name="pnummer" id="pnummer" /> <br />
             <label for="fnamn">Postort:</label><br />
             <input type="text" name="port" id="port" /> <br />
             <label for="fnamn">Ev. Portkod:</label><br />
-            <input type="text" name="pkord" id="pkord" /> <br />
+            <input type="number" name="pkord" id="pkod" /> <br />
             <label for="fnamn">Telefon (mobil):</label><br />
-            <input type="text" name="telefon" id="telefon" /> <br />
+            <input type="number" name="telefon" id="telefon" /> <br />
             <label for="fnamn">E-postadress:</label><br />
-            <input type="text" name="email" id="email" /> <br />
+            <input type="email" name="email" id="email" /> <br /><br />
+  
+            <details>
+              <summary>Kort-betalning</summary>
+              <input type="number" id="kort-nummer" placeholder="Kortnummer" />
+              <br />
+              <input type="number" id="manad-ar" placeholder="Månad/År" /> <br />
+              <input type="number" id="cvc" placeholder="CVC" />
+            </details>
+    
+            <details> 
+              <summary>Faktura</summary>
+    
+              <form>
+                <input
+                  type="number"
+                  name="personnummer1"
+                  placeholder="Personnummer"
+                />
+                <button
+                  type="submit"
+                  name="submit"
+                  onclick="allnumeric(personnummer1)"
+                >
+                  Skicka
+                </button> 
+              </form>
+            </details>
+            <br><br>
+    
+    
+    
+    
+            <input type="checkbox" id="godkannande" name="godkannande" />
+            <label for="person-uppgifter"
+              >Godkännande av behandling av personuppgifter</label><br />
+    
+            <input
+              type="checkbox"
+              id="person-uppgifter"
+              name="person-uppgifter"
+              checked
+            />
+            <label for="person-uppgifter">Nyhetsbrev</label><br /><br />
+    
+            <button id="add-info" type="button" disabled>Skicka</button>
           </fieldset>
         </section>
-
-        <button>Next</button>
       </section>
       <section class="accordion_item">
         <h2 class="accordion_title">Betalsätt</h2>
@@ -115,17 +156,28 @@
       </section>
     </section>
 
-<footer>copyright
-  <i>icon e-post</i> 
-  <i>icon telefonnummer</i> 
+    <footer>
+      <section class="content" id="contact">
+        <div class="profile">
+          <span>Gottfrids choklad</span>
+            <ul class="service">
+              <li><a href="#">Hem</a></li>
+              <li><a href="#">Om oss</a></li>
+              <li><a href="#">Betalvillkor</a></li> 
+              <li><a href="#">Leveransvillkor</a></li> 
+              <li><a href="#">Jobba hos oss</a></li>  
+            </ul>
+          <div class="contact">
+            <a href="#"><i class='bx bx-phone'></i>Ring oss</a>
+            <a href="#"><i class='bx bxs-envelope'></i>Email</a>
+          </div>
+        </div>
+      </section>
+    </footer>
   
-  <ul> 
-    <li>Betalvillkor</li> 
-    <li>Leveransvillkor</li> 
-    <li>Jobba hos oss</li>   
-  </ul>
-
-</footer>
-
+    <script src="js/script.js"></script>
+    <script src="js/abdu.js"></script>
+    <script src="js/jenny.js"></script>
+    <script src="js/younes.js"></script>
 </body>
 </html>

@@ -4,20 +4,33 @@ html {
 
 body {
   min-height: 100vh;
-  color: white;
-  background-image: url("/bilder/choklad.png");
-  background-repeat: no-repeat;
-  background-size: cover;
+  color: #f1f1f1;
   margin: 0;
   padding: 0;
+  transition: background 0.3s linear;
+  background-color: var(--primary-color);
+}
+
+.moon .sun{ /* vi behöver ta bort style från button.*/ 
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 20px;
+  border-radius: 5px 5px;
+  padding: 3px;
+  box-shadow: 10px 0px 20px rgb(8, 8, 8);
+  margin: 10px;
 }
 
 header {
-  border: 3px solid #000;
   display: flex;
   justify-content: space-between;
   align-items: center;
   padding: 0.25rem;
+  h1{
+    font-size: 50px;
+    text-align: center;
+    }
 }
 
 .header-logo {
@@ -26,6 +39,7 @@ header {
 
 .menu-container {
   a { font-family: Arial, Helvetica, sans-serif;
+    color: #f1f1f1;
     // style
   }
 
@@ -35,6 +49,111 @@ header {
   }
 }
 
+.nav-item{
+  list-style: none;
+}
+
+.nav-link{
+  text-decoration: none;
+  color: white;
+  transition: 0.7s ease;
+}
+
+.nav-link:hover{
+  color: rgb(15, 112, 208);
+  text-transform: uppercase;
+  text-decoration: underline rgb(232, 5, 32);
+  background-color: rgb(107, 51, 6);
+
+}
+
+.navbar{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+}
+
+.nav-menu{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 60px;
+}
+
+.hamburger{
+  cursor: pointer;
+  position: relative;
+  border: none;
+  background-color: transparent;
+}
+
+.bar{
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  -webkit-transition: all 0.3s ease-in-out;
+  transition: all 0.3s ease-in-out;
+  background-color: #000;
+}
+
+.hamburger.active .bar:nth-child(2){
+  opacity: 0;
+}
+.hamburger.active .bar:nth-child(1){
+  transform: translateY(8px) rotate(45deg);
+}
+.hamburger.active .bar:nth-child(3){
+  transform: translateY(-8px) rotate(-45deg);
+}
+
+.nav-menu{
+  position:fixed;
+  display: none;
+  top: 50px;
+  gap: 0;
+  flex-direction: column;
+  background-color: transparent;
+  width: 100%;
+  text-align: center;
+  transition: 0.7s;
+  font-size: 30px;
+}
+
+.nav-item{
+  margin: 16px;
+  font-size: 40px;
+}
+
+.nav-menu.active{
+  left: 0;
+  display: block;
+  background-color: rgba(0, 0, 0, 0.6);
+}
+
+.pralin{
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+:root{
+  --primary-color:rgb(107, 51, 6);
+}
+
+.dark_mode{
+      --primary-color:rgb(43, 43, 43);
+  }
+
+  .show{
+      display: block;}
+
+  .hide{
+      display: none;
+  }
+
+
 .fullpage-one {
   min-height: 100vh; // todo: kolla window.innerHeight i JS och prova
   max-width: 100%;
@@ -42,12 +161,11 @@ header {
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  background-image: url("/bilder/choklad.png");
+  background-repeat: no-repeat;
+  background-size: cover;
 }
 
-figure {
-  font-family: Arial, Helvetica, sans-serif;
-  // @Younes, wzuuuup? :D
-}
 
 .scroll-down {
   margin: 0;
@@ -85,7 +203,7 @@ figure {
 
 
   // nästlad af! caution
-  nav {
+  .kategorier {
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -94,7 +212,7 @@ figure {
     border-width: 2px 0;
     background-color: black;
 
-    ul {
+    .kategorier ul {
       display: flex;
       justify-content: space-between;
       list-style: none;
@@ -108,7 +226,7 @@ figure {
       margin: 0;
     }
 
-    li {
+    .alternativ {
       display: inline;
 
       a {
@@ -124,11 +242,16 @@ figure {
   }
 }
 
+.chocolate-container{
+  width: 100%;
+  text-align: center;
+  position: relative;
+
+}
 
 
 
-
-button {
+/*button {  //du behöver lägga till classnamn på de "button" som ska stylas efter detta. 
   float: right;
   background-color: black;
   margin: auto;
@@ -144,17 +267,15 @@ button {
     5px 5px 0px 0px;
   touch-action: manipulation;
   transition: all 0.02s ease-in-out;
-
   &:hover {
     opacity: 1;
   }
-
   &:active {
     box-shadow: 0px 0px 0px 0px;
     top: 5px;
     left: 5px;
   }
-}
+}*/
 
 .kundkorg {
   width: 100%;
@@ -188,3 +309,115 @@ button {
     border-bottom: 1px solid #e44c4c;
   }
 }
+
+.accordion{
+  padding: 50px;
+  min-height:200vh;
+  }
+.accordion_item{
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 20px;
+      background-color: rgb(215, 209, 209);
+      color: #000;
+      text-align: center;
+  }
+.accordion_title{
+      display: flex;
+      align-items: center;
+      cursor: pointer;
+      color: #000;
+      background-color: rgb(185, 182, 182);
+      opacity: 70%;
+  }
+.accordion_title::after{
+      content: "+";
+      font-size: 20px;
+      margin-left: auto;
+  }
+  
+.active_head::after{
+      content: "-";
+  }
+  
+.accordion_content{
+  font-weight: bolder;
+  font-size: 20px;
+  display: flex;
+}
+
+.cartName{
+  font-size: 19px;
+  font-weight: bold;
+  color: #000;
+}
+.price{
+  font-size: 17px;
+  color: #000;
+}
+
+.accordion_content .active{
+  height: 150px;
+}
+
+fieldset {
+  width: 50%;
+  margin-left: 20vw;
+}
+
+
+footer{
+  position: relative;
+  width:100%;
+  margin-bottom: 10px;
+  left: 0;
+  border-radius: 20px 20px 0 0;
+  display: flex;
+  justify-content: center;
+
+  }
+
+  
+.profile span{
+      font-weight: bolder;
+      font-size: 24px;
+      color: gray;
+  }
+.content_inner{
+      text-align: center;
+  }
+
+.service li{
+      list-style: none;
+      color: white;
+      letter-spacing: 1.5px;
+      margin: 20px;
+      ;
+  
+      & a{
+          color: #ccc;
+      }
+      & a:hover{
+          color: #000;
+          text-transform: uppercase;
+          font-weight: 700;
+          text-decoration: underline  red;
+      }
+  }
+
+.service ul li:first-child{
+      font-weight: bolder;
+      color: #000;
+  }
+ 
+.contact{
+      font-size: 22px;
+  
+  & a{
+      color: gray;
+  }
+  & a:hover{
+      color: #000;
+      font-weight: 700;
+      text-decoration: underline  red;
+  }}
