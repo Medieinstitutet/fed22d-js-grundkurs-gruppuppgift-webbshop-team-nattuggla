@@ -87,14 +87,15 @@
                * testar om det är lucia eller julafton (funktionen verkar funka som den ska!)
                */
               function isHoliday() {
-                let isXmas = dateString.includes('Dec 24');   // .includes() returnerar true eller false
-                let isLucia = dateString.includes('Nov 22');
+                if (pageLoadTime.getDate() == 24 && pageLoadTime.getMonth() == 11) {        // jul
               
-                if (isXmas) {
                   // TODO: gör pristexter röda och byt bakgrundsbild
+                  
                 }
-                else if (isLucia) {
+                else if (pageLoadTime.getDate() == 13 && pageLoadTime.getMonth() == 11) {   //  lucia
+              
                   // TODO: lägg till en gratis lucia-choklad i kundkorg 🍫
+              
                 }
               }
               
