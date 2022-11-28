@@ -94,59 +94,55 @@
         <h2 class="accordion_title">Info</h2>
         <section class="Info">
           <fieldset>
-            <legend>INFORMATION</legend>
+            <legend>BESTÄLLNINGSFORMULÄR</legend>
     
-            <label for="fnamn">Förnamn:</label><br />
-            <input type="text" name="fnamn" id="fnamn" /> <br />
-            <label for="fnamn">Efternamn:</label><br />
-            <input type="text" name="enamn" id="enamn" /> <br />
-            <label for="fnamn">Adress:</label><br />
-            <input type="text" name="adress" id="adress" /> <br />
-            <label for="fnamn">Postnummer:</label><br />
-            <input type="number" name="pnummer" id="pnummer" /> <br />
-            <label for="fnamn">Postort:</label><br />
-            <input type="text" name="port" id="port" /> <br />
-            <label for="fnamn">Ev. Portkod:</label><br />
-            <input type="number" name="pkord" id="pkod" /> <br />
-            <label for="fnamn">Telefon (mobil):</label><br />
-            <input type="number" name="telefon" id="telefon" /> <br />
-            <label for="fnamn">E-postadress:</label><br />
-            <input type="email" name="email" id="email" /> <br /><br />
-  
-            <details>
-              <summary>Kort-betalning</summary>
-              <input type="number" id="kort-nummer" placeholder="Kortnummer" />
-              <br />
-              <input type="number" id="manad-ar" placeholder="Månad/År" /> <br />
-              <input type="number" id="cvc" placeholder="CVC" />
-            </details>
+            <form id="formular">
+              Förnamn:<br />
+              <input type="text" name="fornamn" id="fnamn" /><br />
+              Efternamn:<br />
+              <input type="text" name="efternamn" id="enamn" /><br />
+              Adress:<br />
+              <input type="text" name="adress" id="adress" /><br />
+              Postnummer:<br />
+              <input type="number" name="postnummer" id="pnummer" /><br />
+              Postort:<br />
+              <input type="text" name="postort" id="port" /><br />
+              ev. Portkod:<br />
+              <input type="number" name="portkod" id="pkod"/><br />
+              Telefonnummer:<br />
+              <input type="number" name="telefon" id="telefon" /><br />
+              E-mail:<br />
+              <input type="email" name="email" id="email" /><br /><br />
+            </form>
     
-            <details> 
-              <summary>Faktura</summary>
-    
-              <form>
+            <main>
+              <label>
                 <input
-                  type="number"
-                  name="personnummer1"
-                  placeholder="Personnummer"
+                  type="radio"
+                  name="payment_method"
+                  value="card"
+                  class="payment"
                 />
-                <button
-                  type="submit"
-                  name="submit"
-                  onclick="allnumeric(personnummer1)"
-                >
-                  Skicka
-                </button> 
-              </form>
-            </details>
-            <br><br>
+                Kort
+              </label>
+              <label for="">
+                <input
+                  type="radio"
+                  name="payment_method"
+                  value="invoice"
+                  class="payment"
+                />
+                Faktura
+              </label>
     
-    
-    
+              <div class="radio-content"></div>
+            </main>
+            <br /><br />
     
             <input type="checkbox" id="godkannande" name="godkannande" />
             <label for="person-uppgifter"
-              >Godkännande av behandling av personuppgifter</label><br />
+              >Godkännande av behandling av personuppgifter</label
+            ><br />
     
             <input
               type="checkbox"
@@ -155,8 +151,10 @@
               checked
             />
             <label for="person-uppgifter">Nyhetsbrev</label><br /><br />
-    
-            <button id="add-info" type="button" disabled>Skicka</button>
+            <!--Rensa formuläret när du klickar på knappen -->
+            <input type="button" onclick="resetInput()" value="Ta bort allt" />
+            <!--Bekräftar beställning när du klickar på knappen -->
+            <input type="submit" value="submit" id="submit" />
           </fieldset>
         </section>
       </section>

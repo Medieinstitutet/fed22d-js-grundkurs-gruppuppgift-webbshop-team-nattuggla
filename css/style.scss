@@ -9,6 +9,7 @@ body {
   padding: 0;
   transition: background 0.3s linear;
   background-color: var(--primary-color);
+  font-family:'Courier New', Courier, monospace;
 }
 
 .moon .sun{ /* vi behöver ta bort style från button.*/ 
@@ -446,6 +447,33 @@ fieldset {
   border: 1px solid black;
 
 }
+
+
+legend {
+  font-size: 2em;
+  font-weight: bold;
+}
+
+input {
+  width: 20em;
+  border-top: none;
+  border-left: none;
+}
+
+.payment {
+  width: 1em;
+}
+
+
+
+input#person-uppgifter {
+  width: 1em;
+}
+
+input#godkannande {
+  width: 1em;
+}
+
 
 
 
