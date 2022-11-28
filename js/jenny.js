@@ -122,6 +122,7 @@
              }
              );
            if (invalidFields.length == 0) { {
+              
            }
              // gör knappen enable när invalid inputs är 0
              btnSubmit.removeAttribute("disabled");

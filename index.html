@@ -16,11 +16,12 @@
       <h1 class="header-logo">Gottfrids praliner</h1>
 
       <div class="menu-container">
-        <a href="#shoppingCart">
-          <button class="buttonCart"><i class="bx bxs-cart"></i></button>
+        <button class="buttonCart" onClick="toggleMenu()">
+          <a href="#shoppingCart">
+          <i class="bx bxs-cart"></i>
           <span id="cartTotal">0</span> st
           <span id="cartSum">0</span> kr
-        </a>
+        </a></button>
        <nav class="navbar">
         <ul class="nav-menu">
           <li class="nav-item">
@@ -65,110 +66,103 @@
        </div>
     </section>
 
-
-    <section class="accordion">
-      <section class="accordion_item">
-        <h2 class="accordion_title" id="shoppingCart">Översikt</h2>
-        <p class="accordion_content">Kundkorgsöversikt</p>
-        <div id="cart" class="cartText"></div>
-        <div id="cartPris" class="cartText"></div>
-        <div class="chocolateAmount">
-          <span>Summa</span>
-          <span class="prisSummary"> 0</span>
-        </div>
-        <div class="discount">
-          <span>Rabatt</span>
-          <span class="discountSum">- 0kr</span>
-        </div>
-        <p class="line">
-          ________________________________________________________
-        </p>
-        <div class="totalPrice">
-          <span>Att betala</span>
-          <span class="totalSummary">0kr</span>
-        </div>
-        <button id="emptyCart">Töm varukorgen</button>
-      </section>
-    
-      <section class="accordion_item">
-        <h2 class="accordion_title">Info</h2>
-        <section class="Info">
-          <fieldset>
-            <legend>BESTÄLLNINGSFORMULÄR</legend>
-    
-            <form id="formular">
-              Förnamn:<br />
-              <input type="text" name="fornamn" id="fnamn" /><br />
-              Efternamn:<br />
-              <input type="text" name="efternamn" id="enamn" /><br />
-              Adress:<br />
-              <input type="text" name="adress" id="adress" /><br />
-              Postnummer:<br />
-              <input type="number" name="postnummer" id="pnummer" /><br />
-              Postort:<br />
-              <input type="text" name="postort" id="port" /><br />
-              ev. Portkod:<br />
-              <input type="number" name="portkod" id="pkod"/><br />
-              Telefonnummer:<br />
-              <input type="number" name="telefon" id="telefon" /><br />
-              E-mail:<br />
-              <input type="email" name="email" id="email" /><br /><br />
-            </form>
-    
-            <main>
-              <label>
-                <input
-                  type="radio"
-                  name="payment_method"
-                  value="card"
-                  class="payment"
-                />
-                Kort
-              </label>
-              <label for="">
-                <input
-                  type="radio"
-                  name="payment_method"
-                  value="invoice"
-                  class="payment"
-                />
-                Faktura
-              </label>
-    
-              <div class="radio-content"></div>
-            </main>
-            <br /><br />
-    
-            <input type="checkbox" id="godkannande" name="godkannande" />
-            <label for="person-uppgifter"
-              >Godkännande av behandling av personuppgifter</label
-            ><br />
-    
-            <input
-              type="checkbox"
-              id="person-uppgifter"
-              name="person-uppgifter"
-              checked
-            />
-            <label for="person-uppgifter">Nyhetsbrev</label><br /><br />
-            <!--Rensa formuläret när du klickar på knappen -->
-            <input type="button" onclick="resetInput()" value="Ta bort allt" />
-            <!--Bekräftar beställning när du klickar på knappen -->
-            <input type="submit" value="submit" id="submit" />
-          </fieldset>
+    <section class="cart hidden" id="cart">
+      <p class="close" onClick="toggleMenu()">X</p>
+      <h1>Information!</h1>      </section>
+      <section class="accordion">
+        <section class="accordion_item">
+          <h2 class="accordion_title" id="shoppingCart">Översikt</h2>
+            <fieldset>
+              <legend>Kundkorgsöversikt</legend>
+          <div id="cart" class="cartText"></div>
+          <div id="cartPris" class="cartText"></div>
+          <div class="chocolateAmount">
+            <span>Summa</span>
+            <span class="prisSummary"> 0</span>
+          </div>
+          <div class="discount">
+            <span>Rabatt</span>
+            <span class="discountSum">- 0kr</span>
+          </div>
+          <p class="line">
+            ________________________________________________________
+          </p>
+          <div class="totalPrice">
+            <span>Att betala</span>
+            <span class="totalSummary">0kr</span>
+          </div>
+          <button id="emptyCart">Töm varukorgen</button>
         </section>
-      </section>
-      <section class="accordion_item">
-        <h2 class="accordion_title">Betalsätt</h2>
-        <p class="accordion_content">Välja kort eller faktura</p>
-        <button>Next</button>
-      </section>
-      <section class="accordion_item">
-        <h2 class="accordion_title">Fraktsätt</h2>
-        <p class="accordion_content">Välj sätt att få leverans på</p>
-        <button>Next</button>
-      </section>
-    </section>
+      
+        <section class="accordion_item">
+          <h2 class="accordion_title">Info</h2>
+          <section class="Info">
+            <fieldset>
+              <legend>BESTÄLLNINGSFORMULÄR</legend>
+      
+              <form id="formular">
+                Förnamn:<br />
+                <input type="text" name="fornamn" id="fnamn" /><br />
+                Efternamn:<br />
+                <input type="text" name="efternamn" id="enamn" /><br />
+                Adress:<br />
+                <input type="text" name="adress" id="adress" /><br />
+                Postnummer:<br />
+                <input type="number" name="postnummer" id="pnummer" /><br />
+                Postort:<br />
+                <input type="text" name="postort" id="port" /><br />
+                ev. Portkod:<br />
+                <input type="number" name="portkod" id="pkod"/><br />
+                Telefonnummer:<br />
+                <input type="number" name="telefon" id="telefon" /><br />
+                E-mail:<br />
+                <input type="email" name="email" id="email" /><br /><br />
+              </form>
+      
+              <main>
+                <label>
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    value="card"
+                    class="payment"
+                  />
+                  Kort
+                </label>
+                <label for="">
+                  <input
+                    type="radio"
+                    name="payment_method"
+                    value="invoice"
+                    class="payment"
+                  />
+                  Faktura
+                </label>
+      
+                <div class="radio-content"></div>
+              </main>
+              <br /><br />
+      
+              <input type="checkbox" id="godkannande" name="godkannande" />
+              <label for="person-uppgifter"
+                >Godkännande av behandling av personuppgifter</label
+              ><br />
+      
+              <input
+                type="checkbox"
+                id="person-uppgifter"
+                name="person-uppgifter"
+                checked
+              />
+              <label for="person-uppgifter">Nyhetsbrev</label><br /><br />
+              <!--Rensa formuläret när du klickar på knappen -->
+              <input type="button" onclick="resetInput()" value="Ta bort allt" />
+              <!--Bekräftar beställning när du klickar på knappen -->
+              <input type="submit" value="submit" id="submit" />
+            </fieldset>
+          </section>
+        </section>
+
 
     <footer>
       <section class="content" id="contact">
