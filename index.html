@@ -17,7 +17,7 @@
 
       <div class="menu-container">
         <a href="#shoppingCart">
-          <i class="bx bxs-cart"></i>
+          <button class="buttonCart"><i class="bx bxs-cart"></i></button>
           <span id="cartTotal">0</span> st
           <span id="cartSum">0</span> kr
         </a>
@@ -71,9 +71,25 @@
         <h2 class="accordion_title" id="shoppingCart">Översikt</h2>
         <p class="accordion_content">Kundkorgsöversikt</p>
         <div id="cart" class="cartText"></div>
-          <div id="cartSum"></div>
-        <button>Next</button>
+        <div id="cartPris" class="cartText"></div>
+        <div class="chocolateAmount">
+          <span>Summa</span>
+          <span class="prisSummary"> 0</span>
+        </div>
+        <div class="discount">
+          <span>Rabatt</span>
+          <span class="discountSum">- 0kr</span>
+        </div>
+        <p class="line">
+          ________________________________________________________
+        </p>
+        <div class="totalPrice">
+          <span>Att betala</span>
+          <span class="totalSummary">0kr</span>
+        </div>
+        <button id="emptyCart">Töm varukorgen</button>
       </section>
+    
       <section class="accordion_item">
         <h2 class="accordion_title">Info</h2>
         <section class="Info">

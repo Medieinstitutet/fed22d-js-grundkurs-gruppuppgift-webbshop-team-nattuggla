@@ -22,6 +22,7 @@ body {
   margin: 10px;
 }
 
+
 header {
   display: flex;
   justify-content: space-between;
@@ -47,6 +48,13 @@ header {
     font-family: Arial, Helvetica, sans-serif;
     // style
   }
+}
+
+.buttonCart{
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 20px;
 }
 
 .nav-item{
@@ -111,7 +119,7 @@ header {
 .nav-menu{
   position:fixed;
   display: none;
-  top: 50px;
+  top: 90px;
   gap: 0;
   flex-direction: column;
   background-color: transparent;
@@ -202,6 +210,45 @@ header {
   flex-direction: column;
 
 
+
+  .imgContainer{
+    width: 100%;
+    display: flex;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+    height: 40vh;
+  }
+
+  .left{
+    position: relative;
+    left: -140px;
+    display: flex;
+    font-size: 30px;
+  }
+
+  .right{
+    position: relative;
+    right: -140px;
+    display: flex;
+    font-size: 30px;
+  }
+
+  .left:hover{
+    background-color: rgb(185, 182, 182);
+    color: #6d0404;
+    opacity: 70%;
+  }
+
+  .right:hover{
+    background-color: rgb(185, 182, 182);
+    color: #6d0404;
+    opacity: 70%;
+  }
+
+
+
+
   // nästlad af! caution
   .kategorier {
     width: 100%;
@@ -251,7 +298,7 @@ header {
 
 
 
-/*button {  //du behöver lägga till classnamn på de "button" som ska stylas efter detta. 
+.filter-btn {  //du behöver lägga till classnamn på de "button" som ska stylas efter detta. 
   float: right;
   background-color: black;
   margin: auto;
@@ -275,7 +322,7 @@ header {
     top: 5px;
     left: 5px;
   }
-}*/
+}
 
 .kundkorg {
   width: 100%;
@@ -311,16 +358,16 @@ header {
 }
 
 .accordion{
-  padding: 50px;
+  padding: 200px;
   min-height:200vh;
   }
+
 .accordion_item{
       border-radius: 10px;
       padding: 20px;
       margin-bottom: 20px;
       background-color: rgb(215, 209, 209);
       color: #000;
-      text-align: center;
   }
 .accordion_title{
       display: flex;
@@ -346,24 +393,61 @@ header {
   display: flex;
 }
 
-.cartName{
-  font-size: 19px;
-  font-weight: bold;
-  color: #000;
-}
+
 .price{
   font-size: 17px;
-  color: #000;
 }
 
-.accordion_content .active{
-  height: 150px;
+
+.cartText{
+  justify-content: space-between;
+  font-size: 15px;
+  width: 30%;
+  display: inline;
+  align-items: center;
+  justify-content: center;  
+  flex-direction: row;  
+  color: #fcf9f8;
+  text-shadow: -1px 0 #000, 0 1px #000, 1px 0 #000, 0 -1px #000;
+
+  p{
+    width: 20%;
+    display: inline-block;
+  }
+}
+
+.line{
+  font-size: 20px;
+  font-weight: 800;
 }
 
 fieldset {
   width: 50%;
-  margin-left: 20vw;
+  margin-left: 10vw;
 }
+
+.prisSummary{
+  position: relative;
+  left: 20rem;
+}
+
+.discountSum{
+  position: relative;
+  left: 20rem;
+}
+
+.totalSummary{
+  position: relative;
+  left:19rem;
+}
+
+.korgContainer{
+  display: flex;
+  border: 1px solid black;
+
+}
+
+
 
 
 footer{
@@ -421,3 +505,34 @@ footer{
       font-weight: 700;
       text-decoration: underline  red;
   }}
+
+  .images{
+    max-width: 30vh;
+    max-width: 30vw;
+    background: rgba(16, 15, 15, 0.5);
+    outline: 1px solid black;
+    margin-inline: auto;
+    margin-block: 40px;
+    position: relative;
+    aspect-ratio: 16 / 9;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+  .imgContainer{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 1s ease;}
+  }
+  .img-2{
+    opacity: 0;
+  }
