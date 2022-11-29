@@ -116,7 +116,7 @@ function checkDay(day) {
     break;
 
     case 2:   // OM tisdag
-      checkWeek(orderWeek);   // TODO, funktionen eller variabeln finns ej än
+    //  checkWeek(orderWeek);   // TODO, funktionen eller variabeln finns ej än
     break;
 
     case 5:   // OM fredag
@@ -154,8 +154,28 @@ function resetOrder() {
               
 function applyWeekendIncrease() {
   // sneaky prishöjning på 10% (eller bool?)
-}     
+}
 
+document.querySelectorAll('li.alternativ').forEach(element => {
+  element.addEventListener('click', toggleActive)
+});
+const activeCategories = [];
+function toggleActive(e) {
+  let category = e.currentTarget;
+  category.classList.toggle('active-option');
+
+    // if (activeCategories.indexOf(category) == -1) {
+    //   activeCategories.push(category);
+    // }
+    
+    // else {
+    //   activeCategories.pop(activeCategories.indexOf(category));
+    // }
+  
+
+  console.log(category);
+  console.log(activeCategories);
+}
 
               /******** PROGRAMFLÖDE ********/ 
 
