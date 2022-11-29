@@ -80,11 +80,9 @@
    paymentBox.innerHTML = "";
    if (value == "card") {
      paymentBox.innerHTML = cardContent;
-     console.log('card');
    }
    else {
      paymentBox.innerHTML = invoiceContent;
-     console.log('faktura');
    }
  }
  
@@ -121,12 +119,17 @@
                return !checkInput(element.id);
              }
              );
-           if (invalidFields.length == 0) { {
-              
-           }
+           if (invalidFields.length == 0) { 
              // gör knappen enable när invalid inputs är 0
              btnSubmit.removeAttribute("disabled");
-           } else {
+           }
+           else if (invalidFields.length == 1) {
+            // om enda elementet i invalidFields är portkod, inte supersnygg kod kanske, men funkar nu 🙌
+            if (invalidFields[0] == portkod) {
+              btnSubmit.removeAttribute("disabled");
+            }
+           }
+           else {
              // disable knappen om det är invalid inputs
              btnSubmit.setAttribute("disabled", "disabled");
            }
