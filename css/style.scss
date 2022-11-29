@@ -297,7 +297,7 @@ header {
     border-width: 2px 0;
     background-color: black;
 
-    .kategorier ul {
+    ul {
       display: flex;
       justify-content: space-between;
       list-style: none;
@@ -311,20 +311,22 @@ header {
       margin: 0;
     }
 
-    .alternativ {
+    .options {
       display: inline;
+      padding: 0.5rem 0.25rem;
+      text-decoration: none;
 
-      a {
-        color: white;
-        padding: 0.5rem 0.25rem;
-        text-decoration: none;
-        }
   
-      a:hover {
+      &:hover {
         color: rgb(94, 50, 21);
+        cursor: pointer;
       }
     }
   }
+}
+
+.active-option {
+  background-color: rgba(0, 0, 0, 0.6);
 }
 
 .chocolate-container{
