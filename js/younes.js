@@ -1,4 +1,4 @@
-  // meny knappen
+  //++++++++++++++++++++++++++++++meny knappen++++++++++++++++++++++++++++++
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
               
@@ -13,7 +13,7 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
   }));
               
               
-// theme toggle.
+// //++++++++++++++++++++++++++++++theme toggle.++++++++++++++++++++++++++++++
               
 const darkMode = document.getElementById('dark-mode');
 const lightMode = document.getElementById('light-mode');
@@ -46,8 +46,8 @@ const products = [{
   amount: 0,
   kategori: "Nötter",
   description: "apelsin-hasselnot-pralin",
-  image1:'./bilder/praliner/apelsin-hasselnöt/AH-hel.png',
-  image2:'./bilder/praliner/apelsin-hasselnöt/AH-halv.png',
+  image1:'bilder/praliner/apelsin-hasselnöt/AH-hel.png',
+  image2:'bilder/praliner/apelsin-hasselnöt/AH-halv.png',
   },
   {
   name:"Blodapelsin-vanilj",
@@ -77,7 +77,7 @@ const products = [{
   kategori: "Mörk",  
   description: "pralin",
   image1:'bilder/praliner/espresso-kola/EK-hel.png',
-  image2: 'bilder/praliner/espresso-kola/EK-halv.png',
+  image2:'bilder/praliner/espresso-kola/EK-halv.png',
   },
   {
   name: "Hallon Lakrits",
@@ -87,7 +87,7 @@ const products = [{
   kategori: "Mörk", 
   description: "pralin",
   image1:'bilder/praliner/hallon-lakrits/HL-hel.png',
-  image2: 'bilder/praliner/hallon-lakrits/HL-halv.png',
+  image2:'bilder/praliner/hallon-lakrits/HL-halv.png',
   },
   {
   name: "Hasselnöt",
@@ -97,7 +97,7 @@ const products = [{
   kategori: "Nötter",  
   description: "pralin",
   image1:'bilder/praliner/hasselnöt/H-hel.png',
-  image2: 'bilder/praliner/hasselnöt/H-halv.png',
+  image2:'bilder/praliner/hasselnöt/H-halv.png',
   },
   {
   name: "Jordnöt",
@@ -132,12 +132,12 @@ const products = [{
   {
   name: "Maracaibo",
   price: 18,
-  rating:'⭐⭐⭐',
+  rating:2,
   amount: 0,
   kategori: "Mörk", 
   description: "pralin",
   image1:'bilder/praliner/maracaibo/M-hel.png',
-  image2: 'bilder/praliner/maracaibo/M-halv.png',
+  image2:'bilder/praliner/maracaibo/M-halv.png',
   }
   ];
               
@@ -145,46 +145,47 @@ const chocolateContainer = document.querySelector('#chocolate-container');
               
 function renderChocolate() {
 chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att antalet rensas medan man utökar den
-              
-for (let i  = 0; i < products.length; i++) {   //sätt att skriva ut text ist för och ha i html
-chocolateContainer.innerHTML += `
-<article class="pralin">
+
+//+++++++++++++++++++++++++++sätt att skriva ut text ist för och ha i html++++++++++++++++++++++++++++++
+for (let i  = 0; i < products.length; i++) {   
+chocolateContainer.innerHTML += 
+`<article class="pralin">
   <h3 class="cartName">${products[i].name}</h3> 
   <div class="images">
     <section class="imgContainer">
       <div class="imageBox">
-        <img id="img-1" class="img-1" src="${products[i].image1}"alt=""/>
-        <img id="img-2" class="img-2" src="${products[i].image2}"alt=""/>
+        <img id="img-1" class="img1" src="${products[i].image1} "alt=""/>
+        <img id="img-2" class="img2" src="${products[i].image2} "alt=""/>
       </div>
-      <button id="prevImage"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
-      <button id="nextImage"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
+      <button id="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
+      <button id="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
       
     </section>
     Betyg:<span class="betyg">${products[i].rating} </span><br>
+    Pris:<span class="price">${products[i].price} kr/st</span> <br>
+    Summa:<span class="sum">${products[i].price * products[i].amount}</span> <br>
 
-
-  Pris<span class="price">${products[i].price} kr/st</span> <br>
-  Summa:<span class="sum">${(products[i].price)}</span> <br>
-
-  <button class="remove" data-operator="minus" data-id="${i}">-</button>
-  <span class="amount">${products[i].amount} st</span>
-  <button class="add" data-operator="plus" data-id="${i}">+</button>
+    <button class="remove" data-operator="minus" data-id="${i}">-</button>
+    <span class="amount">${products[i].amount} st</span>
+    <button class="add" data-operator="plus" data-id="${i}">+</button>
   </div> 
-</article>
-`;
+</article>`;
 }
 
-//när man klickar på knappen
-document.querySelectorAll('button.add').forEach((btn) => {  
-  btn.addEventListener('click', updateAmount);
-});
-document.querySelectorAll('button.remove').forEach((btn) => { 
-  btn.addEventListener('click', reduceAmount);
-});
 
-//antalet st av en produkt ökas.
+//+++++++++++++++++++++++++++++++++++++++gör att man kan klicka på knappen+++++++++++++++++++++++++++++++++++++++
+
+const btnAdd = document.querySelectorAll('button[data-operator="plus"]');
+const btnReduce = document.querySelectorAll('button[data-operator="minus"]');
+
+for (let i= 0; i < btnAdd.length; i++) {
+  btnAdd[i].addEventListener('click', updateAmount)
+  btnReduce[i].addEventListener('click', reduceAmount)
+}
+
+
+//++++++++++++++++++++++++++priset av produkterna ökas.+++++++++++++++++++++++++++++++++++++++
               
-//detta är för att få till att antalet plusas på. Priset ökas på sidan
 const sumPrice = products.reduce(                  
 (previousValue, product) => {
 return (product.amount * product.price) + previousValue;
@@ -192,6 +193,7 @@ return (product.amount * product.price) + previousValue;
 0
 );
 console.log(sumPrice);
+
               
 printOrderedChocolate ()
               
@@ -200,7 +202,7 @@ document.querySelector('.totalSummary').innerHTML = sumPrice + 'kr';
 document.querySelector('.prisSummary').innerHTML = sumPrice + 'kr';
 
    
-//detta är för att totala priset ska ökas på sidan
+//+++++++++++++++++++++++++++++++++++++++ökar antal praliner som skrivs ut i kundkorgen.+++++++++++++++++++++++++++++++++++++++
 const sumTotal = products.reduce(                  
 (previousValue, product) => {
 return product.amount+ previousValue;
@@ -212,9 +214,17 @@ console.log(sumTotal);
 printOrderedChocolate ()
               
 document.querySelector('#cartTotal').innerHTML= sumTotal;
+const nextBtn = document.querySelectorAll('#nextImage');
+const prevBtn = document.querySelectorAll('#prevImage');
+
+for(let i = 0; i < nextBtn.length; i++){
+  prevBtn[i].addEventListener('click', imageSwap);
+  nextBtn[i].addEventListener('click', imageSwap);
+}
+
 
 }
- //funktion för att printa ut chokladen på sidan
+ //++++++++++++++++++++++++++++++funktion för att printa ut chokladen på sidan++++++++++++++++++++++++++++++
 
 function printOrderedChocolate () {
 document.querySelector('#cart').innerHTML = '';
@@ -222,13 +232,18 @@ document.querySelector('#cart').innerHTML = '';
    
 for(let i = 0; i < products.length; i ++) {
   if (products[i].amount > 0) {
-  document.querySelector('#cart').innerHTML += `<br>`+`<img src="${products[i].image1}" width="60" height="60"}>` + `<br>` +`<p>${products[i].name}</p>` + `` + `<span>Antal:${products[i].amount}st</span>` + ' ' + `<p>Summa:${products[i].price}kr</span>`;      
+  document.querySelector('#cart').innerHTML += 
+  `<div ="cartInfo"> <br> <div ="cartTitel"> <h3>${products[i].name}</h3> 
+  <img src="${products[i].image1}" width="60" height="60"}>
+  <div class="cartSumeringTitel"> <h4>Antal</h4> <h4>Summma</h4></div>
+  <div class="cartResultat"> <p>Antal:${products[i].amount}st</p> <p>Summa:${products[i].price* products[i].amount}kr</p></div></div><span class="line">________________________________________________________</span>`;      
 }
   }
 };
 
 
-//funktion för plus knappen på sidan
+
+//++++++++++++++++++++++++++++++funktion för plus knappen på sidan++++++++++++++++++++++++++++++
 function updateAmount(e) {
 
 const chocolateChoosed = e.currentTarget.dataset.id;
@@ -241,7 +256,7 @@ renderChocolate();
 renderChocolate();
 
 
- //funktion för minusknappen på sidan
+ //++++++++++++++++++++++++++++++funktion för minusknappen på sidan++++++++++++++++++++++++++++++
 function reduceAmount(e) {
 const chocolateChoosed = e.currentTarget.dataset.id;
 let amount = chocolateChoosed.innerHTML;
@@ -258,25 +273,21 @@ console.log(products);
 renderChocolate();
 }
 
-//för att tömma varukorgen.
+//++++++++++++++++++++++++++++++funktion för att tömma varukorgen.++++++++++++++++++++++++++++++
 
 const emptyCartBtn = document.querySelector('#emptyCart');
-emptyCartBtn.addEventListener('click',  emptyCart);
+emptyCartBtn.addEventListener('click', emptyCart);
 
 function emptyCart (e){
   for (let i = 0; i<products.length; i++){
     products[i].amount = 0;
   }
 
-  renderChocolate();      //tömma varukorgen, de produkter som valts.
+  renderChocolate();      //tömma de produkter som valts.
 }
 
 
 //detta skriver ut ratingen på sidan
-
-
-
-/* slideshow */
 
 /***************  Pseudokod
 -knapp för att kunna trycka höger och vänster
@@ -290,25 +301,20 @@ function emptyCart (e){
 //steg 1 variabler 
 
 
-//ändra bild i ett bildspel
-const nextBtn = document.querySelectorAll('#nextImage');
-const prevBtn = document.querySelectorAll('#prevImage');
-
-for(let i = 0; i < prevBtn.length; i++){
-  prevBtn[i].addEventListener('click', imageSwap);
-  nextBtn[i].addEventListener('click', imageSwap);
-}
+//++++++++++++++++++++++++++++++ändra bild i ett bildspel++++++++++++++++++++++++++++++
 
 function imageSwap(e){
   const image1Slideshow =e.currentTarget.parentElement.querySelector('#img-1');
   const image2Slideshow =e.currentTarget.parentElement.querySelector('#img-2');
 
-  const firstPralin = image1Slideshow.getAttribute('src');
-  const secondPralin = image2Slideshow.getAttribute('src');
+  const first = image1Slideshow.getAttribute('src');
+  const second = image2Slideshow.getAttribute('src');
 
-  image1Slideshow.setAttribute('src', secondPralin);
-  image2Slideshow.setAttribute('src', firstPralin);
+  image1Slideshow.setAttribute('src', second);
+  image2Slideshow.setAttribute('src', first);
 };
+
+
 
 // när du väljer antal så kan du inte byta bild? why???
 
