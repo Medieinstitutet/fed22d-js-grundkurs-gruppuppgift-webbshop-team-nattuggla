@@ -142,11 +142,12 @@ const products = [{
   ];
               
 const chocolateContainer = document.querySelector('#chocolate-container');
-              
+
+
+//+++++++++++++++++++++++++++sätt att skriva ut text ist för och ha i html++++++++++++++++++++++++++++++              
 function renderChocolate() {
 chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att antalet rensas medan man utökar den
 
-//+++++++++++++++++++++++++++sätt att skriva ut text ist för och ha i html++++++++++++++++++++++++++++++
 for (let i  = 0; i < products.length; i++) {   
 chocolateContainer.innerHTML += 
 `<article class="pralin">
@@ -157,8 +158,8 @@ chocolateContainer.innerHTML +=
         <img id="img-1" class="img1" src="${products[i].image1} "alt=""/>
         <img id="img-2" class="img2" src="${products[i].image2} "alt=""/>
       </div>
-      <button id="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
-      <button id="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
+      <button class="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
+      <button class="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
       
     </section>
     Betyg:<span class="betyg">${products[i].rating} </span><br>
@@ -213,9 +214,9 @@ console.log(sumTotal);
                 
 printOrderedChocolate ()
               
-document.querySelector('#cartTotal').innerHTML= sumTotal;
-const nextBtn = document.querySelectorAll('#nextImage');
-const prevBtn = document.querySelectorAll('#prevImage');
+document.querySelector('#cartTotal').innerHTML= sumTotal; //detta möjliggör användaren att kunna ändra bildspelet, när antalet ökas.
+const nextBtn = document.querySelectorAll('.nextImage');
+const prevBtn = document.querySelectorAll('.prevImage');
 
 for(let i = 0; i < nextBtn.length; i++){
   prevBtn[i].addEventListener('click', imageSwap);
