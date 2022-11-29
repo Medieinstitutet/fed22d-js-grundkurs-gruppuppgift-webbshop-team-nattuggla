@@ -207,6 +207,16 @@ function renderChocolate() {
                 
   document.querySelector('#cartTotal').innerHTML= sumTotal;
 
+  //ändra bild i ett bildspel
+  // event listeners måste läggas till på nytt då bildspelsknapparna skapas på nytt
+  // av for-loopen ovan. De gamla knapparna existerar inte längre.
+  const nextBtn = document.querySelectorAll('#nextImage');
+  const prevBtn = document.querySelectorAll('#prevImage');
+
+  for (let i = 0; i < prevBtn.length; i++) {
+    prevBtn[i].addEventListener('click', imageSwap);
+    nextBtn[i].addEventListener('click', imageSwap);
+  }
 }
  //funktion för att printa ut chokladen på sidan
 
@@ -282,16 +292,6 @@ function emptyCart (e){
 -funktion för att skapa pluppar för antal bilder
 */
 //steg 1 variabler 
-
-
-//ändra bild i ett bildspel
-const nextBtn = document.querySelectorAll('#nextImage');
-const prevBtn = document.querySelectorAll('#prevImage');
-
-for(let i = 0; i < prevBtn.length; i++){
-  prevBtn[i].addEventListener('click', imageSwap);
-  nextBtn[i].addEventListener('click', imageSwap);
-}
 
 function imageSwap(e){
   const image1Slideshow =e.currentTarget.parentElement.querySelector('#img-1');
