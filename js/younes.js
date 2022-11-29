@@ -160,18 +160,17 @@ chocolateContainer.innerHTML +=
       </div>
       <button class="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
       <button class="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
-      
     </section>
     Betyg:<span class="betyg">${products[i].rating} </span><br>
     Pris:<span class="price">${products[i].price} kr/st</span> <br>
     Summa:<span class="sum">${products[i].price * products[i].amount}</span> <br>
-
     <button class="remove" data-operator="minus" data-id="${i}">-</button>
     <span class="amount">${products[i].amount} st</span>
     <button class="add" data-operator="plus" data-id="${i}">+</button>
   </div> 
 </article>`;
 }
+
 
 
 //+++++++++++++++++++++++++++++++++++++++gör att man kan klicka på knappen+++++++++++++++++++++++++++++++++++++++
@@ -199,8 +198,8 @@ console.log(sumPrice);
 printOrderedChocolate ()
               
 document.querySelector('#cartSum').innerHTML = sumPrice;
-document.querySelector('.totalSummary').innerHTML = sumPrice + 'kr';
-document.querySelector('.prisSummary').innerHTML = sumPrice + 'kr';
+document.querySelector('.total-summary').innerHTML = sumPrice + 'kr';
+document.querySelector('.price-summary').innerHTML = sumPrice + 'kr';
 
    
 //+++++++++++++++++++++++++++++++++++++++ökar antal praliner som skrivs ut i kundkorgen.+++++++++++++++++++++++++++++++++++++++

@@ -140,5 +140,5 @@
  };
  // funktion för att reseta formuläret
  function resetInput() {
-   document.getElementById("formular").reset();
+   document.getElementById("formList").reset();
  }

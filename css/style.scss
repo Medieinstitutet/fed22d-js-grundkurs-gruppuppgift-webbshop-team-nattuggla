@@ -51,7 +51,7 @@ header {
   }
 }
 
-.buttonCart{
+.button-cart{
   background-color: transparent;
   border: 1px solid black;
   color: white;
@@ -166,7 +166,7 @@ header {
       display: none;
   }
 
-  .cart{
+  .cart-container{
     background-color: #5c5959;
     position: relative;
     top: 0%;
@@ -292,7 +292,7 @@ header {
 
 
   // nästlad af! caution
-  .kategorier {
+  .categories {
     width: 100%;
     display: flex;
     justify-content: space-around;
@@ -404,7 +404,7 @@ header {
 .accordion{
   left: 0;
 }
-.accordion_item{
+.accordion-item{
       border-radius: 10px;
       padding: 20px;
       margin-bottom: 20px;
@@ -412,7 +412,7 @@ header {
       color: #000;
   }
   
-.accordion_title{
+.accordion-title{
       display: flex;
       align-items: center;
       cursor: pointer;
@@ -420,17 +420,17 @@ header {
       background-color: rgb(185, 182, 182);
       opacity: 70%;
   }
-.accordion_title::after{
+.accordion-title::after{
       content: "+";
       font-size: 20px;
       margin-left: auto;
   }
   
-.active_head::after{
+.active-head::after{
       content: "-";
   }
   
-.accordion_content{
+.accordion-content{
   font-weight: bolder;
   font-size: 20px;
   display: flex;
@@ -442,7 +442,7 @@ header {
 }
 
 
-.cartText{
+.cart-text{
   justify-content: space-between;
   font-size: 15px;
   width: 30%;
@@ -475,22 +475,22 @@ header {
 fieldset {
   width: 50%;
 
-  .beställning{
+  .order-container{
     margin-left: 10vw;
   }
 }
 
-.prisSummary{
+.price-summary{
   position: relative;
   left: 20rem;
 }
 
-.discountSum{
+.discount-sum{
   position: relative;
   left: 20rem;
 }
 
-.totalSummary{
+.total-summary{
   position: relative;
   left:19rem;
 }
@@ -519,15 +519,13 @@ input {
 
 
 
-input#person-uppgifter {
+input#person-number {
   width: 1em;
 }
 
-input#godkannande {
+input#approval {
   width: 1em;
 }
-
-
 
 
 
