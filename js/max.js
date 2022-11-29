@@ -146,9 +146,9 @@ function startOrderTimer() {  // kör på plus/minus-event
 }
 
 function resetOrder() {
+  // resetInput() - (från jenny.js)
   // alert('beställ snabbare or die');
-  // töm beställningsformulär och kundkorg
-  console.log('tiden slut');
+  // töm kundkorg
 }
 
               
