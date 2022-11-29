@@ -144,74 +144,68 @@ const products = [{
 const chocolateContainer = document.querySelector('#chocolate-container');
               
 function renderChocolate() {
-chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att antalet rensas medan man utökar den
+  chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att antalet rensas medan man utökar den
               
-for (let i  = 0; i < products.length; i++) {   //sätt att skriva ut text ist för och ha i html
-chocolateContainer.innerHTML += `
-<article class="pralin">
-  <h3 class="cartName">${products[i].name}</h3> 
-  <div class="images">
-    <section class="imgContainer">
-      <div class="imageBox">
-        <img id="img-1" class="img-1" src="${products[i].image1}"alt=""/>
-        <img id="img-2" class="img-2" src="${products[i].image2}"alt=""/>
-      </div>
-      <button id="prevImage"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
-      <button id="nextImage"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
-      
-    </section>
-    Betyg:<span class="betyg">${products[i].rating} </span><br>
+  for (let i  = 0; i < products.length; i++) {   //sätt att skriva ut text ist för och ha i html
+    chocolateContainer.innerHTML += `
+      <article class="pralin">
+        <h3 class="cartName">${products[i].name}</h3> 
+        <div class="images">
+          <section class="imgContainer">
+            <div class="imageBox">
+              <img id="img-1" class="img-1" src="${products[i].image1}"alt=""/>
+              <img id="img-2" class="img-2" src="${products[i].image2}"alt=""/>
+            </div>
+            <button id="prevImage"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
+            <button id="nextImage"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
+          </section>
+          Betyg:<span class="betyg">${products[i].rating} </span><br>
+          Pris<span class="price">${products[i].price} kr/st</span> <br>
+          Summa:<span class="sum">${(products[i].price)}</span> <br>
+          <button class="remove" data-operator="minus" data-id="${i}">-</button>
+          <span class="amount">${products[i].amount} st</span>
+          <button class="add" data-operator="plus" data-id="${i}">+</button>
+        </div> 
+      </article>
+    `;
+  }
 
+  //när man klickar på knappen
+  document.querySelectorAll('button.add').forEach((btn) => {  
+    btn.addEventListener('click', updateAmount);
+  });
+  document.querySelectorAll('button.remove').forEach((btn) => { 
+    btn.addEventListener('click', reduceAmount);
+  });
 
-  Pris<span class="price">${products[i].price} kr/st</span> <br>
-  Summa:<span class="sum">${(products[i].price)}</span> <br>
-
-  <button class="remove" data-operator="minus" data-id="${i}">-</button>
-  <span class="amount">${products[i].amount} st</span>
-  <button class="add" data-operator="plus" data-id="${i}">+</button>
-  </div> 
-</article>
-`;
-}
-
-//när man klickar på knappen
-document.querySelectorAll('button.add').forEach((btn) => {  
-  btn.addEventListener('click', updateAmount);
-});
-document.querySelectorAll('button.remove').forEach((btn) => { 
-  btn.addEventListener('click', reduceAmount);
-});
-
-//antalet st av en produkt ökas.
+  //antalet st av en produkt ökas.
               
-//detta är för att få till att antalet plusas på. Priset ökas på sidan
-const sumPrice = products.reduce(                  
-(previousValue, product) => {
-return (product.amount * product.price) + previousValue;
-},
-0
-);
-console.log(sumPrice);
+  //detta är för att få till att antalet plusas på. Priset ökas på sidan
+  const sumPrice = products.reduce(                  
+    (previousValue, product) => {
+      return (product.amount * product.price) + previousValue;
+  }, 0);
+  console.log(sumPrice);
               
-printOrderedChocolate ()
+  printOrderedChocolate ()
               
-document.querySelector('#cartSum').innerHTML = sumPrice;
-document.querySelector('.totalSummary').innerHTML = sumPrice + 'kr';
-document.querySelector('.prisSummary').innerHTML = sumPrice + 'kr';
+  document.querySelector('#cartSum').innerHTML = sumPrice;
+  document.querySelector('.totalSummary').innerHTML = sumPrice + 'kr';
+  document.querySelector('.prisSummary').innerHTML = sumPrice + 'kr';
 
    
-//detta är för att totala priset ska ökas på sidan
-const sumTotal = products.reduce(                  
-(previousValue, product) => {
-return product.amount+ previousValue;
-},
-0
-);
-console.log(sumTotal);
+  //detta är för att totala priset ska ökas på sidan
+  const sumTotal = products.reduce(                  
+  (previousValue, product) => {
+  return product.amount+ previousValue;
+  },
+  0
+  );
+  console.log(sumTotal);
+                  
+  printOrderedChocolate ()
                 
-printOrderedChocolate ()
-              
-document.querySelector('#cartTotal').innerHTML= sumTotal;
+  document.querySelector('#cartTotal').innerHTML= sumTotal;
 
 }
  //funktion för att printa ut chokladen på sidan
