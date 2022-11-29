@@ -1,4 +1,4 @@
 function toggleMenu(){
-    var cartWidget = document.getElementById("cart");
+    var cartWidget = document.getElementById("cartContainer");
     cartWidget.classList.toggle("hidden");
   }
