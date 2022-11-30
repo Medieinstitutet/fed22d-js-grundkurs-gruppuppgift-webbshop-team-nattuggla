@@ -156,10 +156,10 @@ function applyWeekendIncrease() {
   // sneaky prishöjning på 10% (eller bool?)
 }
 
-document.querySelectorAll('li.alternativ').forEach(element => {
+document.querySelectorAll('li.filter-option-btn').forEach(element => {
   element.addEventListener('click', toggleActive)
 });
-const activeCategories = [];
+
 function toggleActive(e) {
   let category = e.currentTarget;
   category.classList.toggle('active-option');
@@ -172,9 +172,19 @@ function toggleActive(e) {
     //   activeCategories.pop(activeCategories.indexOf(category));
     // }
   
+  // console.log(category);
+  // console.log(activeCategories);
+}
 
-  console.log(category);
-  console.log(activeCategories);
+/******** prisfunktion ********/ 
+
+const priceRangeElement = document.querySelector('#priceRange');
+const currentPriceRange = document.querySelector('#currentPriceRange');
+priceRangeElement.addEventListener('input', updatePriceRange)
+
+function updatePriceRange() {
+  const currentPrice = priceRangeElement.value;
+  currentPriceRange.innerHTML = `${currentPrice} kr`;
 }
 
               /******** PROGRAMFLÖDE ********/ 
