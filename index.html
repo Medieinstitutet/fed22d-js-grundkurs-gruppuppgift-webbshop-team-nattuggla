@@ -50,18 +50,51 @@
     </section>
 
     <section class="fullpage-two" id="second-page">
-      <nav class="categories">
-        <ul>
-          <li class="options">Mjölk</li>
-          <li class="options">Mörk</li>
-          <li class="options">Nötter</li>
-          <li class="options">Frukter</li>
-        </ul>
-        <button class="filter-btn">Filtrera</button>
-      </nav>
-      <div id="chocolate-container">      
-        
-       </div>
+      <div class="sorting-container">
+
+        <section class="sorting-first-section">
+          <h2><label for="price-range">Prisintervall:</label></h2>
+          <div class="pricerange-container">
+            <span>0 kr</span> 
+            <input type="range" name="price-range" id="priceRange" min="0" max="20" value="20">
+            <span id="currentPriceRange">20 kr</span>
+          </div>
+
+        </section>
+
+        <section class="sorting-second-section">
+          <h2>Filtrera efter kategori:</h2>
+          <ul class="categories">
+            <li class="filter-option">
+              <label>
+                <input type="radio" name="filter-option-btn" id="allRadioBtn" checked=""> 
+                Visa alla
+              </label>
+            </li>
+            <li class="filter-option">
+              <label>
+                <input type="radio" name="filter-option-btn" id="milkRadioBtn"> 
+                Mjölkchoklad
+              </label>
+            </li>
+            <li class="filter-option">
+              <label>
+                <input type="radio" name="filter-option-btn" id="nutRadioBtn"> 
+                Innehåller nötter
+              </label>
+            </li>
+            <li class="filter-option">
+              <label>
+              <input type="radio" name="filter-option-btn" id="darkRadioBtn"> 
+              Mörk choklad
+            </label>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+      
+      <div id="chocolate-container"></div>
     </section>
 
     <section class="cart-container hidden" id="cartContainer">
