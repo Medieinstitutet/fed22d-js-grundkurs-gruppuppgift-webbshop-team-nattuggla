@@ -70,7 +70,7 @@ const products = [{
   }, 
   {
   name: "Calamansi",
-  price: 18,
+  price: 12,
   rating:3,
   amount: 0,
   kategori: "Mjölk",  
@@ -80,7 +80,7 @@ const products = [{
   },
   {
   name: "Espresso",
-  price: 18,
+  price: 12,
   rating:3,
   amount: 0,
   kategori: "Mörk",  
@@ -90,7 +90,7 @@ const products = [{
   },
   {
   name: "Hallon Lakrits",
-  price: 18,
+  price: 14,
   rating:3,
   amount: 0,
   kategori: "Mörk", 
@@ -100,7 +100,7 @@ const products = [{
   },
   {
   name: "Hasselnöt",
-  price: 18,
+  price: 14,
   rating:3,
   amount: 0,
   kategori: "Nötter",  
@@ -110,7 +110,7 @@ const products = [{
   },
   {
   name: "Jordnöt",
-  price: 18,
+  price: 16,
   rating:3,
   amount: 0,
   kategori: "Nötter",  
@@ -120,7 +120,7 @@ const products = [{
   },
   {             
   name: "Passion-Mango",
-  price: 18,
+  price: 16,
   rating:3,
   amount: 0,
   kategori: "Frukt", 
@@ -130,7 +130,7 @@ const products = [{
   },
   {
   name: "Saltkola",             
-  price: 18,
+  price: 10,
   rating:5,
   amount: 0,
   kategori: "Mjölk",  
@@ -140,7 +140,7 @@ const products = [{
   },
   {
   name: "Maracaibo",
-  price: 18,
+  price: 17,
   rating:2,
   amount: 0,
   kategori: "Mörk", 
@@ -182,7 +182,6 @@ chocolateContainer.innerHTML +=
 
 //++++++++++++++++++Rating skrivs ut på sidan+++++++++++++++++++++++++++++++++++++
 const ratingElements = document.querySelectorAll('.rating');
-
 for (let i = 0; i< ratingElements.length; i++) {
   
   
