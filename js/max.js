@@ -168,49 +168,59 @@ function applyWeekendIncrease() {
 
 const priceRangeElement = document.querySelector('#priceRangeElement');
 const currentPriceRange = document.querySelector('#currentPriceRange');
-const priceRadioBtn = document.querySelector('#priceRadioBtn')
 
 priceRangeElement.addEventListener('input', updatePriceRange)
 
 function updatePriceRange() {   
   const selectedPriceRange = priceRangeElement.value;
   currentPriceRange.innerHTML = `${selectedPriceRange} kr`;
+  filterByPrice(selectedPriceRange);
+}
 
-  //     ***filtrera efter valt intervall här*** 
-  // (default värden är satta direkt i HTML, och utskrift av
-  // produktarray görs redan när sidan laddas).
-
-  // bör filtreringen ligga i en egen funktion och kallas
-  // av updatePriceRange() ist?
-
-  // kolla vilken radio-knapp som är vald och kalla sorteringsfunktion
-  document.querySelectorAll('input[name="sort-option-btn"]').forEach(element => {
+/**
+ * 
+ * @param {number} selectedMax - valt max-värde för prisintervall
+ * filtrerar ut alla produkter inom valt intervall, kontrollerar vilken sorteringsknapp som är vald
+ * kallar på sorteringsfunktion 
+ */
+function filterByPrice(selectedMax) {
+  // console.log(selectedMax); // kontrollerad: motsvarar vad man valt i slidern
+  let filteredArray = products.filter(product => product.price <= selectedMax); 
+  document.querySelectorAll('input[name="sort-option-btn"]').forEach(element => {    // kolla vilken radio-knapp som är vald och kalla sorteringsfunktion
     if (element.checked) {
-      let selectedRadioBtn = element.id;  // #1 // kanske lite snyggare med value ist 🤔 
-      sortBy(selectedRadioBtn);
+      let selectedRadioBtn = element.id;  // #1 kanske lite snyggare med value ist 🤔 
+      sortBy(selectedRadioBtn, filteredArray);
     }
     /* skippar else, felhantering överflödig, right? 🤔 
     *  någon radio kommer alltid vara vald (sortera på pris default), 
-    *  ändra första utskrift av renderChocolate() till sortBy('priceRadioBtn')?;
+    *  ändra första utskrift av renderChocolate() till sortBy('priceRadioBtn')
+    *  så den sorterar på default check (pris)?;
     * */ 
   })
 }
 
-function sortBy(radioBtnId) {   // #2 kanske lite snyggare med value ist 🤔 
+/**
+ * 
+ * @param {string} radioBtnId - id för vald sorterings-radioknapp
+ * @param {array} array(bra namn lol, tips?) - filtrerad array inom valt prisintervall
+ * sorterar pris-filtrerad array och kallar på utskriftsfunktion (i younes.js)
+ */
+function sortBy(radioBtnId, array) {   // #2 kanske lite snyggare med value ist 🤔 
   let sortedArray;
-
+  let filteredArray = array;
   switch (radioBtnId) {
     case 'priceRadioBtn':
       console.log('prisknapp vald');
-      sortedArray = products.sort((a, b) => {   // sortera efter pris, högt till lågt
+      sortedArray = filteredArray.sort((a, b) => {   // sortera efter pris, högt till lågt
         return b.price - a.price;               // TODO: ändra priser i products[] så sorteringen blir lite mer kul!
       })
-                                         // halvbra performance att printa ut hela arrayen vid varje ändring av prisintervall? 🤔
-      // renderChocolate(sortedArray);   // TODO: fixa så att renderChocolate() tar array som argument
+                                          // halvbra performance att printa ut hela arrayen vid varje ändring av prisintervall? 🤔
       
+       // renderChocolate(sortedArray);   // TODO: fixa så att renderChocolate() tar array som argument
+      console.table(sortedArray);
     break;
 
-      // fler case för resterande sortering, respektive möjligt val
+      // TODO: fler case för resterande sortering, respektive möjligt val
 
     default:
       console.log('någon annan än prisknapp vald');
