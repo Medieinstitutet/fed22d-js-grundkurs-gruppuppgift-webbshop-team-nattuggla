@@ -57,6 +57,7 @@ const products = [{
   description: "apelsin-hasselnot-pralin",
   image1:'bilder/praliner/apelsin-hasselnöt/AH-hel.png',
   image2:'bilder/praliner/apelsin-hasselnöt/AH-halv.png',
+  alt: 'pralin-chocolate-orange-nuts',
   },
   {
   name:"Blodapelsin-vanilj",
@@ -66,7 +67,8 @@ const products = [{
   kategori: "Frukt",
   description: "pralin",
   image1:'bilder/praliner/blodapelsin-vanilj/BV-hel.png',
-  image2:'bilder/praliner/blodapelsin-vanilj/BV-halv.png'
+  image2:'bilder/praliner/blodapelsin-vanilj/BV-halv.png',
+  alt: 'pralin-chocolate-orange-nuts',
   }, 
   {
   name: "Calamansi",
@@ -77,6 +79,7 @@ const products = [{
   description: "pralin",
   image1:'bilder/praliner/calamansi/CC-hel.png',
   image2:'bilder/praliner/calamansi/CC-halv.png',
+  alt: 'pralin-chocolate-orange-nuts',
   },
   {
   name: "Espresso",
@@ -87,6 +90,7 @@ const products = [{
   description: "pralin",
   image1:'bilder/praliner/espresso-kola/EK-hel.png',
   image2:'bilder/praliner/espresso-kola/EK-halv.png',
+  alt: 'pralin-chocolate-orange-nuts',
   },
   {
   name: "Hallon Lakrits",
@@ -97,6 +101,7 @@ const products = [{
   description: "pralin",
   image1:'bilder/praliner/hallon-lakrits/HL-hel.png',
   image2:'bilder/praliner/hallon-lakrits/HL-halv.png',
+  alt: 'pralin-chocolate-orange-nuts',
   },
   {
   name: "Hasselnöt",
@@ -107,6 +112,7 @@ const products = [{
   description: "pralin",
   image1:'bilder/praliner/hasselnöt/H-hel.png',
   image2:'bilder/praliner/hasselnöt/H-halv.png',
+  alt: 'pralin-chocolate-orange-nuts',
   },
   {
   name: "Jordnöt",
@@ -117,6 +123,7 @@ const products = [{
   description: "pralin",
   image1:'bilder/praliner/jordnöt/J-hel.png',
   image2:'bilder/praliner/jordnöt/J-halv.png',
+  alt: 'pralin-chocolate-orange-nuts',
   },
   {             
   name: "Passion-Mango",
@@ -127,6 +134,7 @@ const products = [{
   description: "pralin",
   image1:'bilder/praliner/passion-mango/PM-hel.png',
   image2:'bilder/praliner/passion-mango/PM-halv.png',
+  alt: 'pralin-chocolate-orange-nuts',
   },
   {
   name: "Saltkola",             
@@ -137,6 +145,7 @@ const products = [{
   description: "pralin",
   image1:'bilder/praliner/saltkola/SK-hel.png',
   image2:'bilder/praliner/saltkola/SK-halv.png',
+  alt: 'pralin-chocolate-orange-nuts',
   },
   {
   name: "Maracaibo",
@@ -147,6 +156,7 @@ const products = [{
   description: "pralin",
   image1:'bilder/praliner/maracaibo/M-hel.png',
   image2:'bilder/praliner/maracaibo/M-halv.png',
+  alt: 'pralin-chocolate-orange-nuts',
   }
   ];
               
