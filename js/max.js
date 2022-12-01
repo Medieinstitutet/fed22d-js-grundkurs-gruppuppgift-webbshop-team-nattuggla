@@ -6,7 +6,7 @@
 ✅    spara aktuell tidpunkt i variabel 
 
 ✅    OM det är 13e december: 
-🔲        lägg till en gratis pepparkakschoklad i kundkorgen eller nåt 🍫😃
+✅        lägg till en gratis pepparkakschoklad i kundkorgen eller nåt 🍫😃
 
 ✅    OM det är 24 december
 🔲        gör pristexter röda
@@ -83,22 +83,23 @@ let deliveryTime;                                   //  massa matte på pageLoad
 
               /********  FUNKTIONER ********/
 
-       
+   
+let isLucia = false;              
+
+
 /**
  * testar om det är lucia eller julafton (funktionen verkar funka som den ska!)
  */
 function isHoliday() {
   if (pageLoadTime.getDate() == 24 && pageLoadTime.getMonth() == 11) {        // jul
-
+    
     // TODO: gör pristexter röda och byt bakgrundsbild
     
   }
-  else if (pageLoadTime.getDate() == 01 && pageLoadTime.getMonth() == 11) {   //  lucia
-    /*rintedPralinLucia ();*/
-    // TODO: lägg till en gratis lucia-choklad i kundkorg 🍫
-
-    //en funktion som skriver ut en <div><h3></h3> <img> <span></span></div> i kundkorgen, med namn, bild och summa 0kr. 
-    //kalla på funktionen när det är regeln ovanför.
+  else if (pageLoadTime.getDate() == 13 && pageLoadTime.getMonth() == 11) {   //  lucia
+  isLucia = true;
+  //en funktion som skriver ut en <div><h3></h3> <img> <span></span></div> i kundkorgen, med namn, bild och summa 0kr. 
+  //kalla på funktionen när det är regeln ovanför.
   
 
   }
@@ -159,6 +160,12 @@ function resetOrder() {
 function applyWeekendIncrease() {
   // sneaky prishöjning på 10% (eller bool?)
 }
+
+
+function tenProductsDiscount() {
+//när du beställer 10 av en produkt ska du få rabatt
+}
+
 
 
 /******** sortering och filtrerings-funktioner ********/ 
