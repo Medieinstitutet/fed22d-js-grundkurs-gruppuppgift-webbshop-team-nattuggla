@@ -158,6 +158,7 @@ function renderChocolate() {
 chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att antalet rensas medan man utökar den
 
 for (let i  = 0; i < products.length; i++) {   
+  
 chocolateContainer.innerHTML += 
 `<article class="pralin">
   <h3 class="cartName">${products[i].name}</h3> 
@@ -178,6 +179,7 @@ chocolateContainer.innerHTML +=
     <button class="add" data-operator="plus" data-id="${i}">+</button>
   </div> 
 </article>`;
+
 }
 
 //++++++++++++++++++Rating skrivs ut på sidan+++++++++++++++++++++++++++++++++++++

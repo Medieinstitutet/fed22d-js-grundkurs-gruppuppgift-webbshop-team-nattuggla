@@ -156,27 +156,97 @@ function applyWeekendIncrease() {
   // sneaky prishöjning på 10% (eller bool?)
 }
 
-document.querySelectorAll('li.alternativ').forEach(element => {
-  element.addEventListener('click', toggleActive)
-});
-const activeCategories = [];
-function toggleActive(e) {
-  let category = e.currentTarget;
-  category.classList.toggle('active-option');
 
-    // if (activeCategories.indexOf(category) == -1) {
-    //   activeCategories.push(category);
-    // }
-    
-    // else {
-    //   activeCategories.pop(activeCategories.indexOf(category));
-    // }
-  
+/******** sortering och filtrerings-funktioner ********/ 
 
-  console.log(category);
-  console.log(activeCategories);
+// Produkterna ska gå att sortera utifrån namn, pris, kategori och rating
+// Det ska gå att filtrera produkter på prisintervall
+
+// filtrera först efter intervall
+// sedan sortera efter vald sortering (pris högst default)
+// printa ut uppdaterad objekt-array i produkt-container
+
+const priceRangeElement = document.querySelector('#priceRangeElement');
+const currentPriceRange = document.querySelector('#currentPriceRange');
+
+priceRangeElement.addEventListener('input', updatePriceRange)
+
+function updatePriceRange() {   
+  const selectedPriceRange = priceRangeElement.value;
+  currentPriceRange.innerHTML = `${selectedPriceRange} kr`;
+  filterByPrice(selectedPriceRange);
 }
 
+/**
+ * 
+ * @param {number} selectedMax - valt max-värde för prisintervall
+ * filtrerar ut alla produkter inom valt intervall, kontrollerar vilken sorteringsknapp som är vald
+ * kallar på sorteringsfunktion 
+ */
+function filterByPrice(selectedMax) {
+  // console.log(selectedMax); // kontrollerad: motsvarar vad man valt i slidern
+  let filteredProducts = products.filter(product => product.price <= selectedMax); 
+  document.querySelectorAll('input[name="sort-option-btn"]').forEach(element => {    // kolla vilken radio-knapp som är vald och kalla sorteringsfunktion
+    if (element.checked) {
+      let selectedRadioBtn = element.id;  // #1 kanske lite snyggare med value ist 🤔 
+      sortBy(selectedRadioBtn, filteredProducts);
+    }
+    /* skippar else, felhantering överflödig, right? 🤔 
+    *  någon radio kommer alltid vara vald (sortera på pris default), 
+    *  ändra första utskrift av renderChocolate() till sortBy('priceRadioBtn')
+    *  så den sorterar på default check (pris)?;
+    * */ 
+  })
+}
+
+/**
+ * 
+ * @param {string} radioBtnId - id för vald sorterings-radioknapp
+ * @param {array} array(bra namn lol, tips?) - filtrerad array inom valt prisintervall
+ * sorterar pris-filtrerad array och kallar på utskriftsfunktion (i younes.js)
+ */
+function sortBy(radioBtnId, array) {   // #2 kanske lite snyggare med value ist 🤔 
+  let sortedProducts;
+  let filteredProducts = array;
+
+  if (radioBtnId == 'priceRadioBtn') {
+    sortedProducts = filteredProducts.sort((a, b) => {   // sortera efter pris, högt till lågt
+      return b.price - a.price;               // TODO: ändra priser i products[] så sorteringen blir lite mer kul!
+    })
+    console.table(sortedProducts);
+  }
+  else {
+    console.log('sortera på kategori');
+  }
+
+/*
+ 
+  switch (radioBtnId) {
+    case 'priceRadioBtn':
+      console.log('prisknapp vald');
+      sortedProducts = filteredProducts.sort((a, b) => {   // sortera efter pris, högt till lågt
+        return b.price - a.price;               // TODO: ändra priser i products[] så sorteringen blir lite mer kul!
+      })
+      console.table(sortedProducts);
+    break;
+    case 'milkRadioBtn':
+      console.log('mjölk')
+    break;
+    case 'nutRadioBtn':
+      console.log('nöt')
+    break;
+    case 'darkRadioBtn':
+      console.log('dark')
+    break;
+    default:
+      console.log('någon annan än prisknapp vald');
+  //  renderChocolate(products);     // halvbra performance att printa ut hela arrayen vid varje ändring av prisintervall? 🤔      
+    break;    
+  }
+
+  */
+
+}
               /******** PROGRAMFLÖDE ********/ 
 
 

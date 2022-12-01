@@ -50,18 +50,51 @@
     </section>
 
     <section class="fullpage-two" id="second-page">
-      <nav class="categories">
-        <ul>
-          <li class="options">Mjölk</li>
-          <li class="options">Mörk</li>
-          <li class="options">Nötter</li>
-          <li class="options">Frukter</li>
-        </ul>
-        <button class="filter-btn">Filtrera</button>
-      </nav>
-      <div id="chocolate-container">      
-        
-       </div>
+      <div class="sorting-container">
+
+        <section class="sorting-first-section">
+          <h2><label for="price-range">Prisintervall:</label></h2>
+          <div class="pricerange-container">
+            <span>0 kr</span> 
+            <input type="range" name="price-range" id="priceRangeElement" min="0" max="20" value="20">
+            <span id="currentPriceRange">20 kr</span>
+          </div>
+
+        </section>
+
+        <section class="sorting-second-section">
+          <h2>Sortera efter kategori:</h2>
+          <ul class="categories">
+            <li class="sort-option">
+              <label>
+                <input type="radio" name="sort-option-btn" id="priceRadioBtn" checked=""> 
+                Pris (högst överst)
+              </label>
+            </li>
+            <li class="sort-option">
+              <label>
+                <input type="radio" name="sort-option-btn" id="milkRadioBtn"> 
+                Mjölkchoklad
+              </label>
+            </li>
+            <li class="sort-option">
+              <label>
+                <input type="radio" name="sort-option-btn" id="nutRadioBtn"> 
+                Innehåller nötter
+              </label>
+            </li>
+            <li class="sort-option">
+              <label>
+              <input type="radio" name="sort-option-btn" id="darkRadioBtn"> 
+              Mörk choklad
+            </label>
+            </li>
+          </ul>
+        </section>
+
+      </div>
+      
+      <div id="chocolate-container"></div>
     </section>
 
     <section class="cart-container hidden" id="cartContainer">
@@ -119,29 +152,31 @@
                 <input type="number" name="phone" id="telefon"/><br>
                 <label for="email">E-mail:</label>
                 <input type="email" name="email" id="email"/><br><br>
-                <label>
-                  <input
-                    type="radio"
-                    name="payment_method"
-                    value="card"
-                    class="payment"
-                  />
-                  Kort
-                </label>
-                <label for="">
-                  <input
-                    type="radio"
-                    name="payment_method"
-                    value="invoice"
-                    class="payment"
-                  />
-                  Faktura
-                </label>
-                <div class="radio-content"></div> 
+ 
               </form>
               </section>
               <br><br>
       
+              <label>
+                <input
+                  type="radio"
+                  name="payment_method"
+                  value="card"
+                  class="payment"
+                />
+                Kort
+              </label>
+              <label for="">
+                <input
+                  type="radio"
+                  name="payment_method"
+                  value="invoice"
+                  class="payment"
+                />
+                Faktura
+              </label>
+              <div class="radio-content"></div> 
+
               <input type="checkbox" id="approval" name="approval" />
               <label for="approval"
                 >Godkännande av behandling av personuppgifter</label

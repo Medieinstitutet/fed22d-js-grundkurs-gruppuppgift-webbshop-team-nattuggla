@@ -22,123 +22,148 @@
 
  */
 
+let infoObject = [];
 
- let infoObject = [];
+var btnSubmit = document.getElementById("submit");
 
- const button = document.getElementById("submit");
- 
- const fornamn = document.getElementById("fnamn");
- const efternamn = document.getElementById("enamn");
- const adress = document.getElementById("adress");
- const postnum = document.getElementById("pnummer");
- const postort = document.getElementById("port");
- const portkod = document.getElementById("pkod");
- const nummer = document.getElementById("telefon");
- const email = document.getElementById("email");
- 
- button.addEventListener("click", function () {
-   infoObject.push({
-     fornamn: fornamn.value,
-     efternamn: efternamn.value,
-     adress: adress.value,
-     postnum: postnum.value,
-     postort: postort.value,
-     portkod: portkod.value,
-     nummer: nummer.value,
-     email: email.value,
-   });
-   alert(
-     "Tack för din beställning " +
-       fornamn.value +
-       "!" +
-       " Din beställning på adress: " +
-       adress.value +
-       ", " +
-       postnum.value +
-       " " +
-       postort.value +
-       " kommer att levereras inom 3-5 arbetsdagar. Ett bekräftelsemail ha skickats till " +
-       email.value +
-       "."
-   );
- });
- 
- // funktion för betalningssätt
- const paymentBox = document.querySelector('.radio-content');
- document.querySelectorAll('input[type="radio"]').forEach(element => {
-   element.addEventListener('click', showPaymentInput);
- });
- 
- function showPaymentInput(e) {
-   const value = e.target.value;
-   const cardContent = ` <input type="number" placeholder="Kortnummer">
+const fornamn = document.getElementById("fnamn");
+const efternamn = document.getElementById("enamn");
+const adress = document.getElementById("adress");
+const postnum = document.getElementById("pnummer");
+const postort = document.getElementById("port");
+const portkod = document.getElementById("pkod");
+const nummer = document.getElementById("telefon");
+const email = document.getElementById("email");
+
+btnSubmit.addEventListener("click", function () {
+  
+  infoObject.push({
+    fornamn: fornamn.value,
+    efternamn: efternamn.value,
+    adress: adress.value,
+    postnum: postnum.value,
+    postort: postort.value,
+    portkod: portkod.value,
+    nummer: nummer.value,
+    email: email.value,
+  });
+  alert(
+    "Tack för din beställning " +
+      fornamn.value +
+      "!" +
+      " Din beställning på adress: " +
+      adress.value +
+      ", " +
+      postnum.value +
+      " " +
+      postort.value +
+      " kommer att levereras inom 3-5 arbetsdagar. Ett bekräftelsemail ha skickats till " +
+      email.value +
+      "."
+  );
+});
+
+// funktion för verifiering för personnummer vid faktura
+function verifyPersonNumber(inputtxt) {
+  let numbers = /^(19|20)?[0-9]{6}[-]?[0-9]{4}$/;
+  if (inputtxt.value.match(numbers)) {
+    alert("Godkänt");
+    return true;
+
+  } else {
+    alert("Skriv format: ÅÅÅÅMMDDXXXX / ÅÅMMDDXXXX");
+    return false;
+  }
+}
+
+
+// funktion för betalningssätt
+const paymentBox = document.querySelector(".radio-content");
+document.querySelectorAll('input[type="radio"]').forEach((element) => {
+  element.addEventListener("click", showPaymentInput);
+});
+
+
+function showPaymentInput(e) {
+  const value = e.target.value;
+  const cardContent = ` <input type="number" placeholder="Kortnummer">
                          <input type="text" placeholder="ÅÅ/MM">
                          <input type="number" placeholder="CVC">`;
-                         
-   const invoiceContent = `<input type="text" placeholder="Personnummer (ÅÅÅÅMMDDXXXXX">`;
- 
-   paymentBox.innerHTML = "";
-   if (value == "card") {
-     paymentBox.innerHTML = cardContent;
-   }
-   else {
-     paymentBox.innerHTML = invoiceContent;
-   }
- }
- 
- // funktion för disable/enable knappen
- function validInput() {
- }
- 
- function checkInput(field) {
-   curr = document.getElementById(field).value;
-   if (curr.length > 0) {
-     validInput(field, 1);
-     return true;
-   } else {
-     validInput(field, 0);
-     return false;
-   }
- }
- window.onload = function () {
-   var btnSubmit = document.getElementById("submit");
-   // låt knappen vara disabled vid onload
-   btnSubmit.setAttribute("disabled", "disabled");
- 
-   // lägg till keyup event för varje input
-   [].slice
-     .call(document.querySelectorAll('form input:not([type="submit"])'))
-     .forEach(function (element) {
-       element.addEventListener(
-         "keyup",
-         function () {
-           // räkna antal invalid inputs
-           var invalidFields = [].slice
-             .call(document.querySelectorAll('form input:not([type="submit"])'))
-             .filter(function (element) {
-               return !checkInput(element.id);
-             }
-             );
-           if (invalidFields.length == 0) { 
-             // gör knappen enable när invalid inputs är 0
-             btnSubmit.removeAttribute("disabled");
-           }
-           else if (invalidFields.length == 1) {
+
+  const invoiceContent =
+    `<form>` +
+    `            
+                        <label for="verifyPb"> Personnummer: </label> ` +
+    ` <input  type="number"
+                                name="verifyPb"
+                                id="verifyPb"
+                                placeholder="ÅÅÅÅMMDDXXXX">` +
+    ` <button type="submit" name="verifysub" id="verifysub" onclick="verifyPersonNumber(verifyPb)"> Skicka </button> `;
+  +`</form>`;
+
+  paymentBox.innerHTML = "";
+  if (value == "card") {
+    paymentBox.innerHTML = cardContent;
+  } else {
+    paymentBox.innerHTML = invoiceContent;
+  }
+}
+
+// funktion för disable/enable knappen
+function validInput() {}
+
+function checkInput(formList) {
+  curr = document.getElementById(formList).value;
+  if (curr.length > 0) {
+    validInput(formList, 1);
+    return true;
+  } else {
+    validInput(formList, 0);
+    return false;
+  }
+}
+window.onload = function () {
+  var btnSubmit = document.getElementById("submit");
+  
+  // låt knappen vara disabled vid onload
+  btnSubmit.setAttribute("disabled", "disabled");
+
+  // lägg till keyup event för varje input
+  [].slice
+    .call(document.querySelectorAll('form input:not([type="submit"])'))
+    .forEach(function (element) {
+      element.addEventListener(
+        "keyup",
+        function () {
+          // räkna antal invalid inputs
+          var invalidFields = [].slice
+            .call(document.querySelectorAll('form input:not([type="submit"])'))
+            .filter(function (element) {
+              return !checkInput(element.id);
+            });
+          if (invalidFields.length == 0) {
+            // gör knappen enable när invalid inputs är 0
+            btnSubmit.removeAttribute("disabled");
+          } else if (invalidFields.length == 1) {
             // om enda elementet i invalidFields är portkod, inte supersnygg kod kanske, men funkar nu 🙌
             if (invalidFields[0] == portkod) {
               btnSubmit.removeAttribute("disabled");
+
             }
-           }
-           else {
-             // disable knappen om det är invalid inputs
-             btnSubmit.setAttribute("disabled", "disabled");
-           }
-         },
-         false
-       );
-     });
- };
- // funktion för att reseta formuläret
- function resetInput() {
-   document.getElementById("formList").reset();
- }
+          } else {
+            // disable knappen om det är invalid inputs
+            btnSubmit.setAttribute("disabled", "disabled");
+
+          }
+        },
+        false
+      );
+      
+    });
+};
+
+
+// funktion för att reseta formuläret
+function resetInput() {
+  document.getElementById("formList").reset();
+}
