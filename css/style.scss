@@ -1,3 +1,9 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -287,50 +293,92 @@ header {
     color: #6d0404;
     opacity: 70%;
   }
+}
 
 
 
+.sorting-container {
+  margin: 0;    // TODO: css reset och/eller  normalize...
+  padding: 0;
+  width: 100%;
+  border: 1px dashed #ccc;
+  border-width: 2px 0;
+  background-color: black;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(218, 4, 4); 
 
-  // nästlad af! caution
-  .categories {
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    border: 1px dashed #ccc;
-    border-width: 2px 0;
-    background-color: black;
-
-    ul {
-      display: flex;
-      justify-content: space-between;
-      list-style: none;
+    h2 {
       margin: 0;
-      padding: 1.5rem 0.25rem;
-      font-size: 1.25em;
-    }
-
-    .filter-btn {
-      height: max-content;
-      margin: 0;
-    }
-
-    .options {
-      display: inline;
-      padding: 0.5rem 0.25rem;
-      text-decoration: none;
-
-  
-      &:hover {
-        color: rgb(94, 50, 21);
-        cursor: pointer;
-      }
-    }
+      margin-bottom: 0.25rem;
+      font-size: 1.125rem;
   }
 }
 
-.active-option {
-  background-color: rgba(0, 0, 0, 0.6);
+.sorting-first-section {
+  padding: 1rem;
+  width: 80%;
+  border: 1px solid #aaa;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid rgb(11, 7, 255);
+
+  .pricerange-container {
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    
+
+    span {
+      padding: 0.25rem;
+      width: max-content;
+      background-color: white;
+      color: black;
+    }
+
+    input[type="range"] {
+      width: 14vw;
+      min-width: 100px;
+      margin: 0 0.5rem;
+    }
+  }
+} 
+
+.sorting-second-section {
+  width: 80%;
+  border: 1px solid rgb(16, 177, 88);
+  
+  ul.categories {
+    margin-top: 0;
+    list-style: none;
+  }
+  
+  li.filter-option {
+    margin-right: 0.5rem;
+    padding: 0.25rem 0.5rem;
+  
+      &:hover {
+        color: rgb(94, 50, 21);
+      }
+    }
+
+  label:hover {
+    cursor: pointer;
+  }
+
+  input[type="radio"] {
+    width: auto;
+    margin-right: 1rem;
+
+      &:hover {
+        cursor: pointer;
+      }
+  }
 }
 
 .chocolate-container{
@@ -507,7 +555,7 @@ legend {
   font-weight: bold;
 }
 
-input {
+input {     // kör gärna class här 😊
   width: 20em;
   border-top: none;
   border-left: none;

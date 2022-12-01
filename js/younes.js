@@ -169,6 +169,9 @@ chocolateContainer.innerHTML +=
     <button class="add" data-operator="plus" data-id="${i}">+</button>
   </div> 
 </article>`;
+
+const betygElement = document.querySelector('')
+
 }
 
 
@@ -339,3 +342,5 @@ function imageSwap(e){
                //kundkorgs summering
               
             //kundkorgen ska ge dig rabatterat pris, 10% rabat..
+
+            const
