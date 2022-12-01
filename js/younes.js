@@ -80,7 +80,7 @@ const products = [{
   },
   {
   name: "Espresso",
-  price: 12,
+  price: 5,
   rating:3,
   amount: 0,
   kategori: "Mörk",  
@@ -140,7 +140,7 @@ const products = [{
   },
   {
   name: "Maracaibo",
-  price: 17,
+  price: 8,
   rating:2,
   amount: 0,
   kategori: "Mörk", 
@@ -154,28 +154,28 @@ const chocolateContainer = document.querySelector('#chocolate-container');
 
 
 //+++++++++++++++++++++++++++sätt att skriva ut text ist för och ha i html++++++++++++++++++++++++++++++              
-function renderChocolate() {
+function renderChocolate(arrayToRender) {
 chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att antalet rensas medan man utökar den
 
-for (let i  = 0; i < products.length; i++) {   
+for (let i  = 0; i < arrayToRender.length; i++) {   
   
 chocolateContainer.innerHTML += 
 `<article class="pralin">
-  <h3 class="cartName">${products[i].name}</h3> 
+  <h3 class="cartName">${arrayToRender[i].name}</h3> 
   <div class="images">
     <section class="imgContainer">
       <div class="imageBox">
-        <img id="img-1" class="img1" src="${products[i].image1} "alt=""/>
-        <img id="img-2" class="img2" src="${products[i].image2} "alt=""/>
+        <img id="img-1" class="img1" src="${arrayToRender[i].image1} "alt=""/>
+        <img id="img-2" class="img2" src="${arrayToRender[i].image2} "alt=""/>
       </div>
       <button class="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
       <button class="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
     </section>
     Betyg:<span class="rating"></span><br>
-    Pris:<span class="price">${products[i].price} kr/st</span> <br>
-    Summa:<span class="sum">${products[i].price * products[i].amount}</span> <br>
+    Pris:<span class="price">${arrayToRender[i].price} kr/st</span> <br>
+    Summa:<span class="sum">${arrayToRender[i].price * arrayToRender[i].amount}</span> <br>
     <button class="remove" data-operator="minus" data-id="${i}">-</button>
-    <span class="amount">${products[i].amount} st</span>
+    <span class="amount">${arrayToRender[i].amount} st</span>
     <button class="add" data-operator="plus" data-id="${i}">+</button>
   </div> 
 </article>`;
@@ -276,7 +276,7 @@ console.log(products);
 renderChocolate();
 }
               
-renderChocolate();
+renderChocolate(products);
 
 
  //++++++++++++++++++++++++++++++funktion för minusknappen på sidan++++++++++++++++++++++++++++++

@@ -213,7 +213,7 @@ function sortBy(radioBtnId, array) {   // #2 kanske lite snyggare med value ist 
     sortedProducts = filteredProducts.sort((a, b) => {   // sortera efter pris, högt till lågt
       return b.price - a.price;               // TODO: ändra priser i products[] så sorteringen blir lite mer kul!
     })
-    console.table(sortedProducts);
+    renderChocolate(sortedProducts);
   }
   else {
     console.log('sortera på kategori');
