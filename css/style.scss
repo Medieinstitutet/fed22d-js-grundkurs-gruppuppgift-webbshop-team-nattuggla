@@ -18,16 +18,38 @@ body {
   font-family:'Courier New', Courier, monospace;
 }
 
-.moon .sun{ /* vi behöver ta bort style från button.*/ 
-  border: none;
-  outline: none;
-  cursor: pointer;
-  font-size: 20px;
-  border-radius: 5px 5px;
-  padding: 3px;
-  box-shadow: 10px 0px 20px rgb(8, 8, 8);
-  margin: 10px;
+
+:root{
+  --primary-color:rgb(107, 51, 6);
 }
+
+.dark_mode{
+      --primary-color:rgb(43, 43, 43);
+  }
+
+  .show{ 
+      display: block;}
+
+  .hide{
+      display: none;
+  }
+
+
+  //++++++++++++++++++++++header++++++++++++++++++++++//
+
+
+.moon{
+  background-color: transparent;
+  border: none;
+  font-size: 25px;
+}
+
+.sun{
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 25px;
+  }
 
 
 header {
@@ -81,8 +103,7 @@ header {
 .nav-link:hover{
   color: rgb(15, 112, 208);
   text-transform: uppercase;
-  text-decoration: underline rgb(232, 5, 32);
-  background-color: rgb(107, 51, 6);
+  background-color: rgb(241, 237, 234);
 
 }
 
@@ -98,13 +119,16 @@ header {
   justify-content: space-between;
   align-items: center;
   gap: 60px;
+  z-index: 2;
 }
 
 .hamburger{
   cursor: pointer;
-  position: relative;
+  position: fixed;
+  right: 20px;
   border: none;
   background-color: transparent;
+  z-index: 2;
 }
 
 .bar{
@@ -114,7 +138,7 @@ header {
   margin: 5px auto;
   -webkit-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
-  background-color: #000;
+  background-color: white;
 }
 
 .hamburger.active .bar:nth-child(2){
@@ -151,64 +175,7 @@ header {
   background-color: rgba(0, 0, 0, 0.6);
 }
 
-.pralin{
-  align-items: center;
-  justify-content: center;
-  text-align: center;
-}
-
-:root{
-  --primary-color:rgb(107, 51, 6);
-}
-
-.dark_mode{
-      --primary-color:rgb(43, 43, 43);
-  }
-
-  .show{ 
-      display: block;}
-
-  .hide{
-      display: none;
-  }
-
-  .cart-container{
-    background-color: #5c5959;
-    position: relative;
-    top: 0%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 90%;
-    box-shadow: 5px 5px 28px 2px rgba(0,0,0,0.36);
-    -webkit-box-shadow: 5px 5px 28px 2px rgba(0,0,0,0.36);
-    -moz-box-shadow: 5px 5px 28px 2px rgba(0,0,0,0.36);
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-
-    p{
-        cursor: pointer;
-    }
-
-    h1{
-        position: absolute;
-        top: 2%;
-        left: 3%;
-          }
-}
-
-.close{
-    position: absolute;
-    top: 2%;
-    right: 3%;
-}
-
-.hidden{
-  display: none;
-}
-
+//++++++++++++++++++startsida+++++++++++++++++++++++++//
 
 .fullpage-one {
   min-height: 100vh; // todo: kolla window.innerHeight i JS och prova
@@ -252,20 +219,53 @@ header {
   }
 }
 
+//++++++++++++++++++++++++++ produkterna++++++++++++++++++++//
+
 .fullpage-two {
   display: flex;
   justify-content: center;
   flex-direction: column;
 
+  .pralin{
+    align-items: center;
+    justify-content: center;
+    text-align: center; 
+  }
 
-
+  .images{
+    max-width: 30vh;
+    max-width: 30vw;
+    background: rgba(16, 15, 15, 0.5);
+    outline: 1px solid black;
+    margin-inline: auto;
+    margin-block: 40px;
+    position: relative;
+    aspect-ratio: 16 / 9;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    
+    }
+  
   .imgContainer{
+    top: 0;
+    left: 0;
     width: 100%;
     display: flex;
     position: relative;
     justify-content: center;
     align-items: center;
     height: 40vh;
+  
+    img{
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      transition: opacity 1s ease;}
+  }
+  .img2{
+    opacity: 0;
   }
 
   .left{
@@ -381,12 +381,11 @@ header {
   }
 }
 
-.chocolate-container{
-  width: 100%;
-  text-align: center;
-  position: relative;
-  
-}
+
+
+
+
+
 
 
 
@@ -415,6 +414,9 @@ header {
     left: 5px;
   }
 }
+
+
+//++++++++++++++++++++++++kundkorg++++++++++++++++++++++++//
 
 .kundkorg {
   width: 100%;
@@ -448,6 +450,46 @@ header {
     border-bottom: 1px solid #e44c4c;
   }
 }
+
+.cart-container{
+  background-color: #5c5959;
+  position: relative;
+  top: 0%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 90%;
+  box-shadow: 5px 5px 28px 2px rgba(0,0,0,0.36);
+  -webkit-box-shadow: 5px 5px 28px 2px rgba(0,0,0,0.36);
+  -moz-box-shadow: 5px 5px 28px 2px rgba(0,0,0,0.36);
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  p{
+      cursor: pointer;
+  }
+
+  h1{
+      position: absolute;
+      top: 2%;
+      left: 3%;
+        }
+}
+
+.close{
+  position: absolute;
+  top: 2%;
+  right: 3%;
+
+}
+
+.hidden{
+display: none;
+}
+
+
 
 .accordion{
   left: 0;
@@ -577,89 +619,60 @@ input#approval {
 
 
 
-footer{
-  position: relative;
-  width:100%;
-  margin-bottom: 10px;
-  left: 0;
-  border-radius: 20px 20px 0 0;
-  display: flex;
-  justify-content: center;
 
-  }
 
-  
-.profile span{
-      font-weight: bolder;
-      font-size: 24px;
-      color: gray;
-  }
-.content_inner{
-      text-align: center;
-  }
+//++++++++++++++++++++++++++footer++++++++++++++++++++++//
 
-.service li{
-      list-style: none;
-      color: white;
-      letter-spacing: 1.5px;
-      margin: 20px;
-      ;
-  
-      & a{
-          color: #ccc;
-      }
-      & a:hover{
-          color: #000;
-          text-transform: uppercase;
-          font-weight: 700;
-          text-decoration: underline  red;
-      }
-  }
-
-.service ul li:first-child{
-      font-weight: bolder;
-      color: #000;
-  }
- 
-.contact{
-      font-size: 22px;
-  
-  & a{
-      color: gray;
-  }
-  & a:hover{
-      color: #000;
-      font-weight: 700;
-      text-decoration: underline  red;
-  }}
-
-  .images{
-    max-width: 30vh;
-    max-width: 30vw;
-    background: rgba(16, 15, 15, 0.5);
-    outline: 1px solid black;
-    margin-inline: auto;
-    margin-block: 40px;
+  footer{
     position: relative;
-    aspect-ratio: 16 / 9;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-    }
-
-  .imgContainer{
-    position: absolute;
-    top: 0;
+    width:100%;
+    margin-bottom: 10px;
     left: 0;
-    width: 100%;
-    height: 100%;
-    img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      position: absolute;
-      top: 0;
-      left: 0;
-      transition: opacity 1s ease;}
-  }
-  .img2{
-    opacity: 0;
-  }
+    border-radius: 20px 20px 0 0;
+    display: flex;
+    justify-content: center;
+  
+    }
+  
+    
+  .profile span{
+        font-weight: bolder;
+        font-size: 24px;
+        color: gray;
+    }
+  
+  .service li{
+        list-style: none;
+        color: white;
+        letter-spacing: 1.5px;
+        margin: 20px;
+        ;
+    
+        & a{
+            color: #ccc;
+        }
+        & a:hover{
+            color: #000;
+            text-transform: uppercase;
+            font-weight: 700;
+            text-decoration: underline  red;
+        }
+    }
+  
+  .service ul li:first-child{
+        font-weight: bolder;
+        color: #000;
+    }
+   
+  .contact{
+        font-size: 22px;
+    
+    & a{
+        color: gray;
+    }
+    & a:hover{
+        color: #000;
+        font-weight: 700;
+        text-decoration: underline  red;
+    }}
+  
