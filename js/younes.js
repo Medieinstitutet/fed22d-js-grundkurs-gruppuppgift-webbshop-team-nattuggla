@@ -262,7 +262,9 @@ chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att ant
 
 
 //++++++++++++++++++++++++++++++FUNKTION för att printa ut chokladen på sidan++++++++++++++++++++++++++++++
-const freightPrice = (sumPrice * 0.1) + 25; 
+// const freightPrice = (sumPrice * 0.1) + 25; 
+// länkade in ditt grid i css också 😀
+// @Younes: jag klippte ut detta från rad 286, det kraschade sidan:   <p>${freightPrice}</p>    / Max
 
 function printOrderedChocolate () {
   document.querySelector('#cart').innerHTML = '';
@@ -281,7 +283,7 @@ function printOrderedChocolate () {
           </div>
           <div class="cartResultat"> 
             <p>${products[i].amount}st</p>
-            <p>${freightPrice}</p>
+            
             <p>${products[i].price* products[i].amount}</p>
           </div>
         </div>
