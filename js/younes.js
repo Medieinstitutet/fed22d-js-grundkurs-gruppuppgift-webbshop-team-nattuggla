@@ -168,7 +168,7 @@ const products = [{
     amount: 1,
     kategori: "Mjölk", 
     description: "pralin",
-    image1:'./pepparkaksPralin.jpg',
+    image1:'./bilder/pepparkaksPralin.jpg',
     alt: 'pralin-chocolate-orange-nuts',
   }
               
@@ -179,119 +179,120 @@ const chocolateContainer = document.querySelector('#chocolate-container');
 function renderChocolate(arrayToRender) {
 chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att antalet rensas medan man utökar den
 
-for (let i  = 0; i < arrayToRender.length; i++) {    
-chocolateContainer.innerHTML += 
-`<article class="pralin">
-  <h3 class="cartName">${arrayToRender[i].name}</h3> 
-  <div class="images">
-    <section class="imgContainer">
-      <div class="imageBox">
-        <img id="img-1" class="img1" src="${arrayToRender[i].image1} "alt=""/>
-        <img id="img-2" class="img2" src="${arrayToRender[i].image2} "alt=""/>
-      </div>
-      <button class="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
-      <button class="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
-    </section>
-    Betyg:<span class="rating"></span><br>
-    Pris:<span class="price">${arrayToRender[i].price} kr/st</span> <br>
-    Summa:<span class="sum">${arrayToRender[i].price * arrayToRender[i].amount}</span> <br>
-    <button class="remove" data-operator="minus" data-id="${i}">-</button>
-    <span class="amount">${arrayToRender[i].amount} st</span>
-    <button class="add" data-operator="plus" data-id="${i}">+</button>
-  </div> 
-</article>`;
+  for (let i  = 0; i < arrayToRender.length; i++) {    
+    chocolateContainer.innerHTML += 
+    `<article class="pralin">
+      <h3 class="cartName">${arrayToRender[i].name}</h3> 
+      <div class="images">
+        <section class="imgContainer">
+          <div class="imageBox">
+            <img id="img-1" class="img1" src="${arrayToRender[i].image1} "alt=""/>
+            <img id="img-2" class="img2" src="${arrayToRender[i].image2} "alt=""/>
+          </div>
+          <button class="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
+          <button class="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
+        </section>
+        Betyg:<span class="rating"></span><br>
+        Pris:<span class="price">${arrayToRender[i].price} kr/st</span> <br>
+        Summa:<span class="sum">${arrayToRender[i].price * arrayToRender[i].amount}</span> <br>
+        <button class="remove" data-operator="minus" data-id="${i}">-</button>
+        <span class="amount">${arrayToRender[i].amount} st</span>
+        <button class="add" data-operator="plus" data-id="${i}">+</button>
+      </div> 
+    </article>`;
 
-}
+  }
 
-//++++++++++++++++++Rating skrivs ut på sidan+++++++++++++++++++++++++++++++++++++
-const ratingElements = document.querySelectorAll('.rating');
-for (let i = 0; i< ratingElements.length; i++) {
-  
-}
-
+  //++++++++++++++++++Rating skrivs ut på sidan+++++++++++++++++++++++++++++++++++++
+  const ratingElements = document.querySelectorAll('.rating');
+  for (let i = 0; i< ratingElements.length; i++) { 
+  }
 
 
-//+++++++++++++++++++++++++++++++++++++++gör att man kan klicka på knappen+++++++++++++++++++++++++++++++++++++++
 
-const btnAdd = document.querySelectorAll('button[data-operator="plus"]');
-const btnReduce = document.querySelectorAll('button[data-operator="minus"]');
+  //+++++++++++++++++++++++++++++++++++++++gör att man kan klicka på knappen+++++++++++++++++++++++++++++++++++++++
 
-for (let i= 0; i < btnAdd.length; i++) {
-  btnAdd[i].addEventListener('click', updateAmount)
-  btnReduce[i].addEventListener('click', reduceAmount)
-}
+  const btnAdd = document.querySelectorAll('button[data-operator="plus"]');
+  const btnReduce = document.querySelectorAll('button[data-operator="minus"]');
+
+  for (let i= 0; i < btnAdd.length; i++) {
+    btnAdd[i].addEventListener('click', updateAmount)
+    btnReduce[i].addEventListener('click', reduceAmount)
+  }
 
 
-//++++++++++++++++++++++++++priset av produkterna ökas.+++++++++++++++++++++++++++++++++++++++
-              
-const sumPrice = arrayToRender.reduce(                  
-(previousValue, arrayToRender) => {
-return (arrayToRender.amount * arrayToRender.price) + previousValue;
-},
-0
-);
-console.log(sumPrice);
+  //++++++++++++++++++++++++++priset av produkterna ökas.+++++++++++++++++++++++++++++++++++++++
 
-              
-printOrderedChocolate ()
-              
-document.querySelector('#cartSum').innerHTML = sumPrice;
-document.querySelector('.total-summary').innerHTML = sumPrice + 'kr';
-document.querySelector('.price-summary').innerHTML = sumPrice + 'kr';
+  const sumPrice = arrayToRender.reduce(                  
+    (previousValue, arrayToRender) => 
+    {return (arrayToRender.amount * arrayToRender.price) + previousValue;}, 0); 
+  console.log(sumPrice);
 
-   
-//+++++++++++++++++++++++++++++++++++++++ökar antal praliner som skrivs ut i kundkorgen.+++++++++++++++++++++++++++++++++++++++
-const sumTotal = arrayToRender.reduce(                  
-(previousValue, product) => {
-return product.amount+ previousValue;
-},
-0
-);
-console.log(sumTotal);
                 
-printOrderedChocolate ()
-              
-document.querySelector('#cartTotal').innerHTML= sumTotal; //detta möjliggör användaren att kunna ändra bildspelet, när antalet ökas.
-const nextBtn = document.querySelectorAll('.nextImage');
-const prevBtn = document.querySelectorAll('.prevImage');
+  printOrderedChocolate ()
+                
+  document.querySelector('#cartSum').innerHTML = sumPrice;
+  document.querySelector('.total-summary').innerHTML = sumPrice + 'kr';
+  document.querySelector('.price-summary').innerHTML = sumPrice + 'kr';
 
-for(let i = 0; i < nextBtn.length; i++){
-  prevBtn[i].addEventListener('click', imageSwap);
-  nextBtn[i].addEventListener('click', imageSwap);
-}
+    
+  //+++++++++++++++++++++++++++++++++++++++ökar antal praliner som skrivs ut i kundkorgen.+++++++++++++++++++++++++++++++++++++++
+  const sumTotal = arrayToRender.reduce(                  
+  (previousValue, product) => {
+  return product.amount+ previousValue;
+  },
+  0
+  );
+  console.log(sumTotal);
+                  
+  printOrderedChocolate ()
+                
+  document.querySelector('#cartTotal').innerHTML= sumTotal; //detta möjliggör användaren att kunna ändra bildspelet, när antalet ökas.
+  const nextBtn = document.querySelectorAll('.nextImage');
+  const prevBtn = document.querySelectorAll('.prevImage');
 
+  for(let i = 0; i < nextBtn.length; i++){
+    prevBtn[i].addEventListener('click', imageSwap);
+    nextBtn[i].addEventListener('click', imageSwap);
+  }
 
 }
 //++++++++++++++++++++++++++++++++++++slut på renderchocolate+++++++++++++++++++++++++++++++++++++++
 
 
 
- //++++++++++++++++++++++++++++++FUNKTION för att printa ut chokladen på sidan++++++++++++++++++++++++++++++
+//++++++++++++++++++++++++++++++FUNKTION för att printa ut chokladen på sidan++++++++++++++++++++++++++++++
+const freightPrice = (sumPrice * 0.1) + 25; 
 
 function printOrderedChocolate () {
-document.querySelector('#cart').innerHTML = '';
-                  
-for(let i = 0; i < products.length; i ++) {
-  if (products[i].amount > 0) {
-  document.querySelector('#cart').innerHTML += 
-  `<div ="cartInfo"> <br> 
-    <div ="cartTitel">
-      <h3>${products[i].name}</h3> 
-      <img src="${products[i].image1}" width="60" height="60"}>
-      <div class="cartSumeringTitel"> 
-        <h4>Antal</h4> 
-        <h4>Summma</h4>
-      </div>
-      <div class="cartResultat"> 
-        <p>${products[i].amount}st</p> 
-        <p>${products[i].price* products[i].amount}kr</p>
-      </div>
-    </div>
-    <span class="line">________________________________________________________</span>
-  </div>`;      
-}
+  document.querySelector('#cart').innerHTML = '';
+                    
+  for(let i = 0; i < products.length; i ++) {
+    if (products[i].amount > 0) {
+      document.querySelector('#cart').innerHTML += 
+      `<div ="cartInfo"> <br> 
+        <div ="cartTitel">
+          <h3>${products[i].name}</h3> 
+          <img src="${products[i].image1}" width="60" height="60"}>
+          <div class="cartSumeringTitel"> 
+            <h4>Antal</h4> 
+            <h4>Frakt pris</h4>
+            <h4>Summma</h4>
+          </div>
+          <div class="cartResultat"> 
+            <p>${products[i].amount}st</p>
+            <p>${freightPrice}</p>
+            <p>${products[i].price* products[i].amount}</p>
+          </div>
+        </div>
+        <hr class="line">
+      </div>`;      
+    }
   }
-};
+  if (isLucia) {                    //kallar på max regeln kring lucia.
+    printedPralinLucia ();          //kallar på funktionen som skriver ut lucia pralin
+  }
+}
 
 
 
@@ -368,26 +369,27 @@ function imageSwap(e){
 
 
 
-// få en gratis lucia pralin
+//++++++++++++++++++++++++++++ få en gratis lucia pralin+++++++++++++++++++++++
 
-/*function printedPralinLucia () {
+function printedPralinLucia () {
     document.querySelector('#cart').innerHTML += 
     `<div>
       <br> 
       <div>
-        <h3>${luciaProduct[i].name}</h3> 
-        <img src="${luciaProduct[i].image1}" width="60" height="60"}>
+        <h3>${luciaProduct.name}</h3> 
+        <img src="${luciaProduct.image1}" width="60" height="60"}>
         <div class="cartSumeringTitel"> 
           <h4>Antal</h4> 
           <h4>Summma</h4>
         </div>
         <div class="cartResultat"> 
-          <p>${luciaProduct[i].amount}st</p> 
-          <p>${luciaProduct[i].price}kr</p>
+          <p>${luciaProduct.amount}st</p> 
+          <p>${luciaProduct.price}kr</p>
         </div>
       </div>
-    </div>`;      
-  };*/
+      <hr class="line">
+    </div>`;
+  };
 
 
                 /*
