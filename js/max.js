@@ -156,7 +156,7 @@ function applyWeekendIncrease() {
   // sneaky prishöjning på 10% (eller bool?)
 }
 
-document.querySelectorAll('li.filter-option-btn').forEach(element => {
+document.querySelectorAll('sort-option-btn').forEach(element => {
   element.addEventListener('click', toggleActive)
 });
 
@@ -178,14 +178,64 @@ function toggleActive(e) {
 
 /******** prisfunktion ********/ 
 
-const priceRangeElement = document.querySelector('#priceRange');
+// Produkterna ska gå att sortera utifrån namn, pris, kategori och rating
+// Det ska gå att filtrera produkter på prisintervall
+
+// filtrera först efter intervall
+// sedan sortera efter vald sortering (pris högst default)
+// printa ut uppdaterad objekt-array i produkt-container
+
+const priceRangeElement = document.querySelector('#priceRangeElement');
 const currentPriceRange = document.querySelector('#currentPriceRange');
+const priceRadioBtn = document.querySelector('#priceRadioBtn')
+
 priceRangeElement.addEventListener('input', updatePriceRange)
 
 function updatePriceRange() {
-  const currentPrice = priceRangeElement.value;
-  currentPriceRange.innerHTML = `${currentPrice} kr`;
+  const selectedPriceRange = priceRangeElement.value;
+  currentPriceRange.innerHTML = `${selectedPriceRange} kr`;
+
+  // filtrera efter valt intervall (default värden är satta direkt i HTML, och utskrift av
+  // produktarray görs redan när sidan laddas)
+
+
+
+  // sortera
+  document.querySelectorAll('input[name="sort-option-btn"]').forEach(element => {
+    if (element.checked) {
+      let selectedRadioBtn = element.id;
+      sortBy(selectedRadioBtn);
+    }
+    /* skippar else, felhantering överflödig, right? 🤔 
+    *  någon radio kommer alltid vara vald (sortera på pris default), 
+    *  ändra första utskrift av renderChocolate() till sortBy('priceRadioBtn')?;
+    * */ 
+  })
 }
+
+function sortBy(radioBtnId) {
+  let sortedArray;
+
+  switch (radioBtnId) {
+    case 'priceRadioBtn':
+      console.log('prisknapp vald');
+      sortedArray = products.sort((a, b) => {   // sortera efter pris, högt till lågt
+        return b.price - a.price;               // TODO: ändra priser i products[] så sorteringen blir lite mer kul!
+      })
+                                         // halvbra performance att printa ut hela arrayen vid varje ändring av prisintervall? 🤔
+      // renderChocolate(sortedArray);   // TODO: fixa så att renderChocolate() tar array som argument
+      
+    break;
+
+      // fler case för resterande sortering, respektive möjligt val
+
+    default:
+      console.log('någon annan än prisknapp vald');
+    break;    
+  }
+}
+
+
 
               /******** PROGRAMFLÖDE ********/ 
 
