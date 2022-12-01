@@ -39,13 +39,13 @@ function backgroundLight () {
   darkMode.classList.remove('hide');
 }    
 
-//antal munkar, plus och minus
+//antal munkar, plus younes och minus
               
               
 /* plus minus knappar
   -när man klickar på plus eller minus ska summan uppdateras
   -vi behöver ta reda på antal praliner
-  -vi behöver ta reda på priset på praliner
+  -vi behöver ta reda på priset på pralinergit 
 */
               
 const products = [{
@@ -185,7 +185,6 @@ chocolateContainer.innerHTML +=
 //++++++++++++++++++Rating skrivs ut på sidan+++++++++++++++++++++++++++++++++++++
 const ratingElements = document.querySelectorAll('.rating');
 for (let i = 0; i< ratingElements.length; i++) {
-  
   
 }
 
