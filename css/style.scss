@@ -385,7 +385,7 @@ header {
   width: 100%;
   text-align: center;
   position: relative;
-
+  
 }
 
 
@@ -507,11 +507,11 @@ header {
 
 .cartSumeringTitel{
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
 }
 
 .cartResultat{
-  justify-content: space-evenly;
+  justify-content: space-around;
   display: flex;
 }
 

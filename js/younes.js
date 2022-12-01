@@ -1,16 +1,22 @@
   //++++++++++++++++++++++++++++++meny knappen++++++++++++++++++++++++++++++
 const hamburger = document.querySelector('.hamburger');
 const navMenu = document.querySelector('.nav-menu');
-              
-hamburger.addEventListener('click', () => {
-  hamburger.classList.toggle('active');
-  navMenu.classList.toggle('active');
-  })
-              
-document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+
+
+hamburger.addEventListener('click', menuOpen);
+navMenu.addEventListener('click', navOpen);
+
+
+function menuOpen () {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+}
+
+function navOpen(){
   hamburger.classList.remove('active');
   navMenu.classList.remove('active');
-  }));
+
+}
               
               
 // //++++++++++++++++++++++++++++++theme toggle.++++++++++++++++++++++++++++++
@@ -18,17 +24,20 @@ document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', 
 const darkMode = document.getElementById('dark-mode');
 const lightMode = document.getElementById('light-mode');
               
-darkMode.addEventListener('click', () => {
+darkMode.addEventListener('click', backgroundDark);
+lightMode.addEventListener('click', backgroundLight);
+
+function backgroundDark () {
   document.body.classList.toggle('dark_mode');
   darkMode.classList.toggle('hide');
   lightMode.classList.remove('hide');
-  })
-lightMode.addEventListener('click', () => {
+}
+
+function backgroundLight () {
   document.body.classList.remove('dark_mode');
   lightMode.classList.toggle('hide');
   darkMode.classList.remove('hide');
-  })
-              
+}    
 
 //antal munkar, plus och minus
               
@@ -61,7 +70,7 @@ const products = [{
   }, 
   {
   name: "Calamansi",
-  price: 18,
+  price: 12,
   rating:3,
   amount: 0,
   kategori: "Mjölk",  
@@ -71,7 +80,7 @@ const products = [{
   },
   {
   name: "Espresso",
-  price: 18,
+  price: 12,
   rating:3,
   amount: 0,
   kategori: "Mörk",  
@@ -81,7 +90,7 @@ const products = [{
   },
   {
   name: "Hallon Lakrits",
-  price: 18,
+  price: 14,
   rating:3,
   amount: 0,
   kategori: "Mörk", 
@@ -91,7 +100,7 @@ const products = [{
   },
   {
   name: "Hasselnöt",
-  price: 18,
+  price: 14,
   rating:3,
   amount: 0,
   kategori: "Nötter",  
@@ -101,7 +110,7 @@ const products = [{
   },
   {
   name: "Jordnöt",
-  price: 18,
+  price: 16,
   rating:3,
   amount: 0,
   kategori: "Nötter",  
@@ -111,7 +120,7 @@ const products = [{
   },
   {             
   name: "Passion-Mango",
-  price: 18,
+  price: 16,
   rating:3,
   amount: 0,
   kategori: "Frukt", 
@@ -121,7 +130,7 @@ const products = [{
   },
   {
   name: "Saltkola",             
-  price: 18,
+  price: 10,
   rating:5,
   amount: 0,
   kategori: "Mjölk",  
@@ -131,7 +140,7 @@ const products = [{
   },
   {
   name: "Maracaibo",
-  price: 18,
+  price: 17,
   rating:2,
   amount: 0,
   kategori: "Mörk", 
@@ -162,7 +171,7 @@ chocolateContainer.innerHTML +=
       <button class="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
       <button class="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
     </section>
-    Betyg:<span class="betyg">${products[i].rating} </span><br>
+    Betyg:<span class="rating"></span><br>
     Pris:<span class="price">${products[i].price} kr/st</span> <br>
     Summa:<span class="sum">${products[i].price * products[i].amount}</span> <br>
     <button class="remove" data-operator="minus" data-id="${i}">-</button>
@@ -171,6 +180,13 @@ chocolateContainer.innerHTML +=
   </div> 
 </article>`;
 
+}
+
+//++++++++++++++++++Rating skrivs ut på sidan+++++++++++++++++++++++++++++++++++++
+const ratingElements = document.querySelectorAll('.rating');
+for (let i = 0; i< ratingElements.length; i++) {
+  
+  
 }
 
 
@@ -226,6 +242,9 @@ for(let i = 0; i < nextBtn.length; i++){
 
 
 }
+
+
+
  //++++++++++++++++++++++++++++++funktion för att printa ut chokladen på sidan++++++++++++++++++++++++++++++
 
 function printOrderedChocolate () {
@@ -238,9 +257,11 @@ for(let i = 0; i < products.length; i ++) {
   `<div ="cartInfo"> <br> <div ="cartTitel"> <h3>${products[i].name}</h3> 
   <img src="${products[i].image1}" width="60" height="60"}>
   <div class="cartSumeringTitel"> <h4>Antal</h4> <h4>Summma</h4></div>
-  <div class="cartResultat"> <p>Antal:${products[i].amount}st</p> <p>Summa:${products[i].price* products[i].amount}kr</p></div></div><span class="line">________________________________________________________</span>`;      
+  <div class="cartResultat"> <p>${products[i].amount}st</p> <p>${products[i].price* products[i].amount}kr</p></div></div><span class="line">________________________________________________________</span>`;      
 }
   }
+
+
 };
 
 
