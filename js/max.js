@@ -156,27 +156,8 @@ function applyWeekendIncrease() {
   // sneaky prishöjning på 10% (eller bool?)
 }
 
-document.querySelectorAll('sort-option-btn').forEach(element => {
-  element.addEventListener('click', toggleActive)
-});
 
-function toggleActive(e) {
-  let category = e.currentTarget;
-  category.classList.toggle('active-option');
-
-    // if (activeCategories.indexOf(category) == -1) {
-    //   activeCategories.push(category);
-    // }
-    
-    // else {
-    //   activeCategories.pop(activeCategories.indexOf(category));
-    // }
-  
-  // console.log(category);
-  // console.log(activeCategories);
-}
-
-/******** prisfunktion ********/ 
+/******** sortering och filtrerings-funktioner ********/ 
 
 // Produkterna ska gå att sortera utifrån namn, pris, kategori och rating
 // Det ska gå att filtrera produkter på prisintervall
@@ -191,19 +172,21 @@ const priceRadioBtn = document.querySelector('#priceRadioBtn')
 
 priceRangeElement.addEventListener('input', updatePriceRange)
 
-function updatePriceRange() {
+function updatePriceRange() {   
   const selectedPriceRange = priceRangeElement.value;
   currentPriceRange.innerHTML = `${selectedPriceRange} kr`;
 
-  // filtrera efter valt intervall (default värden är satta direkt i HTML, och utskrift av
-  // produktarray görs redan när sidan laddas)
+  //     ***filtrera efter valt intervall här*** 
+  // (default värden är satta direkt i HTML, och utskrift av
+  // produktarray görs redan när sidan laddas).
 
+  // bör filtreringen ligga i en egen funktion och kallas
+  // av updatePriceRange() ist?
 
-
-  // sortera
+  // kolla vilken radio-knapp som är vald och kalla sorteringsfunktion
   document.querySelectorAll('input[name="sort-option-btn"]').forEach(element => {
     if (element.checked) {
-      let selectedRadioBtn = element.id;
+      let selectedRadioBtn = element.id;  // #1 // kanske lite snyggare med value ist 🤔 
       sortBy(selectedRadioBtn);
     }
     /* skippar else, felhantering överflödig, right? 🤔 
@@ -213,7 +196,7 @@ function updatePriceRange() {
   })
 }
 
-function sortBy(radioBtnId) {
+function sortBy(radioBtnId) {   // #2 kanske lite snyggare med value ist 🤔 
   let sortedArray;
 
   switch (radioBtnId) {
@@ -234,8 +217,6 @@ function sortBy(radioBtnId) {
     break;    
   }
 }
-
-
 
               /******** PROGRAMFLÖDE ********/ 
 
