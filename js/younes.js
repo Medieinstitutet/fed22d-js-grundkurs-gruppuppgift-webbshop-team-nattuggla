@@ -192,7 +192,7 @@ chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att ant
           <button class="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
           <button class="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
         </section>
-        Betyg:<span class="rating"></span><br>
+        Betyg:<span class="rating">${products[i].rating}/5</span><br>
         Pris:<span class="price">${arrayToRender[i].price} kr/st</span> <br>
         Summa:<span class="sum">${arrayToRender[i].price * arrayToRender[i].amount}</span> <br>
         <button class="remove" data-operator="minus" data-id="${i}">-</button>
@@ -200,14 +200,12 @@ chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att ant
         <button class="add" data-operator="plus" data-id="${i}">+</button>
       </div> 
     </article>`;
-
   }
 
   //++++++++++++++++++Rating skrivs ut på sidan+++++++++++++++++++++++++++++++++++++
   const ratingElements = document.querySelectorAll('.rating');
   for (let i = 0; i< ratingElements.length; i++) { 
   }
-
 
 
   //+++++++++++++++++++++++++++++++++++++++gör att man kan klicka på knappen+++++++++++++++++++++++++++++++++++++++
@@ -223,31 +221,28 @@ chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att ant
 
   //++++++++++++++++++++++++++priset av produkterna ökas.+++++++++++++++++++++++++++++++++++++++
 
-  const sumPrice = arrayToRender.reduce(                  
+  sumTotal = arrayToRender.reduce(                  
     (previousValue, arrayToRender) => 
     {return (arrayToRender.amount * arrayToRender.price) + previousValue;}, 0); 
-  console.log(sumPrice);
+  console.log(sumTotal);
 
                 
   printOrderedChocolate ()
                 
-  document.querySelector('#cartSum').innerHTML = sumPrice;
-  document.querySelector('.total-summary').innerHTML = sumPrice + 'kr';
-  document.querySelector('.price-summary').innerHTML = sumPrice + 'kr';
-
+  document.querySelector('#cartSum').innerHTML = sumTotal;
     
   //+++++++++++++++++++++++++++++++++++++++ökar antal praliner som skrivs ut i kundkorgen.+++++++++++++++++++++++++++++++++++++++
-  const sumTotal = arrayToRender.reduce(                  
+  const amountTotal = arrayToRender.reduce(                  
   (previousValue, product) => {
   return product.amount+ previousValue;
   },
   0
   );
-  console.log(sumTotal);
+  console.log(amountTotal);
                   
   printOrderedChocolate ()
                 
-  document.querySelector('#cartTotal').innerHTML= sumTotal; //detta möjliggör användaren att kunna ändra bildspelet, när antalet ökas.
+  document.querySelector('#cartTotal').innerHTML= amountTotal; //detta möjliggör användaren att kunna ändra bildspelet, när antalet ökas.
   const nextBtn = document.querySelectorAll('.nextImage');
   const prevBtn = document.querySelectorAll('.prevImage');
 
@@ -257,19 +252,19 @@ chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att ant
   }
 
 }
-//++++++++++++++++++++++++++++++++++++slut på renderchocolate+++++++++++++++++++++++++++++++++++++++
 
-
+//++++++++++++++++++++++++++++++++++slut på renderchocolate+++++++++++++++++++++++++++++++++++++++
+let sumtotal = 0;
+let freightPrice = 25;
+let priceToPay = 0;
 
 //++++++++++++++++++++++++++++++FUNKTION för att printa ut chokladen på sidan++++++++++++++++++++++++++++++
-// const freightPrice = (sumPrice * 0.1) + 25; 
 // länkade in ditt grid i css också 😀
 // @Younes: jag klippte ut detta från rad 286, det kraschade sidan:   <p>${freightPrice}</p>    / Max
 
 function printOrderedChocolate () {
   document.querySelector('#cart').innerHTML = '';
-                    
-  for(let i = 0; i < products.length; i ++) {
+  for(let i = 0; i < products.length; i ++){
     if (products[i].amount > 0) {
       document.querySelector('#cart').innerHTML += 
       `<div ="cartInfo"> <br> 
@@ -278,12 +273,10 @@ function printOrderedChocolate () {
           <img src="${products[i].image1}" width="60" height="60"}>
           <div class="cartSumeringTitel"> 
             <h4>Antal</h4> 
-            <h4>Frakt pris</h4>
             <h4>Summma</h4>
           </div>
           <div class="cartResultat"> 
-            <p>${products[i].amount}st</p>
-            
+            <p>${products[i].amount}st</p> 
             <p>${products[i].price* products[i].amount}</p>
           </div>
         </div>
@@ -294,9 +287,79 @@ function printOrderedChocolate () {
   if (isLucia) {                    //kallar på max regeln kring lucia.
     printedPralinLucia ();          //kallar på funktionen som skriver ut lucia pralin
   }
+  updateCartPrice();
 }
 
 
+//+++++++++++++++++++++++funktion skriva ut uppdaterad pris+++++++++++++++++++++++++++
+function updateCartPrice(){
+  sumTotal = products.reduce(                  
+    (previousValue, products) => 
+    {return (products.amount * products.price) + previousValue;}, 0); 
+  console.log(sumTotal);
+
+  if (discountCodeValid){
+    sumTotal = 0;
+  }
+
+  let amountShipping = products.reduce(                  
+    (previousValue, product) => {
+    return product.amount+ previousValue;},0);
+    console.log(amountShipping);
+
+  if (shippingCost){
+    if (amountShipping > 15){
+      freightPrice = 0;
+    } else {
+      freightPrice = 25 + Math.round(sumTotal * 0.1);
+    }
+  }
+
+  document.querySelector('#updatePrice').innerHTML = '';  
+  document.querySelector('#updatePrice').innerHTML =
+    ` <section class="cart-amount">
+        <span>Summa</span>
+        <span class="price-summary">${sumTotal}</span>
+      </section>
+      <br>
+      <section>
+        <span>Frakt</span>
+        <span class="shipping">${freightPrice}</span>
+      </section>
+      <br>
+      <section class="discount">
+        <span>Rabatt</span>
+        <span class="discount-sum"></span>
+      </section>
+      <hr class="line">
+      <section class="total-price">
+        <span>Att betala</span>
+        <span class="total-summary">${freightPrice + sumTotal}</span>
+      </section>`; 
+}
+
+//++++++++++++++++++++++++++++++++++funktion för rabatt+++++++++++++++++++++++++++++++++++
+
+const discountField = document.querySelector('.discountCode');
+const discountBtn = document.querySelector('.discountButton');
+let discountCodeValid = false;
+
+discountBtn.addEventListener('click' , validateDiscount);
+
+function validateDiscount() {
+    if (discountField.value === "a_damn_fine-cup_of-coffee") {
+      discountCodeValid = true;
+      updateCartPrice();
+    }
+}
+
+//++++++++++++++++++++++++++++++funktion för leverans++++++++++++++++++++++++++++++
+
+let shippingCost = true;
+
+function shippingDiscount(){ 
+  shippingCost = false;
+}
 
 //++++++++++++++++++++++++++++++funktion för plus knappen på sidan++++++++++++++++++++++++++++++
 function updateAmount(e) {
@@ -393,6 +456,18 @@ function printedPralinLucia () {
     </div>`;
   };
 
+//+++++++++++++++++++++++det är jul, ändra bakgrund och ändra text till röd+++++++++++++++++++++++++++++++++++++++
+function xMas (){
+  if (isChristmas){
+  document.querySelectorAll('.price').forEach(element => {              
+    element.classList.add('.christmas-color')
+  })                                                            
+    document.body.style.backgroundImage = "url('./bilder/jul-bakgrund.jpg')";
+}}
+
+
+xMas();
+
 
                 /*
                 - behövs ett event för tidigare bild och kommande bild.(click)
@@ -413,3 +488,4 @@ function printedPralinLucia () {
                //kundkorgs summering
               
             //kundkorgen ska ge dig rabatterat pris, 10% rabat..
+            

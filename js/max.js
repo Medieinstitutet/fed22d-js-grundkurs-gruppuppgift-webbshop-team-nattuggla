@@ -10,7 +10,7 @@
 
 ✅    OM det är 24 december
 🔲        gör pristexter röda
-🔲        byt bakgrundsbild 
+✅        byt bakgrundsbild 
 
 ✅     OM det är en fredag efter 14, lördag eller söndag:
 🔲        höj priset på alla produkter med 10%
@@ -44,15 +44,15 @@
 ✅            returnera totalpris * 0.1 till slutgiltigt pris
 ✅        annars OM det är tisdag:
 ✅            OM jämn vecka && beställningen över 25kr: if (isEvenWeek && totalprisvariabel >= 25)
-🔲                subtrahera 25 kr fr totalpris 
+✅                subtrahera 25 kr fr totalpris 
       
 
-🔲    funktion för att räkna ut frakt:
-🔲       OM antal beställda produkter > 15
-🔲          frakt = 0
-🔲       ANNARS
-🔲          frakt = pris + (pris * 0.1)
-🔲       skriv ut frakt nånstans
+✅    funktion för att räkna ut frakt:
+✅       OM antal beställda produkter > 15
+✅          frakt = 0
+✅       ANNARS
+✅          frakt = pris + (pris * 0.1)
+✅       skriv ut frakt nånstans
 
 🔲    uppdatera priset efter alla rabatter och sånt till sammanställning i kundkorg (och totalpris)
 
@@ -84,26 +84,26 @@ let deliveryTime;                                   //  massa matte på pageLoad
               /********  FUNKTIONER ********/
 
    
-let isLucia = false;              
-
+let isLucia = false;           
+let isChristmas = false;
 
 /**
  * testar om det är lucia eller julafton (funktionen verkar funka som den ska!)
  */
 function isHoliday() {
   if (pageLoadTime.getDate() == 24 && pageLoadTime.getMonth() == 11) {        // jul
-    
     // TODO: gör pristexter röda och byt bakgrundsbild
-    
+  isChristmas = true;
   }
   else if (pageLoadTime.getDate() == 13 && pageLoadTime.getMonth() == 11) {   //  lucia
   isLucia = true;
   //en funktion som skriver ut en <div><h3></h3> <img> <span></span></div> i kundkorgen, med namn, bild och summa 0kr. 
   //kalla på funktionen när det är regeln ovanför.
-  
-
   }
 }
+
+
+
 
 /**
  * kontrollerar vilken dag beställning lagts
