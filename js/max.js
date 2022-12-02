@@ -43,8 +43,8 @@
 ✅        OM det är måndag OCH timvariabeln är mindre än 10:
 ✅            returnera totalpris * 0.1 till slutgiltigt pris
 ✅        annars OM det är tisdag:
-🔲            OM jämn vecka && beställningen över 25kr:
-🔲                subtrahera 25 kr fr totalpris
+✅            OM jämn vecka && beställningen över 25kr: if (isEvenWeek && totalprisvariabel >= 25)
+🔲                subtrahera 25 kr fr totalpris 
       
 
 🔲    funktion för att räkna ut frakt:
@@ -75,7 +75,7 @@ const orderHour = pageLoadTime.getHours();           //  spara klockslag för be
 let orderTimer;
 let mondayDiscountActive = false;
 let isEvenWeek = false;
-// const orderWeek = pageLoadTime.getWeek();  // <- hur?
+const weekNum = getWeekNum();                       // spara aktuellt veckonummer
 // const initalPrice = customerOrder.totalPrice;        //  hämta totalpriset från kundkorg, innan rabatter/påslag
 
 let deliveryTime;                                   //  massa matte på pageLoadTime sen?
@@ -121,7 +121,7 @@ function checkDay(day) {
     break;
 
     case 2:   // OM tisdag
-    //  checkWeek(orderWeek);   // TODO, funktionen eller variabeln finns ej än
+    checkWeek(weekNum);
     break;
 
     case 5:   // OM fredag
@@ -139,11 +139,23 @@ function checkDay(day) {
   }
 }
 
+function getWeekNum() {   //  smart funktion från nätet, lite förkortad och modifierad
+  startDate = new Date(pageLoadTime.getFullYear(), 0, 1);
+  let days = Math.floor((pageLoadTime - startDate) / (24 * 60 * 60 * 1000));
+        
+  let weekNumber = Math.ceil(days / 7);
+  return weekNumber;
+}
+
 function checkWeek(week) {
   if (week % 2 == 0) {
     isEvenWeek = true;
   }
 }
+/*
+checkWeek(49);                  // ger false i console
+checkWeek(weekNum);             // ger true i console (testad vecka 48)
+*/
 
 function startOrderTimer() {  // kör på plus/minus-event
   clearTimeout(orderTimer)    // gör inget om ingen timer finns, tror inte att "if (orderTimer > -1)" behövs?
@@ -211,7 +223,7 @@ function filterByPrice(selectedMax) {
     }
     /* skippar else, felhantering överflödig, right? 🤔 
     *  någon radio kommer alltid vara vald (sortera på pris default), 
-    *  TODO: ändra första utskrift av renderChocolate() (younes.js) till sortBy('priceRadioBtn')
+    *  TODO: ändra ev. första utskrift av renderChocolate() (younes.js) till sortBy('priceRadioBtn')? OBS: om checked-attribut på någon radio, annars inte
     *  så den sorterar på default check (pris)?;
     * */ 
   })
@@ -276,5 +288,4 @@ function sortBy(radioBtnId, array) {   // #2 kanske lite snyggare med value ist 
 
 
 isHoliday();                    // kolla om det är en speciell helgdag, gör grejer isf
-checkDay(orderDay);             // kontrollera veckodag, gör grejer i switch-satsen beroende på vilken       
-
+checkDay(orderDay);             // kontrollera veckodag, gör grejer i switch-satsen beroende på vilken
