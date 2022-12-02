@@ -93,8 +93,8 @@ function isHoliday() {
     // TODO: gör pristexter röda och byt bakgrundsbild
     
   }
-  else if (pageLoadTime.getDate() == 01 && pageLoadTime.getMonth() == 11) {   //  lucia
-    /*rintedPralinLucia ();*/
+  else if (pageLoadTime.getDate() == 13 && pageLoadTime.getMonth() == 11) {   //  lucia
+    printedPralinLucia ();
     // TODO: lägg till en gratis lucia-choklad i kundkorg 🍫
 
     //en funktion som skriver ut en <div><h3></h3> <img> <span></span></div> i kundkorgen, med namn, bild och summa 0kr. 

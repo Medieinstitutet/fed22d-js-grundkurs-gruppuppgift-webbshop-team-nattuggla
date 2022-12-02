@@ -370,7 +370,7 @@ function imageSwap(e){
 
 // få en gratis lucia pralin
 
-/*function printedPralinLucia () {
+function printedPralinLucia () {
     document.querySelector('#cart').innerHTML += 
     `<div>
       <br> 
@@ -387,7 +387,7 @@ function imageSwap(e){
         </div>
       </div>
     </div>`;      
-  };*/
+  };
 
 
                 /*
