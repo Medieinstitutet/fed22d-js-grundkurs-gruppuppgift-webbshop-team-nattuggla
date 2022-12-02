@@ -572,17 +572,20 @@ fieldset {
 
 .price-summary{
   position: relative;
-  left: 20rem;
+  border: 1px solid #000;
+  justify-content: space-between;
+  
 }
 
 .discount-sum{
   position: relative;
-  left: 20rem;
+  justify-content: space-between;
+  border: 1px solid #000;
 }
 
 .total-summary{
   position: relative;
-  left:19rem;
+  border: 1px solid #000;
 }
 
 .korgContainer{
@@ -676,4 +679,6 @@ input#approval {
         font-weight: 700;
         text-decoration: underline  red;
     }}
-  
+
+@import 'tablet';
+@import 'desktop';

@@ -6,7 +6,7 @@
 ✅    spara aktuell tidpunkt i variabel 
 
 ✅    OM det är 13e december: 
-🔲        lägg till en gratis pepparkakschoklad i kundkorgen eller nåt 🍫😃
+✅        lägg till en gratis pepparkakschoklad i kundkorgen eller nåt 🍫😃
 
 ✅    OM det är 24 december
 🔲        gör pristexter röda
@@ -43,8 +43,8 @@
 ✅        OM det är måndag OCH timvariabeln är mindre än 10:
 ✅            returnera totalpris * 0.1 till slutgiltigt pris
 ✅        annars OM det är tisdag:
-🔲            OM jämn vecka && beställningen över 25kr:
-🔲                subtrahera 25 kr fr totalpris
+✅            OM jämn vecka && beställningen över 25kr: if (isEvenWeek && totalprisvariabel >= 25)
+🔲                subtrahera 25 kr fr totalpris 
       
 
 🔲    funktion för att räkna ut frakt:
@@ -75,7 +75,7 @@ const orderHour = pageLoadTime.getHours();           //  spara klockslag för be
 let orderTimer;
 let mondayDiscountActive = false;
 let isEvenWeek = false;
-// const orderWeek = pageLoadTime.getWeek();  // <- hur?
+const weekNum = getWeekNum();                       // spara aktuellt veckonummer
 // const initalPrice = customerOrder.totalPrice;        //  hämta totalpriset från kundkorg, innan rabatter/påslag
 
 let deliveryTime;                                   //  massa matte på pageLoadTime sen?
@@ -83,22 +83,23 @@ let deliveryTime;                                   //  massa matte på pageLoad
 
               /********  FUNKTIONER ********/
 
-       
+   
+let isLucia = false;              
+
+
 /**
  * testar om det är lucia eller julafton (funktionen verkar funka som den ska!)
  */
 function isHoliday() {
   if (pageLoadTime.getDate() == 24 && pageLoadTime.getMonth() == 11) {        // jul
-
+    
     // TODO: gör pristexter röda och byt bakgrundsbild
     
   }
   else if (pageLoadTime.getDate() == 13 && pageLoadTime.getMonth() == 11) {   //  lucia
-    printedPralinLucia ();
-    // TODO: lägg till en gratis lucia-choklad i kundkorg 🍫
-
-    //en funktion som skriver ut en <div><h3></h3> <img> <span></span></div> i kundkorgen, med namn, bild och summa 0kr. 
-    //kalla på funktionen när det är regeln ovanför.
+  isLucia = true;
+  //en funktion som skriver ut en <div><h3></h3> <img> <span></span></div> i kundkorgen, med namn, bild och summa 0kr. 
+  //kalla på funktionen när det är regeln ovanför.
   
 
   }
@@ -120,7 +121,7 @@ function checkDay(day) {
     break;
 
     case 2:   // OM tisdag
-    //  checkWeek(orderWeek);   // TODO, funktionen eller variabeln finns ej än
+    checkWeek(weekNum);
     break;
 
     case 5:   // OM fredag
@@ -138,11 +139,23 @@ function checkDay(day) {
   }
 }
 
+function getWeekNum() {   //  smart funktion från nätet, lite förkortad och modifierad
+  startDate = new Date(pageLoadTime.getFullYear(), 0, 1);
+  let days = Math.floor((pageLoadTime - startDate) / (24 * 60 * 60 * 1000));
+        
+  let weekNumber = Math.ceil(days / 7);
+  return weekNumber;
+}
+
 function checkWeek(week) {
   if (week % 2 == 0) {
     isEvenWeek = true;
   }
 }
+/*
+checkWeek(49);                  // ger false i console
+checkWeek(weekNum);             // ger true i console (testad vecka 48)
+*/
 
 function startOrderTimer() {  // kör på plus/minus-event
   clearTimeout(orderTimer)    // gör inget om ingen timer finns, tror inte att "if (orderTimer > -1)" behövs?
@@ -161,6 +174,12 @@ function applyWeekendIncrease() {
 }
 
 
+function tenProductsDiscount() {
+//när du beställer 10 av en produkt ska du få rabatt
+}
+
+
+
 /******** sortering och filtrerings-funktioner ********/ 
 
 // Produkterna ska gå att sortera utifrån namn, pris, kategori och rating
@@ -172,8 +191,15 @@ function applyWeekendIncrease() {
 
 const priceRangeElement = document.querySelector('#priceRangeElement');
 const currentPriceRange = document.querySelector('#currentPriceRange');
+const sortingRadios = document.querySelectorAll('input[name="sort-option-btn"]');
 
-priceRangeElement.addEventListener('input', updatePriceRange)
+sortingRadios.forEach(element => {    // event på varje interaktion med radio-knappar
+  element.addEventListener('change', updatePriceRange);
+  });
+
+
+priceRangeElement.addEventListener('input', updatePriceRange);    // event på varje interaktion med pris-slider
+
 
 function updatePriceRange() {   
   const selectedPriceRange = priceRangeElement.value;
@@ -190,14 +216,14 @@ function updatePriceRange() {
 function filterByPrice(selectedMax) {
   // console.log(selectedMax); // kontrollerad: motsvarar vad man valt i slidern
   let filteredProducts = products.filter(product => product.price <= selectedMax); 
-  document.querySelectorAll('input[name="sort-option-btn"]').forEach(element => {    // kolla vilken radio-knapp som är vald och kalla sorteringsfunktion
+  sortingRadios.forEach(element => {    // kolla vilken radio-knapp som är vald och kalla sorteringsfunktion
     if (element.checked) {
       let selectedRadioBtn = element.id;  // #1 kanske lite snyggare med value ist 🤔 
       sortBy(selectedRadioBtn, filteredProducts);
     }
     /* skippar else, felhantering överflödig, right? 🤔 
     *  någon radio kommer alltid vara vald (sortera på pris default), 
-    *  ändra första utskrift av renderChocolate() till sortBy('priceRadioBtn')
+    *  TODO: ändra ev. första utskrift av renderChocolate() (younes.js) till sortBy('priceRadioBtn')? OBS: om checked-attribut på någon radio, annars inte
     *  så den sorterar på default check (pris)?;
     * */ 
   })
@@ -210,50 +236,56 @@ function filterByPrice(selectedMax) {
  * sorterar pris-filtrerad array och kallar på utskriftsfunktion (i younes.js)
  */
 function sortBy(radioBtnId, array) {   // #2 kanske lite snyggare med value ist 🤔 
-  let sortedProducts;
   let filteredProducts = array;
+  let sortedProducts;
 
-  if (radioBtnId == 'priceRadioBtn') {
-    sortedProducts = filteredProducts.sort((a, b) => {   // sortera efter pris, högt till lågt
-      return b.price - a.price;               // TODO: ändra priser i products[] så sorteringen blir lite mer kul!
-    })
-    renderChocolate(sortedProducts);
-  }
-  else {
-    console.log('sortera på kategori');
-  }
-
-/*
- 
   switch (radioBtnId) {
-    case 'priceRadioBtn':
-      console.log('prisknapp vald');
-      sortedProducts = filteredProducts.sort((a, b) => {   // sortera efter pris, högt till lågt
-        return b.price - a.price;               // TODO: ändra priser i products[] så sorteringen blir lite mer kul!
-      })
-      console.table(sortedProducts);
+    case 'priceRadioBtn':   // sortera efter pris, högt till lågt
+      sortedProducts = filteredProducts.sort( (a, b) => { return b.price - a.price; } )
+      
     break;
-    case 'milkRadioBtn':
-      console.log('mjölk')
+
+    case 'nameRadioBtn':    // sortera efter namn, A-Ö
+      sortedProducts = filteredProducts.sort( (a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      });
+
     break;
-    case 'nutRadioBtn':
-      console.log('nöt')
+
+    case 'categoryRadioBtn':
+      sortedProducts = filteredProducts.sort( (a, b) => {
+        if (a.kategori < b.kategori) {  // TODO: engelska
+          return -1;
+        }
+        if (a.kategori > b.kategori) {  // TODO: kodupprepning här.. gör funktion av bokstavssortering? om tid finns..
+          return 1;
+        }
+        return 0;
+      });
+
     break;
-    case 'darkRadioBtn':
-      console.log('dark')
+
+    case 'ratingRadioBtn':
+      sortedProducts = filteredProducts.sort( (a, b) => { return b.rating - a.rating; } )   // TODO: kodupprepning, om tid finns..
     break;
+    
     default:
-      console.log('någon annan än prisknapp vald');
-  //  renderChocolate(products);     // halvbra performance att printa ut hela arrayen vid varje ändring av prisintervall? 🤔      
+      
+    renderChocolate(filteredProducts);  // lär aldrig hända, men om det skulle göra det, så printa ut osorterat efter valt prisintervall    
     break;    
   }
 
-  */
+  renderChocolate(sortedProducts);
 
 }
               /******** PROGRAMFLÖDE ********/ 
 
 
 isHoliday();                    // kolla om det är en speciell helgdag, gör grejer isf
-checkDay(orderDay);             // kontrollera veckodag, gör grejer i switch-satsen beroende på vilken       
-
+checkDay(orderDay);             // kontrollera veckodag, gör grejer i switch-satsen beroende på vilken
