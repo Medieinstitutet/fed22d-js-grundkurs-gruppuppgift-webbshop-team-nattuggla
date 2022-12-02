@@ -84,26 +84,26 @@ let deliveryTime;                                   //  massa matte på pageLoad
               /********  FUNKTIONER ********/
 
    
-let isLucia = false;              
-
+let isLucia = false;           
+let isChristmas = false;
 
 /**
  * testar om det är lucia eller julafton (funktionen verkar funka som den ska!)
  */
 function isHoliday() {
   if (pageLoadTime.getDate() == 24 && pageLoadTime.getMonth() == 11) {        // jul
-    
     // TODO: gör pristexter röda och byt bakgrundsbild
-    
+  isChristmas = true;
   }
   else if (pageLoadTime.getDate() == 13 && pageLoadTime.getMonth() == 11) {   //  lucia
   isLucia = true;
   //en funktion som skriver ut en <div><h3></h3> <img> <span></span></div> i kundkorgen, med namn, bild och summa 0kr. 
   //kalla på funktionen när det är regeln ovanför.
-  
-
   }
 }
+
+
+
 
 /**
  * kontrollerar vilken dag beställning lagts

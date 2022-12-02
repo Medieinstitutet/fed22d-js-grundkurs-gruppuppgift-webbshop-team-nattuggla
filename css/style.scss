@@ -18,6 +18,13 @@ body {
   font-family:'Courier New', Courier, monospace;
 }
 
+.christmasEve{
+  body{
+    background-image: url(/bilder/jul\ bakgrund.jpg);
+    color: red;
+  }
+}
+
 
 :root{
   --primary-color:rgb(107, 51, 6);
@@ -584,6 +591,11 @@ fieldset {
 }
 
 .total-summary{
+  position: relative;
+  border: 1px solid #000;
+}
+
+.shipping{
   position: relative;
   border: 1px solid #000;
 }

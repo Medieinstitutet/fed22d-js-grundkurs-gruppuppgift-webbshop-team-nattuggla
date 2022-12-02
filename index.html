@@ -63,30 +63,30 @@
         </section>
 
         <section class="sorting-second-section">
-          <h2>Sortera efter:</h2>
+          <h2>Sortera efter kategori:</h2>
           <ul class="categories">
             <li class="sort-option">
               <label>
-                <input type="radio" name="sort-option-btn" id="priceRadioBtn"> 
+                <input type="radio" name="sort-option-btn" id="priceRadioBtn" checked=""> 
                 Pris (högst överst)
               </label>
             </li>
             <li class="sort-option">
               <label>
-                <input type="radio" name="sort-option-btn" id="nameRadioBtn"> 
-                Namn (A-Ö)
+                <input type="radio" name="sort-option-btn" id="milkRadioBtn"> 
+                Mjölkchoklad
               </label>
             </li>
             <li class="sort-option">
               <label>
-                <input type="radio" name="sort-option-btn" id="categoryRadioBtn"> 
-                Kategori
+                <input type="radio" name="sort-option-btn" id="nutRadioBtn"> 
+                Innehåller nötter
               </label>
             </li>
             <li class="sort-option">
               <label>
-              <input type="radio" name="sort-option-btn" id="ratingRadioBtn"> 
-              Högst betyg
+              <input type="radio" name="sort-option-btn" id="darkRadioBtn"> 
+              Mörk choklad
             </label>
             </li>
           </ul>
@@ -108,22 +108,11 @@
               <legend>Kundkorgsöversikt</legend>
           <section id="cart" class="cart-text"></section>
           <section id="cartPris" class="cart-text"></section>
-          <section class="cart-amount">
-            <span>Summa</span>
-            <span class="price-summary">0</span>
-          </section>
-          <section class="discount">
-            <span>Rabatt</span>
-            <span class="discount-sum">-0kr</span>
-          </section>
-          <hr class="line">
-          <section class="total-price">
-            <span>Att betala</span>
-            <span class="total-summary">0kr</span>
-          </section>
-          <input type="text" placeholder="Rabattkod">
+          <section id="updatePrice"></section>
           <br>
-          <button>Använd rabattkod</button>
+          <input type="text" placeholder="Rabattkod" class="discountCode">
+          <br>
+          <button class="discountButton">Använd rabattkod</button>
           <br>
           <button id="emptyCart">Töm varukorgen</button>
         </section>
