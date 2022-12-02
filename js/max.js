@@ -10,7 +10,7 @@
 
 ✅    OM det är 24 december
 🔲        gör pristexter röda
-🔲        byt bakgrundsbild 
+✅        byt bakgrundsbild 
 
 ✅     OM det är en fredag efter 14, lördag eller söndag:
 🔲        höj priset på alla produkter med 10%
@@ -47,10 +47,10 @@
 🔲                subtrahera 25 kr fr totalpris 
       
 
-🔲    funktion för att räkna ut frakt:
-🔲       OM antal beställda produkter > 15
-🔲          frakt = 0
-🔲       ANNARS
+✅    funktion för att räkna ut frakt:
+✅       OM antal beställda produkter > 15
+✅          frakt = 0
+✅       ANNARS
 🔲          frakt = pris + (pris * 0.1)
 🔲       skriv ut frakt nånstans
 

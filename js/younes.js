@@ -302,6 +302,19 @@ function updateCartPrice(){
     sumTotal = 0;
   }
 
+  let amountShipping = products.reduce(                  
+    (previousValue, product) => {
+    return product.amount+ previousValue;},0);
+    console.log(amountShipping);
+
+  if (shippingCost){
+    if (amountShipping > 15){
+      freightPrice = 0;
+    } else {
+      freightPrice = 25 + Math.round(sumTotal * 0.1);
+    }
+  }
+
   document.querySelector('#updatePrice').innerHTML = '';  
   document.querySelector('#updatePrice').innerHTML =
     ` <section class="cart-amount">
@@ -342,14 +355,10 @@ function validateDiscount() {
 
 //++++++++++++++++++++++++++++++funktion för leverans++++++++++++++++++++++++++++++
 
-function shippingDiscount(amount, sum){  
-  let amountTotal = amount;
-  if (amountTotal > 15){
-    freightPrice = 0;
-    freightPrice.innerHTML = 'Gratis Frakt';
-  } else {
-    freightPrice = 25 + (sumTotal * 0.1);
-  }
+let shippingCost = true;
+
+function shippingDiscount(){ 
+  shippingCost = false;
 }
 
 //++++++++++++++++++++++++++++++funktion för plus knappen på sidan++++++++++++++++++++++++++++++
