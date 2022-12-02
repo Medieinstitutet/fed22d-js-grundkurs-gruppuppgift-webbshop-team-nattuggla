@@ -692,5 +692,7 @@ input#approval {
         text-decoration: underline  red;
     }}
 
+@import 'general';
+@import 'mobile';
 @import 'tablet';
 @import 'desktop';
