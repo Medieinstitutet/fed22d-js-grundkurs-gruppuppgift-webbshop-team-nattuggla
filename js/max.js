@@ -44,15 +44,15 @@
 ✅            returnera totalpris * 0.1 till slutgiltigt pris
 ✅        annars OM det är tisdag:
 ✅            OM jämn vecka && beställningen över 25kr: if (isEvenWeek && totalprisvariabel >= 25)
-🔲                subtrahera 25 kr fr totalpris 
+✅                subtrahera 25 kr fr totalpris 
       
 
 ✅    funktion för att räkna ut frakt:
 ✅       OM antal beställda produkter > 15
 ✅          frakt = 0
 ✅       ANNARS
-🔲          frakt = pris + (pris * 0.1)
-🔲       skriv ut frakt nånstans
+✅          frakt = pris + (pris * 0.1)
+✅       skriv ut frakt nånstans
 
 🔲    uppdatera priset efter alla rabatter och sånt till sammanställning i kundkorg (och totalpris)
 
