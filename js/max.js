@@ -179,8 +179,15 @@ function tenProductsDiscount() {
 
 const priceRangeElement = document.querySelector('#priceRangeElement');
 const currentPriceRange = document.querySelector('#currentPriceRange');
+const sortingRadios = document.querySelectorAll('input[name="sort-option-btn"]');
 
-priceRangeElement.addEventListener('input', updatePriceRange)
+sortingRadios.forEach(element => {    // event på varje interaktion med radio-knappar
+  element.addEventListener('change', updatePriceRange);
+  });
+
+
+priceRangeElement.addEventListener('input', updatePriceRange);    // event på varje interaktion med pris-slider
+
 
 function updatePriceRange() {   
   const selectedPriceRange = priceRangeElement.value;
@@ -197,14 +204,14 @@ function updatePriceRange() {
 function filterByPrice(selectedMax) {
   // console.log(selectedMax); // kontrollerad: motsvarar vad man valt i slidern
   let filteredProducts = products.filter(product => product.price <= selectedMax); 
-  document.querySelectorAll('input[name="sort-option-btn"]').forEach(element => {    // kolla vilken radio-knapp som är vald och kalla sorteringsfunktion
+  sortingRadios.forEach(element => {    // kolla vilken radio-knapp som är vald och kalla sorteringsfunktion
     if (element.checked) {
       let selectedRadioBtn = element.id;  // #1 kanske lite snyggare med value ist 🤔 
       sortBy(selectedRadioBtn, filteredProducts);
     }
     /* skippar else, felhantering överflödig, right? 🤔 
     *  någon radio kommer alltid vara vald (sortera på pris default), 
-    *  ändra första utskrift av renderChocolate() till sortBy('priceRadioBtn')
+    *  TODO: ändra första utskrift av renderChocolate() (younes.js) till sortBy('priceRadioBtn')
     *  så den sorterar på default check (pris)?;
     * */ 
   })
@@ -217,45 +224,52 @@ function filterByPrice(selectedMax) {
  * sorterar pris-filtrerad array och kallar på utskriftsfunktion (i younes.js)
  */
 function sortBy(radioBtnId, array) {   // #2 kanske lite snyggare med value ist 🤔 
-  let sortedProducts;
   let filteredProducts = array;
+  let sortedProducts;
 
-  if (radioBtnId == 'priceRadioBtn') {
-    sortedProducts = filteredProducts.sort((a, b) => {   // sortera efter pris, högt till lågt
-      return b.price - a.price;               // TODO: ändra priser i products[] så sorteringen blir lite mer kul!
-    })
-    renderChocolate(sortedProducts);
-  }
-  else {
-    console.log('sortera på kategori');
-  }
-
-/*
- 
   switch (radioBtnId) {
-    case 'priceRadioBtn':
-      console.log('prisknapp vald');
-      sortedProducts = filteredProducts.sort((a, b) => {   // sortera efter pris, högt till lågt
-        return b.price - a.price;               // TODO: ändra priser i products[] så sorteringen blir lite mer kul!
-      })
-      console.table(sortedProducts);
+    case 'priceRadioBtn':   // sortera efter pris, högt till lågt
+      sortedProducts = filteredProducts.sort( (a, b) => { return b.price - a.price; } )
+      
     break;
-    case 'milkRadioBtn':
-      console.log('mjölk')
+
+    case 'nameRadioBtn':    // sortera efter namn, A-Ö
+      sortedProducts = filteredProducts.sort( (a, b) => {
+        if (a.name < b.name) {
+          return -1;
+        }
+        if (a.name > b.name) {
+          return 1;
+        }
+        return 0;
+      });
+
     break;
-    case 'nutRadioBtn':
-      console.log('nöt')
+
+    case 'categoryRadioBtn':
+      sortedProducts = filteredProducts.sort( (a, b) => {
+        if (a.kategori < b.kategori) {  // TODO: engelska
+          return -1;
+        }
+        if (a.kategori > b.kategori) {  // TODO: kodupprepning här.. gör funktion av bokstavssortering? om tid finns..
+          return 1;
+        }
+        return 0;
+      });
+
     break;
-    case 'darkRadioBtn':
-      console.log('dark')
+
+    case 'ratingRadioBtn':
+      sortedProducts = filteredProducts.sort( (a, b) => { return b.rating - a.rating; } )   // TODO: kodupprepning, om tid finns..
     break;
+    
     default:
-      console.log('någon annan än prisknapp vald');
-  //  renderChocolate(products);     // halvbra performance att printa ut hela arrayen vid varje ändring av prisintervall? 🤔      
+      
+    renderChocolate(filteredProducts);  // lär aldrig hända, men om det skulle göra det, så printa ut osorterat efter valt prisintervall    
     break;    
   }
 
-  */
+  renderChocolate(sortedProducts);
 
 }
               /******** PROGRAMFLÖDE ********/ 
