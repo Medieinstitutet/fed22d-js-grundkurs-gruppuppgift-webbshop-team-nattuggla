@@ -269,7 +269,7 @@ function printOrderedChocolate () {
           </div>
           <div class="cartResultat"> 
             <p>${products[i].amount}st</p> 
-            <p>${products[i].price* products[i].amount}</p>
+            <p>${sum}</p>
           </div>
         </div>
         <hr class="line">
@@ -282,20 +282,6 @@ function printOrderedChocolate () {
   updateCartPrice();
   tenProductsDiscount();
 }  //++++++++++++++++++++++++++++++++++++printedOrderedChocolate slut+++++++++++++++++++++++++++++++++++++
-
-
-//+++++++++++++++++++++++++++++++++++++++++rabat vid köp av 10 st från samma produkt+++++++++++++++++++++++++
-/*function tenProductsDiscount(){
-  
-let amountTotal = products.reduce(                  
-  (previousValue, product) => {
-  return product.amount+ previousValue;},0);
-  console.log(amountTotal);
-
-  if (product.amount > 10)
-  amountTotal = Math.round(price * 0.1);
-}*/
-
 
 //+++++++++++++++++++++++funktion skriva ut uppdaterad pris+++++++++++++++++++++++++++++++++++++
 function updateCartPrice(){
@@ -319,6 +305,30 @@ function updateCartPrice(){
     } else {
       freightPrice = 25 + Math.round(sumTotal * 0.1);
     }
+  }
+
+  let amountProducts = products.reduce(                  
+    (previousValue, product) => {
+    return product.amount+ previousValue;},0);
+    console.log(amountProducts);
+
+    //upprepning från uppifrån, kanske går o göra de tillsammans???++++
+    //vid köp av fler än 10 st............
+
+  sum = products.reduce(                  
+    (previousValue, products) => 
+    {return (products.amount * products.price) + previousValue;}, 0); 
+    console.log(sum);
+
+  for(let i = 0; i < products.length; i++){                                            
+    amountProducts += products[i].amount;
+
+   if (products[i].amount >= 10){
+    sum += ((products[i].amount * products[i].price) * 0.1); 
+   } else{
+    sum += (products[i].amount * products[i].price);
+   }
+  
   }
 
 
@@ -479,11 +489,13 @@ function starCreate() {
 //+++++++++++++++++++++++det är jul, ändra bakgrund och ändra text till röd+++++++++++++++++++++++++++++++++++++++
 function xMas (){
   if (isChristmas){
-  document.querySelectorAll('products').style = 'red';
-  }                                                           
-    document.body.style.backgroundImage = "url('./bilder/jul-bakgrund.jpg')";
+    document.querySelectorAll(".price").forEach((element) => {
+      element.style.color = "red";
+  });
+  document.body.style.backgroundImage = "url('./bilder/jul-bakgrund.jpg')";
     document.body.style.backgroundSize = 'no-repeat';
-}
+}}
+
 
 
 function discountMonday(){
@@ -497,7 +509,7 @@ function discountMonday(){
 
 
 
-/*xMas();*/
+xMas();
 
 
                 /*
