@@ -1,7 +1,23 @@
-.scroll-down {
-  margin-bottom: 10rem;
-}
+@media screen and(min-width: 768px) {
 
-.christmas-color{
-  color: red;
+  .pralinGrid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap:  10px;
+  }
+
+  /********** FULLPAGE-TWO **********/
+  .fullpage-two {
+    .sorting-container {
+      
+    }
+
+    .pralinGrid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 2rem;
+    }
+
+  }
+
 }
