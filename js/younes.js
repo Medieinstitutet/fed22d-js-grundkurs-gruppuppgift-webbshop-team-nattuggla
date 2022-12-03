@@ -1,43 +1,18 @@
   //++++++++++++++++++++++++++++++meny knappen++++++++++++++++++++++++++++++
-const hamburger = document.querySelector('.hamburger');
-const navMenu = document.querySelector('.nav-menu');
 
 
-hamburger.addEventListener('click', menuOpen);
-navMenu.addEventListener('click', navOpen);
 
 
-function menuOpen () {
-    hamburger.classList.toggle('active');
-    navMenu.classList.toggle('active');
-}
 
-function navOpen(){
-  hamburger.classList.remove('active');
-  navMenu.classList.remove('active');
 
-}
               
               
 // //++++++++++++++++++++++++++++++theme toggle.++++++++++++++++++++++++++++++
               
-const darkMode = document.getElementById('dark-mode');
-const lightMode = document.getElementById('light-mode');
+
               
-darkMode.addEventListener('click', backgroundDark);
-lightMode.addEventListener('click', backgroundLight);
 
-function backgroundDark () {
-  document.body.classList.toggle('dark_mode');
-  darkMode.classList.toggle('hide');
-  lightMode.classList.remove('hide');
-}
 
-function backgroundLight () {
-  document.body.classList.remove('dark_mode');
-  lightMode.classList.toggle('hide');
-  darkMode.classList.remove('hide');
-}    
 
 //antal munkar, plus younes och minus
               
@@ -47,8 +22,10 @@ function backgroundLight () {
   -vi behöver ta reda på antal praliner
   -vi behöver ta reda på priset på pralinergit 
 */
+
+
               
-const products = [{
+const products = [{   // TODO: import från egen fil
   name:"Apelsin Hasselnöt",
   price:15,
   rating:4,
@@ -172,254 +149,39 @@ const products = [{
     alt: 'pralin-chocolate-orange-nuts',
   }
               
-const chocolateContainer = document.querySelector('#chocolate-container');
+
 
 
 //+++++++++++++++++++++++++++sätt att skriva ut text ist för och ha i html++++++++++++++++++++++++++++++              
-function renderChocolate(arrayToRender) {
-chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att antalet rensas medan man utökar den
-
-  for (let i  = 0; i < arrayToRender.length; i++) {    
-    chocolateContainer.innerHTML += 
-    `<article class="pralin">
-      <h3 class="cartName">${arrayToRender[i].name}</h3> 
-      <div class="images">
-        <section class="imgContainer">
-          <div class="imageBox">
-            <img id="img-1" class="img1" src="${arrayToRender[i].image1} "alt=""/>
-            <img id="img-2" class="img2" src="${arrayToRender[i].image2} "alt=""/>
-          </div>
-          <button class="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
-          <button class="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
-        </section>
-        Betyg:<span class="rating">${arrayToRender[i].rating}</span><br>
-        Pris:<span class="price">${arrayToRender[i].price} kr/st</span> <br>
-        Summa:<span class="sum">${arrayToRender[i].price * arrayToRender[i].amount}</span> <br>
-        <button class="remove" data-operator="minus" data-id="${i}">-</button>
-        <span class="amount">${arrayToRender[i].amount} st</span>
-        <button class="add" data-operator="plus" data-id="${i}">+</button>
-      </div> 
-    </article>`;
-  }
 
 
-  //+++++++++++++++++++++++++++++++++++++++gör att man kan klicka på knappen+++++++++++++++++++++++++++++++++++++++
-
-  const btnAdd = document.querySelectorAll('button[data-operator="plus"]');
-  const btnReduce = document.querySelectorAll('button[data-operator="minus"]');
-
-  for (let i= 0; i < btnAdd.length; i++) {
-    btnAdd[i].addEventListener('click', updateAmount)
-    btnReduce[i].addEventListener('click', reduceAmount)
-  }
 
 
-  //++++++++++++++++++++++++++priset av produkterna ökas.+++++++++++++++++++++++++++++++++++++++
-
-  sumTotal = arrayToRender.reduce(                  
-    (previousValue, arrayToRender) => 
-    {return (arrayToRender.amount * arrayToRender.price) + previousValue;}, 0); 
-  console.log(sumTotal);
-
-                
-  printOrderedChocolate ()
-                
-  document.querySelector('#cartSum').innerHTML = sumTotal;
-    
-  //+++++++++++++++++++++++++++++++++++++++ökar antal praliner som skrivs ut i kundkorgen.+++++++++++++++++++++++++++++++++++++++
-  const amountTotal = arrayToRender.reduce(                  
-  (previousValue, product) => {
-  return product.amount+ previousValue;
-  },
-  0
-  );
-  console.log(amountTotal);
-                  
-  printOrderedChocolate ()
-                
-  document.querySelector('#cartTotal').innerHTML= amountTotal; //detta möjliggör användaren att kunna ändra bildspelet, när antalet ökas.
-  const nextBtn = document.querySelectorAll('.nextImage');
-  const prevBtn = document.querySelectorAll('.prevImage');
-
-  for(let i = 0; i < nextBtn.length; i++){
-    prevBtn[i].addEventListener('click', imageSwap);
-    nextBtn[i].addEventListener('click', imageSwap);
-  }
-
-}   //++++++++++++++++++++++++++++++++++slut på renderchocolate+++++++++++++++++++++++++++++++++++++++
-
-let sumtotal = 0;
-let freightPrice = 25;
-let priceToPay = 0;
-
-//++++++++++++++++++++++++++++++FUNKTION för att printa ut chokladen på sidan++++++++++++++++++++++++++++++
-
-function printOrderedChocolate () {
-  document.querySelector('#cart').innerHTML = '';
-  for(let i = 0; i < products.length; i ++){
-    if (products[i].amount > 0) {
-      document.querySelector('#cart').innerHTML += 
-      `<div ="cartInfo"> <br> 
-        <div ="cartTitel">
-          <h3>${products[i].name}</h3> 
-          <img src="${products[i].image1}" width="60" height="60"}>
-          <div class="cartSumeringTitel"> 
-            <h4>Antal</h4> 
-            <h4>Summma</h4>
-          </div>
-          <div class="cartResultat"> 
-            <p>${products[i].amount}st</p> 
-            <p>${sum}</p>
-          </div>
-        </div>
-        <hr class="line">
-      </div>`;      
-    }
-  }
-  if (isLucia) {                    //kallar på max regeln kring lucia.
-    printedPralinLucia ();          //kallar på funktionen som skriver ut lucia pralin
-  }
-  updateCartPrice();
-  tenProductsDiscount();
-}  //++++++++++++++++++++++++++++++++++++printedOrderedChocolate slut+++++++++++++++++++++++++++++++++++++
 
 //+++++++++++++++++++++++funktion skriva ut uppdaterad pris+++++++++++++++++++++++++++++++++++++
-function updateCartPrice(){
-  sumTotal = products.reduce(                  
-    (previousValue, products) => 
-    {return (products.amount * products.price) + previousValue;}, 0); 
-  console.log(sumTotal);
 
-  if (discountCodeValid){
-    sumTotal = 0;
-  }
-
-  let amountShipping = products.reduce(                  
-    (previousValue, product) => {
-    return product.amount+ previousValue;},0);
-    console.log(amountShipping);
-
-  if (shippingCost){
-    if (amountShipping > 15){
-      freightPrice = 0;
-    } else {
-      freightPrice = 25 + Math.round(sumTotal * 0.1);
-    }
-  }
-
-  let amountProducts = products.reduce(                  
-    (previousValue, product) => {
-    return product.amount+ previousValue;},0);
-    console.log(amountProducts);
-
-    //upprepning från uppifrån, kanske går o göra de tillsammans???++++
-    //vid köp av fler än 10 st............
-
-  sum = products.reduce(                  
-    (previousValue, products) => 
-    {return (products.amount * products.price) + previousValue;}, 0); 
-    console.log(sum);
-
-  for(let i = 0; i < products.length; i++){                                            
-    amountProducts += products[i].amount;
-
-   if (products[i].amount >= 10){
-    sum += ((products[i].amount * products[i].price) * 0.1); 
-   } else{
-    sum += (products[i].amount * products[i].price);
-   }
-  
-  }
-
-
-  document.querySelector('#updatePrice').innerHTML = '';  
-  document.querySelector('#updatePrice').innerHTML =
-    ` <section class="cart-amount">
-        <span>Summa</span>
-        <span class="price-summary">${sumTotal}</span>
-      </section>
-      <br>
-      <section>
-        <span>Frakt</span>
-        <span class="shipping">${freightPrice}</span>
-      </section>
-      <br>
-      <section class="discount">
-        <span>Rabatt</span>
-        <span class="discount-sum"></span>
-      </section>
-      <hr class="line">
-      <section class="total-price">
-        <span>Att betala</span>
-        <span class="total-summary">${freightPrice + sumTotal}</span>
-      </section>`; 
-}
 
 //++++++++++++++++++++++++++++++++++funktion för rabatt+++++++++++++++++++++++++++++++++++
 
-const discountField = document.querySelector('.discountCode');
-const discountBtn = document.querySelector('.discountButton');
-let discountCodeValid = false;
 
-discountBtn.addEventListener('click' , validateDiscount);
 
-function validateDiscount() {
-    if (discountField.value === "a_damn_fine-cup_of-coffee") {
-      discountCodeValid = true;
-      updateCartPrice();
-    }
-}
+
+
+
 
 //++++++++++++++++++++++++++++++funktion för leverans++++++++++++++++++++++++++++++
 
-let shippingCost = true;
-
-function shippingDiscount(){ 
-  shippingCost = false;
-}
-
-//++++++++++++++++++++++++++++++funktion för plus knappen på sidan++++++++++++++++++++++++++++++
-function updateAmount(e) {
-
-const chocolateChoosed = e.currentTarget.dataset.id;
-products[chocolateChoosed].amount += 1;
-                
-console.log(products);
-renderChocolate(products);
-}
-              
-renderChocolate(products);
 
 
- //++++++++++++++++++++++++++++++funktion för minusknappen på sidan++++++++++++++++++++++++++++++
-function reduceAmount(e) {
-const chocolateChoosed = e.currentTarget.dataset.id;
-let amount = chocolateChoosed.innerHTML;
 
-if (amount -1 < 0) {
-return; 
-}
-                  
-if (products[chocolateChoosed].amount > 0) {
-  products[chocolateChoosed].amount -=1    
-};
-           
-console.log(products);
-renderChocolate(products);
-}
+
 
 //++++++++++++++++++++++++++++++funktion för att tömma varukorgen.++++++++++++++++++++++++++++++
 
-const emptyCartBtn = document.querySelector('#emptyCart');
-emptyCartBtn.addEventListener('click', emptyCart);
 
-function emptyCart (e){
-  for (let i = 0; i<products.length; i++){
-    products[i].amount = 0;
-  }
 
-  renderChocolate(products);      //tömma de produkter som valts.
-}
+
+
 
 
 //detta skriver ut ratingen på sidan
@@ -436,80 +198,25 @@ function emptyCart (e){
 //steg 1 variabler 
 
 
-//++++++++++++++++++++++++++++++ändra bild i ett bildspel++++++++++++++++++++++++++++++
-
-function imageSwap(e){
-  const image1Slideshow =e.currentTarget.parentElement.querySelector('#img-1');
-  const image2Slideshow =e.currentTarget.parentElement.querySelector('#img-2');
-
-  const first = image1Slideshow.getAttribute('src');
-  const second = image2Slideshow.getAttribute('src');
-
-  image1Slideshow.setAttribute('src', second);
-  image2Slideshow.setAttribute('src', first);
-};
 
 
 
 //++++++++++++++++++++++++++++ få en gratis lucia pralin+++++++++++++++++++++++
 
-function printedPralinLucia () {
-    document.querySelector('#cart').innerHTML += 
-    `<div>
-      <br> 
-      <div>
-        <h3>${luciaProduct.name}</h3> 
-        <img src="${luciaProduct.image1}" width="60" height="60"}>
-        <div class="cartSumeringTitel"> 
-          <h4>Antal</h4> 
-          <h4>Summma</h4>
-        </div>
-        <div class="cartResultat"> 
-          <p>${luciaProduct.amount}st</p> 
-          <p>${luciaProduct.price}kr</p>
-        </div>
-      </div>
-      <hr class="line">
-    </div>`;
-  };
 
 
 
- //++++++++++++++++++Rating skrivs ut på sidan+++++++++++++++++++++++++++++++++++++
-function starCreate() {
-  const ratingElements = document.querySelectorAll('.rating');
-  
-  for (let i = 0; i< products.length; i++) { 
-    const ratingNumber = products[i].rating;
-    const stars = '<span class="dot" ><i class="fa-solid fa-star"></i></span>';
-    ratingElements[i].innerHTML += stars + ratingNumber;
-  }
-}
+ 
+
 
 //+++++++++++++++++++++++det är jul, ändra bakgrund och ändra text till röd+++++++++++++++++++++++++++++++++++++++
-function xMas (){
-  if (isChristmas){
-    document.querySelectorAll(".price").forEach((element) => {
-      element.style.color = "red";
-  });
-  document.body.style.backgroundImage = "url('./bilder/jul-bakgrund.jpg')";
-    document.body.style.backgroundSize = 'no-repeat';
-}}
-
-
-
-function discountMonday(){
-  if (mondayDiscountActive){
-    printOrderedChocolate.innerhtml += 'Måndagsrabatt: 10 % på hela beställningen';
-    updateCartPrice.innerHTML = Math.round(sumTotal * 0.9);
-    shippingDiscount.innerHTML = Math.round(freightPrice * 0.9);
-  }
-}
 
 
 
 
-xMas();
+
+
+
 
 
                 /*
