@@ -192,7 +192,7 @@ chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att ant
           <button class="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
           <button class="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
         </section>
-        Betyg:<span class="rating">${products[i].rating}/5</span><br>
+        Betyg:<span class="rating">${arrayToRender[i].rating}</span><br>
         Pris:<span class="price">${arrayToRender[i].price} kr/st</span> <br>
         Summa:<span class="sum">${arrayToRender[i].price * arrayToRender[i].amount}</span> <br>
         <button class="remove" data-operator="minus" data-id="${i}">-</button>
@@ -200,11 +200,6 @@ chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att ant
         <button class="add" data-operator="plus" data-id="${i}">+</button>
       </div> 
     </article>`;
-  }
-
-  //++++++++++++++++++Rating skrivs ut på sidan+++++++++++++++++++++++++++++++++++++
-  const ratingElements = document.querySelectorAll('.rating');
-  for (let i = 0; i< ratingElements.length; i++) { 
   }
 
 
@@ -251,16 +246,13 @@ chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att ant
     nextBtn[i].addEventListener('click', imageSwap);
   }
 
-}
+}   //++++++++++++++++++++++++++++++++++slut på renderchocolate+++++++++++++++++++++++++++++++++++++++
 
-//++++++++++++++++++++++++++++++++++slut på renderchocolate+++++++++++++++++++++++++++++++++++++++
 let sumtotal = 0;
 let freightPrice = 25;
 let priceToPay = 0;
 
 //++++++++++++++++++++++++++++++FUNKTION för att printa ut chokladen på sidan++++++++++++++++++++++++++++++
-// länkade in ditt grid i css också 😀
-// @Younes: jag klippte ut detta från rad 286, det kraschade sidan:   <p>${freightPrice}</p>    / Max
 
 function printOrderedChocolate () {
   document.querySelector('#cart').innerHTML = '';
@@ -288,10 +280,24 @@ function printOrderedChocolate () {
     printedPralinLucia ();          //kallar på funktionen som skriver ut lucia pralin
   }
   updateCartPrice();
-}
+  tenProductsDiscount();
+}  //++++++++++++++++++++++++++++++++++++printedOrderedChocolate slut+++++++++++++++++++++++++++++++++++++
 
 
-//+++++++++++++++++++++++funktion skriva ut uppdaterad pris+++++++++++++++++++++++++++
+//+++++++++++++++++++++++++++++++++++++++++rabat vid köp av 10 st från samma produkt+++++++++++++++++++++++++
+/*function tenProductsDiscount(){
+  
+let amountTotal = products.reduce(                  
+  (previousValue, product) => {
+  return product.amount+ previousValue;},0);
+  console.log(amountTotal);
+
+  if (product.amount > 10)
+  amountTotal = Math.round(price * 0.1);
+}*/
+
+
+//+++++++++++++++++++++++funktion skriva ut uppdaterad pris+++++++++++++++++++++++++++++++++++++
 function updateCartPrice(){
   sumTotal = products.reduce(                  
     (previousValue, products) => 
@@ -314,6 +320,7 @@ function updateCartPrice(){
       freightPrice = 25 + Math.round(sumTotal * 0.1);
     }
   }
+
 
   document.querySelector('#updatePrice').innerHTML = '';  
   document.querySelector('#updatePrice').innerHTML =
@@ -456,17 +463,41 @@ function printedPralinLucia () {
     </div>`;
   };
 
+
+
+ //++++++++++++++++++Rating skrivs ut på sidan+++++++++++++++++++++++++++++++++++++
+function starCreate() {
+  const ratingElements = document.querySelectorAll('.rating');
+  
+  for (let i = 0; i< products.length; i++) { 
+    const ratingNumber = products[i].rating;
+    const stars = '<span class="dot" ><i class="fa-solid fa-star"></i></span>';
+    ratingElements[i].innerHTML += stars + ratingNumber;
+  }
+}
+
 //+++++++++++++++++++++++det är jul, ändra bakgrund och ändra text till röd+++++++++++++++++++++++++++++++++++++++
 function xMas (){
   if (isChristmas){
-  document.querySelectorAll('.price').forEach(element => {              
-    element.classList.add('.christmas-color')
-  })                                                            
+  document.querySelectorAll('products').style = 'red';
+  }                                                           
     document.body.style.backgroundImage = "url('./bilder/jul-bakgrund.jpg')";
-}}
+    document.body.style.backgroundSize = 'no-repeat';
+}
 
 
-xMas();
+function discountMonday(){
+  if (mondayDiscountActive){
+    printOrderedChocolate.innerhtml += 'Måndagsrabatt: 10 % på hela beställningen';
+    updateCartPrice.innerHTML = Math.round(sumTotal * 0.9);
+    shippingDiscount.innerHTML = Math.round(freightPrice * 0.9);
+  }
+}
+
+
+
+
+/*xMas();*/
 
 
                 /*

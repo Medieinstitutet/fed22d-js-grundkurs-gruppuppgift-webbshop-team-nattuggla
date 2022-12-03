@@ -80,12 +80,13 @@ const weekNum = getWeekNum();                       // spara aktuellt veckonumme
 
 let deliveryTime;                                   //  massa matte på pageLoadTime sen?
 
+let isLucia = false;           
+let isChristmas = false;
 
               /********  FUNKTIONER ********/
 
    
-let isLucia = false;           
-let isChristmas = false;
+
 
 /**
  * testar om det är lucia eller julafton (funktionen verkar funka som den ska!)
@@ -101,8 +102,6 @@ function isHoliday() {
   //kalla på funktionen när det är regeln ovanför.
   }
 }
-
-
 
 
 /**
