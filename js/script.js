@@ -319,7 +319,6 @@ function shippingDiscount(){
       sumTotal = arrayToRender.reduce(                  
         (previousValue, arrayToRender) => 
         {return (arrayToRender.amount * arrayToRender.price) + previousValue;}, 0); 
-      console.log(sumTotal);
     
                     
       printOrderedChocolate ()
@@ -333,7 +332,6 @@ function shippingDiscount(){
       },
       0
       );
-      console.log(amountTotal);
                       
       printOrderedChocolate ()
                     
@@ -354,7 +352,6 @@ function updateAmount(e) {
   const chocolateChoosed = e.currentTarget.dataset.id;
   products[chocolateChoosed].amount += 1;
                   
-  console.log(products);
   renderChocolate(products);
   }
                 
@@ -374,7 +371,6 @@ function updateAmount(e) {
     products[chocolateChoosed].amount -=1    
   };
              
-  console.log(products);
   renderChocolate(products);
   }
   
@@ -439,7 +435,6 @@ function updateCartPrice(){
   sumTotal = products.reduce(                  
     (previousValue, products) => 
     {return (products.amount * products.price) + previousValue;}, 0); 
-  console.log(sumTotal);
 
   if (discountCodeValid){
     sumTotal = 0;
@@ -448,7 +443,6 @@ function updateCartPrice(){
   let amountShipping = products.reduce(                  
     (previousValue, product) => {
     return product.amount+ previousValue;},0);
-    console.log(amountShipping);
 
   if (shippingCost){
     if (amountShipping > 15){
@@ -461,7 +455,6 @@ function updateCartPrice(){
   let amountProducts = products.reduce(                  
     (previousValue, product) => {
     return product.amount+ previousValue;},0);
-    console.log(amountProducts);
 
     //upprepning från uppifrån, kanske går o göra de tillsammans???++++
     //vid köp av fler än 10 st............
@@ -469,7 +462,6 @@ function updateCartPrice(){
   sum = products.reduce(                  
     (previousValue, products) => 
     {return (products.amount * products.price) + previousValue;}, 0); 
-    console.log(sum);
 
   for(let i = 0; i < products.length; i++){                                            
     amountProducts += products[i].amount;
