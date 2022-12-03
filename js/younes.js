@@ -283,20 +283,6 @@ function printOrderedChocolate () {
   tenProductsDiscount();
 }  //++++++++++++++++++++++++++++++++++++printedOrderedChocolate slut+++++++++++++++++++++++++++++++++++++
 
-
-//+++++++++++++++++++++++++++++++++++++++++rabat vid köp av 10 st från samma produkt+++++++++++++++++++++++++
-/*function tenProductsDiscount(){
-  
-let amountTotal = products.reduce(                  
-  (previousValue, product) => {
-  return product.amount+ previousValue;},0);
-  console.log(amountTotal);
-
-  if (product.amount > 10)
-  amountTotal = Math.round(price * 0.1);
-}*/
-
-
 //+++++++++++++++++++++++funktion skriva ut uppdaterad pris+++++++++++++++++++++++++++++++++++++
 function updateCartPrice(){
   sumTotal = products.reduce(                  
