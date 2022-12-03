@@ -9,7 +9,7 @@
 ✅        lägg till en gratis pepparkakschoklad i kundkorgen eller nåt 🍫😃
 
 ✅    OM det är 24 december
-🔲        gör pristexter röda
+✅        gör pristexter röda
 ✅        byt bakgrundsbild 
 
 ✅     OM det är en fredag efter 14, lördag eller söndag:
