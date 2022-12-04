@@ -488,7 +488,7 @@ function updateCartPrice(){
       <hr class="line">
       <section class="total-price">
         <span>Att betala</span>
-        <span class="total-summary">${(freightPrice + sumTotal) - mondayDiscountPrice }</span>
+        <span class="total-summary">${(freightPrice + sumTotal)}</span>
       </section>`; 
 }   // slut updateCartPrice()
 
