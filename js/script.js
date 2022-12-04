@@ -347,7 +347,15 @@ function shippingDiscount(){
 function updateAmount(e) {
 
   const chocolateChoosed = e.currentTarget.dataset.id;
+
   products[chocolateChoosed].amount += 1;
+
+
+  if (products[chocolateChoosed].amount == 10) {
+    products[chocolateChoosed].price = (products[chocolateChoosed].price * 0.9);
+  }
+
+  console.log('plusknapp pris', products[chocolateChoosed].price);
                   
   renderChocolate(products);
   }
@@ -367,6 +375,12 @@ function updateAmount(e) {
   if (products[chocolateChoosed].amount > 0) {
     products[chocolateChoosed].amount -=1    
   };
+
+  if (products[chocolateChoosed].amount == 10) {
+    products[chocolateChoosed].price = (products[chocolateChoosed].price / 0.9);
+  }
+
+  console.log('minusknapp pris', products[chocolateChoosed].price);
              
   renderChocolate(products);
   }
