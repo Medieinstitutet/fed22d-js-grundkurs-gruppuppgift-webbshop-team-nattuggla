@@ -467,7 +467,7 @@ function printOrderedChocolate () {
       `<div class="cartInfo"> <br> 
         <div class="cartTitel">
           <h3>${products[i].name}</h3> 
-          <img src="${products[i].image1}" width="60" height="60"}>
+          <img src="${products[i].image1}" width="40" height="40"}>
           <div class="cartSumeringTitel"> 
             <h4>Antal</h4> 
             <h4>Summa</h4>
