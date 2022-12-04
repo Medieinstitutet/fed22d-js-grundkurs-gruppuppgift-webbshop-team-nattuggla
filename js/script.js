@@ -192,52 +192,37 @@ function shippingDiscount(){
 
   /******** sortering och filtrerings-funktioner ********/ 
 
+  let selectedRadioBtn;
+  let selectedPriceRange = priceRangeElement.value;
+
+
   function updatePriceRange() {   
-    const selectedPriceRange = priceRangeElement.value;
+    selectedPriceRange = priceRangeElement.value;
     currentPriceRange.innerHTML = `${selectedPriceRange} kr`;
-    filterByPrice(selectedPriceRange);
-  }
-  
-  /**
-   * 
-   * @param {number} selectedMax - valt max-värde för prisintervall
-   * filtrerar ut alla produkter inom valt intervall, kontrollerar vilken sorteringsknapp som är vald
-   * kallar på sorteringsfunktion 
-   */
-  function filterByPrice(selectedMax) {
-    // console.log(selectedMax); // kontrollerad: motsvarar vad man valt i slidern
-    let filteredProducts = products.filter(product => product.price <= selectedMax); 
     sortingRadios.forEach(element => {    // kolla vilken radio-knapp som är vald och kalla sorteringsfunktion
       if (element.checked) {
-        let selectedRadioBtn = element.id;  // #1 kanske lite snyggare med value ist 🤔 
-        sortBy(selectedRadioBtn, filteredProducts);
+        selectedRadioBtn = element.id;  // #1 kanske lite snyggare med value ist 🤔  
       }
-      /* skippar else, felhantering överflödig, right? 🤔 
-      *  någon radio kommer alltid vara vald (sortera på pris default), 
-      *  TODO: ändra ev. första utskrift av renderChocolate() (younes.js) till sortBy('priceRadioBtn')? OBS: om checked-attribut på någon radio, annars inte
-      *  så den sorterar på default check (pris)?;
-      * */ 
-    })
+    });
+    sortBy(selectedRadioBtn);
   }
+  
   
   /**
    * 
    * @param {string} radioBtnId - id för vald sorterings-radioknapp
-   * @param {array} array(bra namn lol, tips?) - filtrerad array inom valt prisintervall
-   * sorterar pris-filtrerad array och kallar på utskriftsfunktion (i younes.js)
+   * sorterararray och kallar på utskriftsfunktion
    */
-  function sortBy(radioBtnId, array) {   // #2 kanske lite snyggare med value ist 🤔 
-    let filteredProducts = array;
-    let sortedProducts;
+  function sortBy(radioBtnId) {   // #2 kanske lite snyggare med value ist 🤔 
   
     switch (radioBtnId) {
       case 'priceRadioBtn':   // sortera efter pris, högt till lågt
-        sortedProducts = filteredProducts.sort( (a, b) => { return b.price - a.price; } )
+        products.sort( (a, b) => { return b.price - a.price; } )
         
       break;
   
       case 'nameRadioBtn':    // sortera efter namn, A-Ö
-        sortedProducts = filteredProducts.sort( (a, b) => {
+        products.sort( (a, b) => {
           if (a.name < b.name) {
             return -1;
           }
@@ -250,7 +235,7 @@ function shippingDiscount(){
       break;
   
       case 'categoryRadioBtn':
-        sortedProducts = filteredProducts.sort( (a, b) => {
+        products.sort( (a, b) => {
           if (a.kategori < b.kategori) {  // TODO: engelska
             return -1;
           }
@@ -263,45 +248,43 @@ function shippingDiscount(){
       break;
   
       case 'ratingRadioBtn':
-        sortedProducts = filteredProducts.sort( (a, b) => { return b.rating - a.rating; } )   // TODO: kodupprepning, om tid finns..
+        products.sort( (a, b) => { return b.rating - a.rating; } )   // TODO: kodupprepning, om tid finns..
       break;
       
       default:
-        
-      renderChocolate(filteredProducts);  // lär aldrig hända, men om det skulle göra det, så printa ut osorterat efter valt prisintervall    
       break;    
     }
   
-    renderChocolate(sortedProducts);
+    renderChocolate();
   
   }
 
-  function renderChocolate(arrayToRender) {
+  function renderChocolate() {
     chocolateContainer.innerHTML = '';  //detta gör att systemet rensar så att antalet rensas medan man utökar den
-    
-      for (let i  = 0; i < arrayToRender.length; i++) {    
+      for (let i  = 0; i < products.length; i++) {    
+        if (products[i].price <= selectedPriceRange) {
         chocolateContainer.innerHTML += 
         `<article class="pralin">
-          <h3 class="cartName">${arrayToRender[i].name}</h3> 
+          <h3 class="cartName">${products[i].name}</h3> 
           <div class="images">
             <section class="imgContainer">
               <div class="imageBox">
-                <img id="img-1" class="img1" src="${arrayToRender[i].image1} "alt=""/>
-                <img id="img-2" class="img2" src="${arrayToRender[i].image2} "alt=""/>
+                <img id="img-1" class="img1" src="${products[i].image1} "alt=""/>
+                <img id="img-2" class="img2" src="${products[i].image2} "alt=""/>
               </div>
               <button class="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
               <button class="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
             </section>
-            Betyg:<span class="rating">${arrayToRender[i].rating}</span><br>
-            Pris:<span class="price">${arrayToRender[i].price} kr/st</span> <br>
-            Summa:<span class="sum">${arrayToRender[i].price * arrayToRender[i].amount}</span> <br>
+            Betyg:<span class="rating">${products[i].rating}</span><br>
+            Pris:<span class="price">${products[i].price} kr/st</span> <br>
+            Summa:<span class="sum">${products[i].price * products[i].amount}</span> <br>
             <button class="remove" data-operator="minus" data-id="${i}">-</button>
-            <span class="amount">${arrayToRender[i].amount} st</span>
+            <span class="amount">${products[i].amount} st</span>
             <button class="add" data-operator="plus" data-id="${i}">+</button>
           </div> 
         </article>`;
+        }
       }
-    
       xMas();
       //+++++++++++++++++++++++++++++++++++++++gör att man kan klicka på knappen+++++++++++++++++++++++++++++++++++++++
     
@@ -316,9 +299,9 @@ function shippingDiscount(){
     
       //++++++++++++++++++++++++++priset av produkterna ökas.+++++++++++++++++++++++++++++++++++++++
     
-      sumTotal = arrayToRender.reduce(                  
-        (previousValue, arrayToRender) => 
-        {return (arrayToRender.amount * arrayToRender.price) + previousValue;}, 0); 
+      sumTotal = products.reduce(                  
+        (previousValue, product) => 
+        {return (product.amount * product.price) + previousValue;}, 0); 
     
                     
       printOrderedChocolate ()
@@ -326,7 +309,7 @@ function shippingDiscount(){
       document.querySelector('#cartSum').innerHTML = sumTotal;
         
       //+++++++++++++++++++++++++++++++++++++++ökar antal praliner som skrivs ut i kundkorgen.+++++++++++++++++++++++++++++++++++++++
-      const amountTotal = arrayToRender.reduce(                  
+      const amountTotal = products.reduce(                  
       (previousValue, product) => {
       return product.amount+ previousValue;
       },
