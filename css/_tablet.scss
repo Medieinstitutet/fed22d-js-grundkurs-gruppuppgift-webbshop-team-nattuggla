@@ -7,80 +7,26 @@
   }
 
   /********** HEADER **********/
-
   .header-logo {
     max-width: 100%;
     font-family: "Henny Penny", "Times New Roman", Times, serif;
     font-size: 6rem;
+    margin: 10px;
+    text-align: center;
     text-shadow: 5px 5px 1px rgb(70, 52, 35);
     letter-spacing: 10px;
     position: relative;
-    margin-top: 10vh;
-    margin-left: 25vw;
-    color: #d6b050;
-  
+    top: 30vh;
+    left: 9vw;
+    color: #d6b050; // ändrat färg till guldigt typ
   }
-
-
-  .button-cart {
-    font-size: 1.3em;
-    z-index: 1;
-    position: relative;
-    top: -11em;
-    right: 7em;
-    float: right;
-    background-color: transparent;
-    border: none;
-
-  }
-
- #cartTotal {
-    font-size: 1em;
-  }
-
-  #cartSum {
-    font-size: 1em;
-  }
-
-
-/********** hamburgarmenyn och varukorg **********/
-.menu-container {  
-
-  a {
-    color: #f1f1f1;
-    position: fixed;
-    top: 2vh;
-    right: 5vw;
-    text-decoration: none;
-  }
-
-  a:hover {
-    color: #d6b050;
-  }
-}
-
-
-
-/********** FULLPAGE-ONE **********/
-
-.fullpage-one {
-
-  p {
-    font-size: 1.6em;
-    text-align: center;
-    position: absolute;
-    top: 60vh;
-    font-style: italic;
-    color: #f1f1f1;
-    font-weight: bolder;
-    text-shadow: 6px 6px 7px #272727; 
-    letter-spacing: 2px;
-  }
-}
 
 
   /********** FULLPAGE-TWO **********/
   .fullpage-two {
+    .sorting-container {
+      
+    }
     
     .left {   // kolla i renderChocolate() för html, vet inte riktigt hur det ska stylas här
       position: relative;
