@@ -34,6 +34,7 @@ const postort = document.getElementById("port");
 const portkod = document.getElementById("pkod");
 const nummer = document.getElementById("telefon");
 const email = document.getElementById("email");
+const invoice = document.getElementById(".payment");
 
 btnSubmit.addEventListener("click", function () {
   
