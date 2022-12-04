@@ -20,12 +20,13 @@ body {
 
 
 :root{
-  --primary-color:rgb(107, 51, 6);
+  --primary-color:rgb(46, 21, 1);
   --rounded-corners: 10px;
 }
 
 .dark_mode{
-      --primary-color:rgb(43, 43, 43);
+      background-image: none;
+
   }
 
   .show{ 
