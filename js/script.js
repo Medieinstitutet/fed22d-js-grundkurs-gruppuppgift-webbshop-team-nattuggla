@@ -31,14 +31,19 @@ const chocolateContainer = document.querySelector('#chocolate-container');
 // kundkorgsvariabler
 const emptyCartBtn = document.querySelector('#emptyCart');
 let sumtotal = 0;
+
+  
 let freightPrice = 25;
 let priceToPay = 0;
+let discountPrice = '.amount' * 0.9;
 
 // rabattvariabler
 const discountField = document.querySelector('.discountCode');
 const discountBtn = document.querySelector('.discountButton');
 let discountCodeValid = false;
 let shippingCost = true;  // fraktkostnad default pris, om inget särskilt
+let tenProductsDiscount = true;
+
 
 
 
@@ -119,7 +124,7 @@ function checkDay(day) {
   switch (day) {           
     case 1:   // OM måndag:
       if (orderHour < 10 && orderHour >= 3) {
-      mondayDiscountActive = true;
+        mondayDiscountActive = true;
       }
       else if (orderHour >= 0 && orderHour <= 3) {    // ska måndagsrabatten gälla här där helgpåslaget är aktivt?
       applyWeekendIncrease();
@@ -163,15 +168,15 @@ checkWeek(49);                  // ger false i console
 checkWeek(weekNum);             // ger true i console (testad vecka 48)
 */
 
-/******** funktioner som manipulerar pris ********/ 
-
+/******** funktioner som manipulerar pris ********/     
 function discountMonday(){
-  if (mondayDiscountActive){
-    printOrderedChocolate.innerhtml += 'Måndagsrabatt: 10 % på hela beställningen';
-    updateCartPrice.innerHTML = Math.round(sumTotal * 0.9);
-    shippingDiscount.innerHTML = Math.round(freightPrice * 0.9);
-  }
+  const discountAlert = document.querySelector(".discountAlert");
 
+  if (!mondayDiscountActive){
+    discountAlert.innerHTML = `<span> Måndagsrabatt! 10% på hela beställningen!</span>`;
+    discountPrice = Math.round((sumTotal) * 0.1);
+   
+  }
   // const inSEK = new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK' }).format(sumTotal+freightPrice);
   // därdenskava.innerHTML = inSEK; <- kolla nåt 😀
 }
@@ -182,9 +187,6 @@ function applyWeekendIncrease() {
   // sneaky prishöjning på 10% (eller bool?)
 }
 
-function tenProductsDiscount() {
-  //när du beställer 10 av en produkt ska du få rabatt
-  }
 
 function shippingDiscount(){ 
   shippingCost = false;
@@ -298,25 +300,22 @@ function shippingDiscount(){
     
     
       //++++++++++++++++++++++++++priset av produkterna ökas.+++++++++++++++++++++++++++++++++++++++
-    
       sumTotal = products.reduce(                  
         (previousValue, product) => 
         {return (product.amount * product.price) + previousValue;}, 0); 
-    
-                    
+        
       printOrderedChocolate ()
                     
       document.querySelector('#cartSum').innerHTML = sumTotal;
         
       //+++++++++++++++++++++++++++++++++++++++ökar antal praliner som skrivs ut i kundkorgen.+++++++++++++++++++++++++++++++++++++++
-      const amountTotal = products.reduce(                  
+      amountTotal = products.reduce(                  
       (previousValue, product) => {
-      return product.amount+ previousValue;
-      },
-      0
-      );
+      return product.amount+ previousValue;}, 0 );
+
                       
-      printOrderedChocolate ()
+      printOrderedChocolate ();
+      updateCartPrice();
                     
       document.querySelector('#cartTotal').innerHTML= amountTotal; //detta möjliggör användaren att kunna ändra bildspelet, när antalet ökas.
       const nextBtn = document.querySelectorAll('.nextImage');
@@ -400,7 +399,7 @@ function printOrderedChocolate () {
           </div>
           <div class="cartResultat"> 
             <p>${products[i].amount}st</p> 
-            <p>${sum}</p>
+            <p>${products[i].amount * products[i].price}</p>
           </div>
         </div>
         <hr class="line">
@@ -411,7 +410,8 @@ function printOrderedChocolate () {
     printedPralinLucia ();          //kallar på funktionen som skriver ut lucia pralin
   }
   updateCartPrice();
-  tenProductsDiscount();
+
+      //+++++++++++++++++++++++++++++++++++vid köp av fler än 10 st............'
 }  //++++++++++++++++++++++++++++++++++++printedOrderedChocolate slut+++++++++++++++++++++++++++++++++++++
 
 function updateCartPrice(){
@@ -427,36 +427,26 @@ function updateCartPrice(){
     (previousValue, product) => {
     return product.amount+ previousValue;},0);
 
+    document.querySelector(".amount").innerHTML = amountShipping;
+
   if (shippingCost){
-    if (amountShipping > 15){
+    if (amountShipping >= 15){
       freightPrice = 0;
     } else {
       freightPrice = 25 + Math.round(sumTotal * 0.1);
     }
   }
 
-  let amountProducts = products.reduce(                  
-    (previousValue, product) => {
-    return product.amount+ previousValue;},0);
-
-    //upprepning från uppifrån, kanske går o göra de tillsammans???++++
-    //vid köp av fler än 10 st............
-
-  sum = products.reduce(                  
-    (previousValue, products) => 
-    {return (products.amount * products.price) + previousValue;}, 0); 
-
-  for(let i = 0; i < products.length; i++){                                            
-    amountProducts += products[i].amount;
-
-   if (products[i].amount >= 10){
-    sum += ((products[i].amount * products[i].price) * 0.1); 
-   } else{
-    sum += (products[i].amount * products[i].price);
-   }
+    //+++++++++++++++++++++++++++++++++++vid köp av fler än 10 st............'
+  for (let i = 0; i< products[i].amount; i ++){
+    amount += products[i].amount;
   
+  if (products[i].amount >= 10){
+    sum += ((products[i].amount * products[i].price));
+  }else {
+    sum += (products[i].amount * products(i).price);
   }
-
+  }
 
   document.querySelector('#updatePrice').innerHTML = '';  
   document.querySelector('#updatePrice').innerHTML =
@@ -473,11 +463,12 @@ function updateCartPrice(){
       <section class="discount">
         <span>Rabatt</span>
         <span class="discount-sum"></span>
+        <div class="discountAlert"></div>
       </section>
       <hr class="line">
       <section class="total-price">
         <span>Att betala</span>
-        <span class="total-summary">${freightPrice + sumTotal}</span>
+        <span class="total-summary">${(freightPrice + sumTotal) }</span>
       </section>`; 
 }   // slut updateCartPrice()
 
