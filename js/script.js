@@ -332,8 +332,8 @@ function shippingDiscount(){
                 <img id="img-1" class="img1" src="${products[i].image1} "alt=""/>
                 <img id="img-2" class="img2" src="${products[i].image2} "alt=""/>
               </div>
-              <button class="prevImage" data-operator="left"><span class="left"><i class='bx bxs-left-arrow'></i></span></button>
-              <button class="nextImage" data-operator="right"><span class="right"><i class='bx bxs-right-arrow'></i></span></button>
+              <button class="prevImage" data-operator="left"><span class="left" arial-label="swapImages"><i class='bx bxs-left-arrow'></i></span></button>
+              <button class="nextImage" data-operator="right"><span class="right" arial-label="swapImages"><i class='bx bxs-right-arrow'></i></span></button>
             </section>
             Betyg:<span class="rating">${products[i].rating}</span><br>
             Pris:<span class="price">${products[i].price} kr/st</span> <br>
