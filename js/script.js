@@ -170,13 +170,11 @@ checkWeek(weekNum);             // ger true i console (testad vecka 48)
 
 /******** funktioner som manipulerar pris ********/     
 function discountMonday(){
-  const discountAlert = document.querySelector(".discountAlert");
-
   if (!mondayDiscountActive){
-    discountAlert.innerHTML = `<span> Måndagsrabatt! 10% på hela beställningen!</span>`;
-    discountPrice = Math.round((sumTotal) * 0.1);
-   
+    printOrderedChocolate.innerhtml += 'Måndagsrabatt: 10 % på hela beställningen';
+    updateCartPrice.innerHTML = Math.round(priceRegular * 0.9);
   }
+
   // const inSEK = new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK' }).format(sumTotal+freightPrice);
   // därdenskava.innerHTML = inSEK; <- kolla nåt 😀
 }
@@ -303,7 +301,6 @@ function shippingDiscount(){
       sumTotal = products.reduce(                  
         (previousValue, product) => 
         {return (product.amount * product.price) + previousValue;}, 0); 
-        
       printOrderedChocolate ()
                     
       document.querySelector('#cartSum').innerHTML = sumTotal;
@@ -410,8 +407,6 @@ function printOrderedChocolate () {
     printedPralinLucia ();          //kallar på funktionen som skriver ut lucia pralin
   }
   updateCartPrice();
-
-      //+++++++++++++++++++++++++++++++++++vid köp av fler än 10 st............'
 }  //++++++++++++++++++++++++++++++++++++printedOrderedChocolate slut+++++++++++++++++++++++++++++++++++++
 
 function updateCartPrice(){
@@ -438,15 +433,22 @@ function updateCartPrice(){
   }
 
     //+++++++++++++++++++++++++++++++++++vid köp av fler än 10 st............'
-  for (let i = 0; i< products[i].amount; i ++){
-    amount += products[i].amount;
-  
-  if (products[i].amount >= 10){
-    sum += ((products[i].amount * products[i].price));
-  }else {
-    sum += (products[i].amount * products(i).price);
+  amountTotal = products.reduce(                  
+    (previousValue, product) => {
+    return product.amount+ previousValue;}, 0 );
+
+    const discountAlert = document.querySelector(".discountAlert");
+
+  if (mondayDiscountActive) {
+    if(amountTotal >= 10){
+      discountPrice = Math.round((sumTotal) * 0.1);
+      discountAlert.innerHTML = `<span> Måndagsrabatt! 10% på hela beställningen!</span>`;
+    } else {
+      discountPrice= 0;
+    }
   }
-  }
+
+
 
   document.querySelector('#updatePrice').innerHTML = '';  
   document.querySelector('#updatePrice').innerHTML =
@@ -462,13 +464,13 @@ function updateCartPrice(){
       <br>
       <section class="discount">
         <span>Rabatt</span>
-        <span class="discount-sum"></span>
+        <span class="discount-sum">${discountPrice}</span>
         <div class="discountAlert"></div>
       </section>
       <hr class="line">
       <section class="total-price">
         <span>Att betala</span>
-        <span class="total-summary">${(freightPrice + sumTotal) }</span>
+        <span class="total-summary">${(freightPrice + sumTotal) - mondayDiscountPrice }</span>
       </section>`; 
 }   // slut updateCartPrice()
 
