@@ -14,6 +14,7 @@ const orderDay = pageLoadTime.getDay();              //  spara dagen för bestä
 const orderHour = pageLoadTime.getHours();           //  spara klockslag för beställning, number mellan 0 och 23
 let orderTimer;
 let mondayDiscountActive = false;
+let weekendIncreaseActive = false;
 let isEvenWeek = false;
 const weekNum = getWeekNum();                       // spara aktuellt veckonummer
 
@@ -35,7 +36,7 @@ let sumtotal = 0;
   
 let freightPrice = 25;
 let priceToPay = 0;
-let discountPrice = '.amount' * 0.9;
+let discountPrice = 0;
 
 // rabattvariabler
 const discountField = document.querySelector('.discountCode');
@@ -145,7 +146,7 @@ function checkDay(day) {
         mondayDiscountActive = true;
       }
       else if (orderHour >= 0 && orderHour <= 3) {    // ska måndagsrabatten gälla här där helgpåslaget är aktivt?
-      applyWeekendIncrease();
+        weekendIncreaseActive = true;
       }
     break;
 
@@ -155,13 +156,13 @@ function checkDay(day) {
 
     case 5:   // OM fredag
       if (orderHour > 15) {     // efter 15
-        applyWeekendIncrease();
+        weekendIncreaseActive = true;
       }
     break;
 
     case 6:   // OM lördag
     case 0:   // eller söndag
-      applyWeekendIncrease();
+    weekendIncreaseActive = true;
     break;
     default:
     break;
@@ -347,7 +348,14 @@ function shippingDiscount(){
 function updateAmount(e) {
 
   const chocolateChoosed = e.currentTarget.dataset.id;
+
   products[chocolateChoosed].amount += 1;
+
+
+  if (products[chocolateChoosed].amount == 10) {
+    products[chocolateChoosed].price = (products[chocolateChoosed].price * 0.9);
+    products[chocolateChoosed].amount += 1;   // funkar nu, why? 🤔
+  }
                   
   renderChocolate(products);
   }
@@ -367,6 +375,10 @@ function updateAmount(e) {
   if (products[chocolateChoosed].amount > 0) {
     products[chocolateChoosed].amount -=1    
   };
+
+  if (products[chocolateChoosed].amount == 10) {
+    products[chocolateChoosed].price = (products[chocolateChoosed].price / 0.9);
+  }
              
   renderChocolate(products);
   }
@@ -398,27 +410,35 @@ function starCreate() {
 
 
 //+++++++++++++++++++++++++FUNKTION för att printa ut chokladen i kundkorgen++++++++++++++++++++++++++++++
-
+let invoiceRadioBtn = document.querySelector('#invoice-radio');
 function printOrderedChocolate () {
+
+  let orderedTotalPrice;
   document.querySelector('#cart').innerHTML = '';
   for(let i = 0; i < products.length; i ++){
     if (products[i].amount > 0) {
+      orderedTotalPrice = products[i].amount * products[i].price;
+      if (orderedTotalPrice >= 800) {
+        console.log('if 800');
+        invoiceRadioBtn.setAttribute('disabled' , "");  // om totalpris större än 800, ingen faktura
+      }
       document.querySelector('#cart').innerHTML += 
-      `<div ="cartInfo"> <br> 
-        <div ="cartTitel">
+      `<div class="cartInfo"> <br> 
+        <div class="cartTitel">
           <h3>${products[i].name}</h3> 
           <img src="${products[i].image1}" width="60" height="60"}>
           <div class="cartSumeringTitel"> 
             <h4>Antal</h4> 
-            <h4>Summma</h4>
+            <h4>Summa</h4>
           </div>
           <div class="cartResultat"> 
             <p>${products[i].amount}st</p> 
-            <p>${products[i].amount * products[i].price}</p>
+            <p>${orderedTotalPrice}</p>
           </div>
         </div>
         <hr class="line">
-      </div>`;      
+      </div>`;    
+
     }
   }
   if (isLucia) {                    //kallar på max regeln kring lucia.
@@ -455,19 +475,6 @@ function updateCartPrice(){
     (previousValue, product) => {
     return product.amount+ previousValue;}, 0 );
 
-    const discountAlert = document.querySelector(".discountAlert");
-
-  if (mondayDiscountActive) {
-    if(amountTotal >= 10){
-      discountPrice = Math.round((sumTotal) * 0.1);
-      discountAlert.innerHTML = `<span> Måndagsrabatt! 10% på hela beställningen!</span>`;
-    } else {
-      discountPrice= 0;
-    }
-  }
-
-
-
   document.querySelector('#updatePrice').innerHTML = '';  
   document.querySelector('#updatePrice').innerHTML =
     ` <section class="cart-amount">
@@ -480,22 +487,30 @@ function updateCartPrice(){
         <span class="shipping">${freightPrice}</span>
       </section>
       <br>
-      <section class="discount">
-        <span>Rabatt</span>
-        <span class="discount-sum">${discountPrice}</span>
         <div class="discountAlert"></div>
-      </section>
       <hr class="line">
       <section class="total-price">
         <span>Att betala</span>
         <span class="total-summary">${(freightPrice + sumTotal)}</span>
       </section>`; 
+    
+      const discountAlert = document.querySelector(".discountAlert");
+  if (mondayDiscountActive) {
+      discountPrice = Math.round((sumTotal) * 0.1);
+      discountAlert.innerHTML = `<span> Måndagsrabatt! 10% på hela beställningen! Du har sparat ${discountPrice} kr!</span>`;
+  }
+
 }   // slut updateCartPrice()
 
 function validateDiscount() {
   if (discountField.value === "a_damn_fine-cup_of-coffee") {
     discountCodeValid = true;
     updateCartPrice();
+    discountField.value = "Rabattkod accepterad!"
+    discountBtn.setAttribute('disabled', "");
+  }
+  else {
+    discountField.value = "Försök igen";
   }
 }
 
@@ -503,6 +518,8 @@ function emptyCart (e){
   for (let i = 0; i<products.length; i++){
     products[i].amount = 0;
   }
+  discountBtn.removeAttribute('disabled');
+  discountField.value = "";
 
   renderChocolate(products);      //tömma de produkter som valts.
 }
