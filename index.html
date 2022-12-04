@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+            
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Henny+Penny&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300&display=swap" rel="stylesheet">
+    
+    
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <title>Gottfrids choklad</title>
+</head>
+
+<body>
+  <header>
+    <button id="dark-mode" class="moon" aria-label="themeToggle"><i class='bx bxs-moon'></i></button>
+    <button id="light-mode" class="sun hide" aria-label="themeToggle"><i class='bx bxs-sun'></i></button> 
+    <nav class="menu-container">
+      <button class="button-cart" onClick="toggleMenu()">
+      <a href="#shopping-cart">
+        <i class="bx bxs-cart"></i>
+        <span id="cartTotal" class="amount">0</span> st
+        <span id="cartSum" class="price">0</span> kr
+      </a></button> 
+    </nav>
+    <h1 class="header-logo">Gottfrids praliner</h1>
+    <nav class="navbar">
+      <ul class="nav-menu">
+        <li class="nav-item">
+          <a href="#second-page" class="nav-link">Produkter</a>
+        </li>
+        <li class="nav-item">
+          <a href="#shopping-cart" class="nav-link">Kassa</a>
+        </li>
+        <li class="nav-item">
+          <a href="#contact" class="nav-link">Kontakt</a>
+        </li>
+      </ul>
+      <button class="hamburger" aria-label="meny">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </nav>
+  </header>
+
+  <section class="fullpage-one">
+    <p>Köp fantastisk choklad till grymma priser!</p>
+    <a href="#second-page">
+      <button class="scroll-down">Till produkter &#8594;</button>
+    </a>
+  </section>
+  <section class="fullpage-two" id="second-page">
+    <div class="sorting-container">
+      <section class="sorting-first-section">
+        <h2><label for="priceRangeElement">Prisintervall:</label></h2>
+        <div class="pricerange-container">
+          <span>0 kr</span> 
+          <input type="range" name="price-range" id="priceRangeElement" min="0" max="20" value="20">
+          <span id="currentPriceRange">20 kr</span>
+        </div>
+      </section>
+      <section class="sorting-second-section">
+        <h2>Sortera efter:</h2>
+        <ul class="categories">
+          <li class="sort-option">
+            <label>
+            <input type="radio" name="sort-option-btn" id="priceRadioBtn" checked=""> 
+              Pris (högst överst)
+            </label>
+          </li>
+          <li class="sort-option">
+            <label>
+              <input type="radio" name="sort-option-btn" id="nameRadioBtn"> 
+                Namn (A-Ö)
+            </label>
+          </li>
+          <li class="sort-option">
+            <label>
+              <input type="radio" name="sort-option-btn" id="categoryRadioBtn"> 
+              Kategori
+            </label>
+          </li>
+          <li class="sort-option">
+            <label>
+              <input type="radio" name="sort-option-btn" id="ratingRadioBtn"> 
+              Högst betyg
+            </label>
+          </li>
+        </ul>
+      </section>
+    </div>
+    <div id="chocolate-container" class="pralinGrid"></div>
+  </section>
+  <section class="cart-container hidden" id="cartContainer">
+    <p class="close" onClick="toggleMenu()">X</p>
+    <fieldset>
+      <legend>Information!</legend>
+      <section class="accordion">
+        <section class="accordion-item">
+          <h2 class="accordion-title" id="shopping-cart">Översikt</h2>
+          <fieldset>
+            <legend>Kundkorgsöversikt</legend>
+            <section id="cart" class="cart-text"></section>
+            <section id="cartPris" class="cart-text"></section>
+            <section id="updatePrice"></section>
+            <br>
+            <input type="text" placeholder="Rabattkod" class="discountCode">
+            <br>
+            <button class="discountButton">Använd rabattkod</button>
+            <br>
+            <button id="emptyCart">Töm varukorgen</button>
+          </fieldset>
+        </section>
+        <section class="accordion-item">
+          <h2 class="accordion-title">Info</h2>
+          <section class="info-container">
+            <fieldset class="order-container">
+              <legend>BESTÄLLNINGSFORMULÄR</legend>
+              <section>
+                <form id="formList">
+                  <label for="firstname">Förnamn:</label>
+                  <input type="text" name="firstname" id="fnamn"><br>
+                  <label for="lastname">Efternamn:</label>
+                  <input type="text" name="lastname" id="enamn"><br>
+                  <label for="address">Adress:</label>
+                  <input type="text" name="address" id="adress"><br>
+                  <label for="zipcode">Postnummer:</label>
+                  <input type="number" name="zipcode" id="pnummer"><br>
+                  <label for="city">Postort:</label>
+                  <input type="text" name="city" id="port"><br>
+                  <label for="portnumber">ev. Portkod:</label>
+                  <input type="number" name="portnumber" id="pkod"><br>
+                  <label for="phone">Telefonnummer:</label>
+                  <input type="number" name="phone" id="telefon"><br>
+                  <label for="email">E-mail:</label>
+                  <input type="email" name="email" id="email"><br><br>
+                </form>
+              </section>
+              <br><br>
+              <label for="card-radio">
+                <input
+                  type="radio"
+                  name="payment_method"
+                  value="card"
+                  class="payment"
+                  id="card-radio"
+                >
+                Kort
+              </label>
+              <label for="invoice-radio">
+                <input
+                  type="radio"
+                  name="payment_method"
+                  value="invoice"
+                  class="payment"
+                  id="invoice-radio"
+                >
+                Faktura
+              </label>
+              <div class="radio-content"></div> 
+              <input type="checkbox" id="approval" name="approval">
+              <label for="approval"
+                >Godkännande av behandling av personuppgifter</label
+              ><br>
+              <input
+                type="checkbox"
+                id="newsletter"
+                name="newsletter"
+                checked
+              >
+              <label for="newsletter">Nyhetsbrev</label><br><br>
+              <!--Rensa formuläret när du klickar på knappen -->
+              <input type="button" onclick="resetInput()" value="Ta bort allt">
+              <!--Bekräftar beställning när du klickar på knappen -->
+              <input type="submit" value="submit" id="submit">
+            </fieldset>
+          </section>
+        </section>
+      </section>
+    </fieldset> 
+  </section>
+
+  <footer>
+    <section class="profile">
+      <span>Gottfrids choklad</span>
+        <ul class="service">
+          <li><a href="#">Hem</a></li>
+          <li><a href="#">Om oss</a></li>
+          <li><a href="#">Betalvillkor</a></li> 
+          <li><a href="#">Leveransvillkor</a></li> 
+          <li><a href="#">Jobba hos oss</a></li>  
+        </ul>
+      <section class="contact">
+        <a href="#"><i class='bx bx-phone'></i>Ring oss</a>
+        <a href="#"><i class='bx bxs-envelope'></i>Email</a>
+      </section>
+    </section>
+  </footer>
+  
+  <script src="js/max.js"></script>
+  <script src="js/abdu.js"></script>
+  <script src="js/jenny.js"></script>
+  <script src="js/younes.js"></script>
+  <script src="js/script.js"></script>
+</body>
+</html> 

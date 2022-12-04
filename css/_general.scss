@@ -1,0 +1,37 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  min-height: 100vh;
+  color: #f1f1f1;
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s linear;
+  background-color: var(--primary-color);
+  font-family:'Courier New', Courier, monospace;
+}
+
+
+:root{
+  --primary-color:rgb(46, 21, 1);
+  --rounded-corners: 10px;
+}
+
+.dark_mode{
+      background-image: none;
+
+  }
+
+  .show{ 
+      display: block;}
+
+  .hide{
+      display: none;
+  }
