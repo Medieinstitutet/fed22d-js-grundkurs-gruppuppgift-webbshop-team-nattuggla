@@ -135,6 +135,12 @@ function backgroundLight () {
   darkMode.classList.remove('hide');
 }
 
+function toggleMenu(){
+  var cartWidget = document.getElementById("cartContainer");
+  cartWidget.classList.toggle("hidden");
+}
+
+
 /******** funktioner som kollar datum ********/ 
 
 function isHoliday() {
@@ -232,15 +238,6 @@ checkWeek(weekNum);             // ger true i console (testad vecka 48)
 */
 
 /******** funktioner som manipulerar pris ********/     
-function discountMonday(){
-  if (!mondayDiscountActive){
-    printOrderedChocolate.innerhtml += 'Måndagsrabatt: 10 % på hela beställningen';
-    updateCartPrice.innerHTML = Math.round(priceRegular * 0.9);
-  }
-
-  // const inSEK = new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK' }).format(sumTotal+freightPrice);
-  // därdenskava.innerHTML = inSEK; <- kolla nåt 😀
-}
 
 
 
@@ -514,10 +511,6 @@ function updateCartPrice(){
     }
   }
 
-    //+++++++++++++++++++++++++++++++++++vid köp av fler än 10 st............'
-  amountTotal = products.reduce(                  
-    (previousValue, product) => {
-    return product.amount+ previousValue;}, 0 );
 
   document.querySelector('#updatePrice').innerHTML = '';  
   document.querySelector('#updatePrice').innerHTML =
@@ -538,7 +531,7 @@ function updateCartPrice(){
         <span class="total-summary">${(freightPrice + sumTotal)}</span>
       </section>`; 
     
-      const discountAlert = document.querySelector(".discountAlert");
+const discountAlert = document.querySelector(".discountAlert");
   if (mondayDiscountActive) {
       discountPrice = Math.round((sumTotal) * 0.1);
       discountAlert.innerHTML = `<span> Måndagsrabatt! 10% på hela beställningen! Du har sparat ${discountPrice} kr!</span>`;
