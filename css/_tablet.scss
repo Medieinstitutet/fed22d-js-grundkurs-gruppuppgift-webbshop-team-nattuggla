@@ -6,15 +6,44 @@
     gap:  10px;
   }
 
+  /********** HEADER **********/
+  .header-logo {
+    max-width: 100%;
+    font-family: "Henny Penny", "Times New Roman", Times, serif;
+    font-size: 6rem;
+    margin: 10px;
+    text-align: center;
+    text-shadow: 5px 5px 1px rgb(70, 52, 35);
+    letter-spacing: 10px;
+    position: relative;
+    top: 30vh;
+    left: 9vw;
+    color: #d6b050; // ändrat färg till guldigt typ
+  }
+
+
   /********** FULLPAGE-TWO **********/
   .fullpage-two {
     .sorting-container {
       
     }
+    
+    .left {   // kolla i renderChocolate() för html, vet inte riktigt hur det ska stylas här
+      position: relative;
+      left: -5em;
+      font-size: 30px;
+    }
+  
+    .right {
+      position: relative;
+      left: 5em;
+      font-size: 30px;
+  
+    }
 
     .pralinGrid {
       display: grid;
-      grid-template-columns: 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr; // ändrade till 2 frames bara och det blev bättre? kanske ska ha det?
       gap: 2rem;
     }
 
