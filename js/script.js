@@ -45,10 +45,28 @@ let shippingCost = true;  // fraktkostnad default pris, om inget särskilt
 let tenProductsDiscount = true;
 
 
-
-
-
 /********  FUNKTIONER ********/
+
+function onLoadListeners() {
+    // meny
+  hamburger.addEventListener('click', menuOpen);
+  navMenu.addEventListener('click', navOpen);
+
+    // theme toggle
+  darkMode.addEventListener('click', backgroundDark);
+  lightMode.addEventListener('click', backgroundLight);
+
+    // sortering
+  sortingRadios.forEach(element => {    // event på varje interaktion med radio-knappar
+    element.addEventListener('change', updatePriceRange);
+    });
+  priceRangeElement.addEventListener('input', updatePriceRange);    // event på varje interaktion med pris-slider
+  
+    // 
+  emptyCartBtn.addEventListener('click', emptyCart);
+  discountBtn.addEventListener('click' , validateDiscount);   // event för rabattkods-knapp
+
+}
 
 function menuOpen () {
     hamburger.classList.toggle('active');
@@ -491,21 +509,10 @@ function emptyCart (e){
 
 /***** körs när sidan laddas  */
 
-hamburger.addEventListener('click', menuOpen);
-navMenu.addEventListener('click', navOpen);
-// theme toggle
-darkMode.addEventListener('click', backgroundDark);
-lightMode.addEventListener('click', backgroundLight);
-
+onLoadListeners();              // lägg på alla listeners
 isHoliday();                    // kolla om det är en speciell helgdag, gör grejer isf
 checkDay(orderDay);             // kontrollera veckodag, gör grejer i switch-satsen beroende på vilken
 updatePriceRange();             // skriver ut produkterna samtidigt
 xMas();
-sortingRadios.forEach(element => {    // event på varje interaktion med radio-knappar
-  element.addEventListener('change', updatePriceRange);
-  });
 
-priceRangeElement.addEventListener('input', updatePriceRange);    // event på varje interaktion med pris-slider
 
-emptyCartBtn.addEventListener('click', emptyCart);
-discountBtn.addEventListener('click' , validateDiscount);   // event för rabattkods-knapp
