@@ -363,6 +363,7 @@ header {
     left: -3em;
     font-size: 30px;
     color: #f1f1f1;
+    z-index: 2;
   }
 
   .right {
@@ -370,7 +371,18 @@ header {
     left: 3em;
     font-size: 30px;
     color: #f1f1f1;
+    z-index: 2;
+  }
 
+  .nextImage{
+    position: relative;
+    left: 3em;
+
+  }
+
+  .prevImage{
+    position: relative;
+    left: -3em;
   }
 
   .left:hover {
