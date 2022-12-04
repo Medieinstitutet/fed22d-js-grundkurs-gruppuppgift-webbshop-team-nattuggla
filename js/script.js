@@ -232,15 +232,6 @@ checkWeek(weekNum);             // ger true i console (testad vecka 48)
 */
 
 /******** funktioner som manipulerar pris ********/     
-function discountMonday(){
-  if (!mondayDiscountActive){
-    printOrderedChocolate.innerhtml += 'Måndagsrabatt: 10 % på hela beställningen';
-    updateCartPrice.innerHTML = Math.round(priceRegular * 0.9);
-  }
-
-  // const inSEK = new Intl.NumberFormat('sv-SE', { style: 'currency', currency: 'SEK' }).format(sumTotal+freightPrice);
-  // därdenskava.innerHTML = inSEK; <- kolla nåt 😀
-}
 
 
 
