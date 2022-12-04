@@ -354,6 +354,7 @@ function updateAmount(e) {
 
   if (products[chocolateChoosed].amount == 10) {
     products[chocolateChoosed].price = (products[chocolateChoosed].price * 0.9);
+    products[chocolateChoosed].amount += 1;   // funkar nu, why? 🤔
   }
                   
   renderChocolate(products);
@@ -418,6 +419,7 @@ function printOrderedChocolate () {
     if (products[i].amount > 0) {
       orderedTotalPrice = products[i].amount * products[i].price;
       if (orderedTotalPrice >= 800) {
+        console.log('if 800');
         invoiceRadioBtn.setAttribute('disabled' , "");  // om totalpris större än 800, ingen faktura
       }
       document.querySelector('#cart').innerHTML += 
