@@ -20,20 +20,25 @@ header {
   top: 0;
   left: 0;
   max-width: 100%;
-
 }
 
 .moon {
   background-color: transparent;
   border: none;
   font-size: 25px;
+  color: rgb(0, 0, 0);
+  padding: 5px;
+  border: rgba(197, 197, 197, 0.842) 1px inset;
 }
 
 .sun {
   border: none;
   background-color: transparent;
-  color: white;
+  color: rgb(236, 218, 52);
   font-size: 25px;
+  padding: 5px;
+  border: rgba(197, 197, 197, 0.842) 1px inset;
+
 }
 
 .header-logo {
@@ -46,36 +51,29 @@ header {
   letter-spacing: 10px;
   position: relative;
   top: 100px;
-  color: #d6b050; // ändrat färg till guldigt typ
+  color: #d6b050; 
 }
 
 
 /********** hamburgarmenyn och varukorg **********/
-.menu-container {   // den här drar iväg nånstans? 😮 försökte med rgba-bg så den skulle synas ordentligt
-  position: relative;
-  top: -30vh;
-  z-index: 1;
-  float: right;
-  width: 25vh;
-  border: 3px solid #000;
-  background-color: red;
+.menu-container {  
 
   a {
     color: #f1f1f1;
-    position: fixed ;
+    position: fixed;
     top: 2vh;
-    right: 18vw;
+    right: 10vw;
     text-decoration: none;
   }
 
   a:hover {
-    color: red;
+    color: #d6b050;
   }
 }
 
 .button-cart {
-  font-size: 1.3em;
-  border: none;
+  font-size: 1.2em;
+  z-index: 1;
 }
 
 
@@ -102,8 +100,8 @@ header {
 .nav-menu.active {
   left: 0;
   display: block;
-  background-color: rgba(0, 0, 0, 0.6);
-  height: 30vh; // ändrad
+  background-color: rgba(0, 0, 0, 0.816);
+  height: 30vh; 
 }
 
 .nav-item {
@@ -120,15 +118,14 @@ header {
 }
 
 .nav-link:hover {
-  color: rgb(15, 112, 208);
+  color: rgb(213, 213, 213);
   text-transform: uppercase;
-  background-color: rgb(241, 237, 234);
 }
 
 .hamburger {
   cursor: pointer;
   position: fixed;
-  right: 0.8em; // ändrad 
+  right: 0.8em; 
   border: none;
   top: 1.5vh;
   background-color: transparent;
@@ -171,10 +168,10 @@ header {
     font-size: 1em;
     text-align: center;
     position: absolute;
-    top: 65vh;
-    color: #d6b050; // ändrat färg till guldigt typ
-    font-weight: bold;
-    text-shadow: 1px 1px 1px #272727; // lagt till en text-shadow för att få texten att synas lite bättre
+    top: 45vh;
+    font-style: italic;
+    color: #f1f1f1;
+    text-shadow: 1px 1px 1px #272727; 
     letter-spacing: 2px;
   }
 }
@@ -191,13 +188,14 @@ header {
   background-color: black;
   color: white;
   cursor: pointer;
+  text-transform: uppercase;
 
   &:hover {
     opacity: 1;
+    background-color: rgb(207, 176, 72);
   }
 
   &:active {
-    box-shadow: 0px 0px 0px 0px;
     top: 5px;
     left: 5px;
   }
@@ -210,11 +208,14 @@ header {
   flex-direction: column;
 
   .sorting-container {
-    padding-top: 2.5rem;
+    padding-top: 1rem;
     display: flex;
     justify-content: center;
-    border: none;
+    border-top: rgb(78, 55, 13) double 10px;
+    border-bottom: rgb(78, 55, 13) double 10px;
     background-color: #291912;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
 
     h2 {
       font-size: 1.2em;
@@ -224,16 +225,16 @@ header {
   }
 
   .sorting-first-section {
-    font-size: 0.7em;
-    width: 200px;
+    font-size: 0.8em;
+    width: 20em;
     padding: 0;
-    margin-right: 30px;
-    margin-left: 20px;
-    margin-bottom: 10px;
+    margin-right: 20vw;
+    margin-left: 20vw;
     border: none;
 
     h2 {
       text-align: center;
+      font-size: 1.5em;
     }
 
     .pricerange-container {
@@ -258,18 +259,21 @@ header {
   }
 
   .sorting-second-section {
-    font-size: 0.7em;
-    width: 200px;
+    font-size: 0.8em;
+    width: 20em;
     border: none;
-    margin-bottom: 20px; // tillagd
+    margin-bottom: 20px; 
 
     h2 {
       text-align: center;
+      margin-right: 4em;
+      font-size: 1.5em;
     }
 
     .categories {
       text-align: left;
-      margin-left: -3em;
+      margin-left: -2em;
+      font-size: 1.2em;
     }
 
     ul.categories {
@@ -313,6 +317,7 @@ header {
     justify-content: center;
     text-align: center;
     border-radius: var(--rounded-corners);
+    z-index: -1;
   }
 
   .images {
@@ -415,13 +420,6 @@ header {
 
 //++++++++++++++++++++++++kundkorg++++++++++++++++++++++++//
 
-.kundkorg {
-  width: 100%;
-  height: 85%;
-  background-color: #ffffff;
-  border-radius: 20px;
-  box-shadow: 0px 25px 40px #1687d933;
-}
 
 .top-section {
   margin: auto;
@@ -591,22 +589,16 @@ legend {
   font-weight: bold;
 }
 
-input {
-  // kör gärna class här 😊
-  width: 20em;
-  border-top: none;
-  border-left: none;
-}
 
 .payment {
   width: 1em;
 }
 
-input { // lagt till en border-radius till input rutorna
+input { 
   border-radius: 15px;
 }
 
-input#newsletter { // bytte till rätt ID
+input#newsletter { 
   width: 1em;
 }
 
@@ -678,3 +670,5 @@ footer {
 .christmas-color{
   color: red;
 }
+
+
