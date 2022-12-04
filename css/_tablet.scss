@@ -8,9 +8,6 @@
 
   /********** HEADER **********/
 
-.header {
-  background-color: solid 2px;
-}
   .header-logo {
     max-width: 100%;
     font-family: "Henny Penny", "Times New Roman", Times, serif;
@@ -75,7 +72,7 @@
     top: 60vh;
     font-style: italic;
     color: #f1f1f1;
-    font-weight: bolders;
+    font-weight: bolder;
     text-shadow: 6px 6px 7px #272727; 
     letter-spacing: 2px;
   }
@@ -84,9 +81,6 @@
 
   /********** FULLPAGE-TWO **********/
   .fullpage-two {
-    .sorting-container {
-      
-    }
     
     .left {   // kolla i renderChocolate() för html, vet inte riktigt hur det ska stylas här
       position: relative;
